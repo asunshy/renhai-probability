@@ -34,6 +34,7 @@
 - `data/seed/catalog.json`：长期维护的数据源、地区、维度、默认比例、地区交叉比例。
 - `data/raw/province-demographics-2020.csv`：第七次人口普查省级人口、性别、年龄、学历导入表。
 - `data/raw/region-labor-salary-2024.csv`：重点地区职业结构与薪资区间导入表，当前按行业报告等级使用。
+- `data/raw/datasets.json`：原始数据集清单，记录导入命令、覆盖维度、数据等级和原始文件路径。
 - `web-preview/data/seed.json`：由脚本生成的网页预览数据，不作为人工维护源。
 - `cloudfunctions/calculateProbability/lib/probability.js`：概率模型和摘要接口，当前已直接读取 `data/seed/catalog.json`。
 

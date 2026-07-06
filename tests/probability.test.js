@@ -10,6 +10,7 @@ const {
   getDataCatalog,
   getCoverageSummary,
   getRegionComparison,
+  getDatasetManifest,
   validateSeedData,
   REGIONS,
   DIMENSIONS,
@@ -174,4 +175,14 @@ test('region comparison ranks regions for the same filters', () => {
   assert.equal(comparison[0].region.code, '440000');
   assert.ok(comparison[0].estimatedPeople > comparison[1].estimatedPeople);
   assert.ok(comparison.every((item) => item.probabilityText.endsWith('%')));
+});
+
+test('dataset manifest lists raw import datasets with traceable commands', () => {
+  const manifest = getDatasetManifest();
+
+  assert.equal(manifest.length, 2);
+  assert.equal(manifest[0].id, 'province_demographics_2020');
+  assert.ok(manifest.every((dataset) => dataset.rawPath.startsWith('data/raw/')));
+  assert.ok(manifest.every((dataset) => dataset.importCommand.startsWith('npm run import:')));
+  assert.ok(manifest.some((dataset) => dataset.dimensions.includes('salary')));
 });

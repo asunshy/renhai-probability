@@ -1,4 +1,5 @@
 const ASSET_CATALOG = require('../../../data/seed/catalog.json');
+const DATASET_MANIFEST = require('../../../data/raw/datasets.json');
 
 const QUALITY_LEVELS = ASSET_CATALOG.qualityLevels;
 const SOURCES = ASSET_CATALOG.sources;
@@ -215,6 +216,10 @@ function getCoverageSummary() {
   };
 }
 
+function getDatasetManifest() {
+  return DATASET_MANIFEST.map((dataset) => ({ ...dataset }));
+}
+
 function getSourceNotes(metricIds = [], factors = []) {
   const notesById = new Map();
 
@@ -287,6 +292,7 @@ module.exports = {
   getDataCatalog,
   getCoverageSummary,
   getRegionComparison,
+  getDatasetManifest,
   validateSeedData,
   REGIONS,
   DIMENSIONS,

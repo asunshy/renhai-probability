@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T16:47:11.382Z",
+  "generatedAt": "2026-07-06T16:49:46.342Z",
   "options": {
     "region": {
       "code": "000000",
@@ -898,6 +898,40 @@
       }
     ]
   },
+  "datasets": [
+    {
+      "id": "province_demographics_2020",
+      "title": "第七次人口普查省级人口基础表",
+      "rawPath": "data/raw/province-demographics-2020.csv",
+      "sourceId": "population_census",
+      "quality": "官方统计",
+      "year": 2020,
+      "importCommand": "npm run import:province-demographics",
+      "dimensions": [
+        "region",
+        "gender",
+        "ageRange",
+        "education"
+      ],
+      "coverage": "31 个大陆省级行政区",
+      "notes": "用于省级人口、性别、20-39 岁年龄段、本科及以上和硕士及以上比例。"
+    },
+    {
+      "id": "region_labor_salary_2024",
+      "title": "重点地区职业与薪资区间表",
+      "rawPath": "data/raw/region-labor-salary-2024.csv",
+      "sourceId": "recruitment_reports",
+      "quality": "行业报告",
+      "year": 2024,
+      "importCommand": "npm run import:region-labor-salary",
+      "dimensions": [
+        "occupation",
+        "salary"
+      ],
+      "coverage": "10 个重点地区",
+      "notes": "用于技术、金融、教育、医疗、公共服务职业占比，以及 8k+/12k+/20k+/50k+ 薪资区间。"
+    }
+  ],
   "comparison": [
     {
       "region": {

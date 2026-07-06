@@ -171,8 +171,10 @@ function renderResult(result) {
 function renderCatalog() {
   const catalog = document.querySelector('#catalog');
   const coverage = document.querySelector('#coverage');
+  const datasets = document.querySelector('#datasets');
   catalog.replaceChildren();
   coverage.replaceChildren();
+  datasets.replaceChildren();
 
   [
     ['数据源', seed.coverage.totalSources],
@@ -216,6 +218,25 @@ function renderCatalog() {
     title.append(name, badge);
     item.append(title, note);
     catalog.appendChild(item);
+  });
+
+  seed.datasets.forEach((dataset) => {
+    const item = document.createElement('article');
+    const title = document.createElement('div');
+    const meta = document.createElement('div');
+    const command = document.createElement('div');
+
+    item.className = 'dataset-item';
+    title.className = 'dataset-title';
+    meta.className = 'dataset-meta';
+    command.className = 'dataset-command';
+
+    title.textContent = dataset.title;
+    meta.textContent = `${dataset.quality} · ${dataset.coverage} · ${dataset.dimensions.join(' / ')}`;
+    command.textContent = dataset.importCommand;
+
+    item.append(title, meta, command);
+    datasets.appendChild(item);
   });
 }
 
