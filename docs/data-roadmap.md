@@ -23,11 +23,17 @@
 
 ## 数据接入流程
 
-1. 为每个新来源补充 `id`、标题、年份、可信等级、优先级、刷新频率和链接。
+1. 在 `data/seed/catalog.json` 为每个新来源补充 `id`、标题、年份、可信等级、优先级、刷新频率和链接。
 2. 为每个新维度指定来源，不允许没有来源的维度进入计算。
 3. 有地区交叉数据时使用 `regionRates`；没有交叉数据时使用 `defaultRate` 并降低可信度。
 4. 更新 `tests/probability.test.js`，确保新增维度参与计算且来源可追踪。
 5. 运行 `npm run export:web-data` 刷新网页原型数据。
+
+## 当前数据资产
+
+- `data/seed/catalog.json`：长期维护的数据源、地区、维度、默认比例、地区交叉比例。
+- `web-preview/data/seed.json`：由脚本生成的网页预览数据，不作为人工维护源。
+- `cloudfunctions/calculateProbability/lib/probability.js`：概率模型和摘要接口，后续继续减少硬编码。
 
 ## 重要口径
 

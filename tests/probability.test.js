@@ -1,11 +1,14 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
 
 const {
   calculateProbability,
   getFilterOptions,
   getSourceNotes,
   getDataCatalog,
+  getCoverageSummary,
   validateSeedData
 } = require('../cloudfunctions/calculateProbability/lib/probability');
 
@@ -113,4 +116,25 @@ test('new lifestyle and asset dimensions participate in probability calculation'
   assert.equal(result.factors.some((factor) => factor.key === 'height'), true);
   assert.equal(result.factors.some((factor) => factor.quality === '模型估算'), true);
   assert.equal(result.sourceNotes.some((source) => source.id === 'housing_reports'), true);
+});
+
+test('catalog data is maintained as a standalone data asset', () => {
+  const assetPath = path.join(__dirname, '..', 'data', 'seed', 'catalog.json');
+  const asset = JSON.parse(fs.readFileSync(assetPath, 'utf8'));
+  const catalog = getDataCatalog();
+
+  assert.ok(asset.sources.population_census);
+  assert.ok(asset.dimensions.gender);
+  assert.equal(catalog.sources.length, Object.keys(asset.sources).length);
+  assert.equal(catalog.dimensions.length, Object.keys(asset.dimensions).length);
+});
+
+test('coverage summary exposes quality mix and dimensions needing better data', () => {
+  const summary = getCoverageSummary();
+
+  assert.ok(summary.totalDimensions >= 12);
+  assert.ok(summary.qualityCounts['官方统计'] >= 3);
+  assert.ok(summary.qualityCounts['模型估算'] >= 3);
+  assert.ok(summary.needsRegionalData.some((item) => item.key === 'height'));
+  assert.ok(summary.nextRefresh.length >= 3);
 });

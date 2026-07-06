@@ -170,7 +170,33 @@ function renderResult(result) {
 
 function renderCatalog() {
   const catalog = document.querySelector('#catalog');
+  const coverage = document.querySelector('#coverage');
   catalog.replaceChildren();
+  coverage.replaceChildren();
+
+  [
+    ['数据源', seed.coverage.totalSources],
+    ['维度', seed.coverage.totalDimensions],
+    ['待补交叉', seed.coverage.needsRegionalData.length]
+  ].forEach(([label, value]) => {
+    const card = document.createElement('div');
+    const strong = document.createElement('strong');
+    const span = document.createElement('span');
+
+    card.className = 'coverage-card';
+    strong.textContent = value;
+    span.textContent = label;
+    card.append(strong, span);
+    coverage.appendChild(card);
+  });
+
+  const gapBox = document.createElement('div');
+  gapBox.className = 'gap-box';
+  gapBox.textContent = `下一批优先补：${seed.coverage.needsRegionalData
+    .slice(0, 4)
+    .map((item) => item.label)
+    .join('、')} 的地区交叉数据。`;
+  coverage.after(gapBox);
 
   seed.catalog.sources.slice(0, 7).forEach((source) => {
     const item = document.createElement('article');

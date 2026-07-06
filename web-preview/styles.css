@@ -255,6 +255,46 @@ h2 {
   margin-top: 22px;
 }
 
+.coverage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.coverage-card {
+  padding: 12px;
+  border-radius: 8px;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+}
+
+.coverage-card strong {
+  display: block;
+  color: var(--surface-strong);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.coverage-card span {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.gap-box {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 8px;
+  background: #fff7ed;
+  color: #9a3412;
+  font-size: 13px;
+  line-height: 1.55;
+  font-weight: 750;
+}
+
 .factor-row {
   display: grid;
   gap: 8px;
@@ -343,5 +383,9 @@ h2 {
 
   .people {
     font-size: 52px;
+  }
+
+  .coverage-grid {
+    grid-template-columns: 1fr;
   }
 }

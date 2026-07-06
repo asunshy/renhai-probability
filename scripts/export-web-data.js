@@ -4,7 +4,8 @@ const path = require('node:path');
 const {
   calculateProbability,
   getFilterOptions,
-  getDataCatalog
+  getDataCatalog,
+  getCoverageSummary
 } = require('../cloudfunctions/calculateProbability/lib/probability');
 
 const outputDir = path.join(__dirname, '..', 'web-preview', 'data');
@@ -47,6 +48,7 @@ const payload = {
   generatedAt: new Date().toISOString(),
   options: getFilterOptions('000000'),
   catalog: getDataCatalog(),
+  coverage: getCoverageSummary(),
   scenarios: scenarios.map((scenario) => ({
     ...scenario,
     result: calculateProbability(scenario.filters)

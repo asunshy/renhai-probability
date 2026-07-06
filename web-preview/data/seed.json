@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T16:29:53.443Z",
+  "generatedAt": "2026-07-06T16:34:09.183Z",
   "options": {
     "region": {
       "code": "000000",
@@ -247,6 +247,26 @@
         "note": "用于就业、行业、工资等宏观统计口径。"
       },
       {
+        "id": "national_data",
+        "title": "国家数据",
+        "year": 2024,
+        "quality": "官方统计",
+        "priority": 1,
+        "refreshCadence": "每季度检查年度与月度数据库更新",
+        "url": "https://data.stats.gov.cn/",
+        "note": "用于后续接入地区、行业、就业、工资等可机读指标。"
+      },
+      {
+        "id": "mohrss_salary",
+        "title": "人社部企业薪酬调查与公开工资资料",
+        "year": 2024,
+        "quality": "官方统计",
+        "priority": 1,
+        "refreshCadence": "每年检查人社部薪酬调查信息",
+        "url": "https://www.mohrss.gov.cn/",
+        "note": "用于职业薪酬、技能人才薪酬等官方口径补充。"
+      },
+      {
         "id": "recruitment_reports",
         "title": "招聘平台公开薪酬报告汇总",
         "year": 2024,
@@ -267,16 +287,6 @@
         "note": "用于吸烟、饮酒等生活方式估算。"
       },
       {
-        "id": "personality_model",
-        "title": "性格标签趣味估算模型",
-        "year": 2026,
-        "quality": "模型估算",
-        "priority": 3,
-        "refreshCadence": "随产品问卷与公开研究样本迭代",
-        "url": "https://data.stats.gov.cn/",
-        "note": "性格没有稳定官方分布，首版仅作趣味估算，不作为严肃统计。"
-      },
-      {
         "id": "housing_reports",
         "title": "住户调查、城市住房与行业研究报告汇总",
         "year": 2024,
@@ -285,6 +295,16 @@
         "refreshCadence": "每半年复核统计年鉴、住户调查和行业研究",
         "url": "https://data.stats.gov.cn/",
         "note": "用于住房、通勤容忍度等城市生活成本相关估算。"
+      },
+      {
+        "id": "personality_model",
+        "title": "性格标签趣味估算模型",
+        "year": 2026,
+        "quality": "模型估算",
+        "priority": 3,
+        "refreshCadence": "随产品问卷与公开研究样本迭代",
+        "url": "https://data.stats.gov.cn/",
+        "note": "性格没有稳定官方分布，首版仅作趣味估算，不作为严肃统计。"
       },
       {
         "id": "body_lifestyle_model",
@@ -303,6 +323,7 @@
         "label": "性别",
         "sourceId": "population_census",
         "quality": "官方统计",
+        "coverage": "regional",
         "options": [
           {
             "value": "male",
@@ -321,6 +342,7 @@
         "label": "年龄",
         "sourceId": "population_census",
         "quality": "官方统计",
+        "coverage": "regional",
         "options": [
           {
             "value": "20-24",
@@ -349,6 +371,7 @@
         "label": "学历",
         "sourceId": "population_census",
         "quality": "官方统计",
+        "coverage": "regional",
         "options": [
           {
             "value": "high_school_plus",
@@ -377,6 +400,7 @@
         "label": "职业",
         "sourceId": "stats_yearbook",
         "quality": "官方统计",
+        "coverage": "regional_partial",
         "options": [
           {
             "value": "tech",
@@ -410,6 +434,7 @@
         "label": "月收入",
         "sourceId": "recruitment_reports",
         "quality": "行业报告",
+        "coverage": "regional_partial",
         "options": [
           {
             "value": "8k_plus",
@@ -438,6 +463,7 @@
         "label": "吸烟",
         "sourceId": "lifestyle_reports",
         "quality": "行业报告",
+        "coverage": "national",
         "options": [
           {
             "value": "no",
@@ -456,6 +482,7 @@
         "label": "饮酒",
         "sourceId": "lifestyle_reports",
         "quality": "行业报告",
+        "coverage": "regional_partial",
         "options": [
           {
             "value": "light_or_no",
@@ -474,6 +501,7 @@
         "label": "性格",
         "sourceId": "personality_model",
         "quality": "模型估算",
+        "coverage": "model_only",
         "options": [
           {
             "value": "extrovert",
@@ -502,6 +530,7 @@
         "label": "身高",
         "sourceId": "body_lifestyle_model",
         "quality": "模型估算",
+        "coverage": "model_only",
         "options": [
           {
             "value": "any_reasonable",
@@ -535,6 +564,7 @@
         "label": "运动习惯",
         "sourceId": "body_lifestyle_model",
         "quality": "模型估算",
+        "coverage": "model_only",
         "options": [
           {
             "value": "not_required",
@@ -558,6 +588,7 @@
         "label": "居住资产",
         "sourceId": "housing_reports",
         "quality": "行业报告",
+        "coverage": "regional_partial",
         "options": [
           {
             "value": "not_required",
@@ -581,6 +612,7 @@
         "label": "通勤距离",
         "sourceId": "housing_reports",
         "quality": "行业报告",
+        "coverage": "national",
         "options": [
           {
             "value": "not_required",
@@ -598,6 +630,136 @@
             "defaultRate": 0.54
           }
         ]
+      }
+    ]
+  },
+  "coverage": {
+    "totalSources": 9,
+    "totalDimensions": 12,
+    "qualityCounts": {
+      "官方统计": 4,
+      "行业报告": 5,
+      "模型估算": 3
+    },
+    "needsRegionalData": [
+      {
+        "key": "occupation",
+        "label": "职业",
+        "coverage": "regional_partial",
+        "quality": "官方统计"
+      },
+      {
+        "key": "salary",
+        "label": "月收入",
+        "coverage": "regional_partial",
+        "quality": "行业报告"
+      },
+      {
+        "key": "smoking",
+        "label": "吸烟",
+        "coverage": "national",
+        "quality": "行业报告"
+      },
+      {
+        "key": "drinking",
+        "label": "饮酒",
+        "coverage": "regional_partial",
+        "quality": "行业报告"
+      },
+      {
+        "key": "personality",
+        "label": "性格",
+        "coverage": "model_only",
+        "quality": "模型估算"
+      },
+      {
+        "key": "height",
+        "label": "身高",
+        "coverage": "model_only",
+        "quality": "模型估算"
+      },
+      {
+        "key": "exercise",
+        "label": "运动习惯",
+        "coverage": "model_only",
+        "quality": "模型估算"
+      },
+      {
+        "key": "homeOwnership",
+        "label": "居住资产",
+        "coverage": "regional_partial",
+        "quality": "行业报告"
+      },
+      {
+        "key": "commuteTolerance",
+        "label": "通勤距离",
+        "coverage": "national",
+        "quality": "行业报告"
+      }
+    ],
+    "nextRefresh": [
+      {
+        "id": "population_census",
+        "title": "第七次全国人口普查与国家统计局公开数据",
+        "quality": "官方统计",
+        "priority": 1,
+        "refreshCadence": "人口普查十年一次，年度人口抽样与统计年鉴补充"
+      },
+      {
+        "id": "stats_yearbook",
+        "title": "中国统计年鉴",
+        "quality": "官方统计",
+        "priority": 1,
+        "refreshCadence": "每年跟随统计年鉴更新"
+      },
+      {
+        "id": "national_data",
+        "title": "国家数据",
+        "quality": "官方统计",
+        "priority": 1,
+        "refreshCadence": "每季度检查年度与月度数据库更新"
+      },
+      {
+        "id": "mohrss_salary",
+        "title": "人社部企业薪酬调查与公开工资资料",
+        "quality": "官方统计",
+        "priority": 1,
+        "refreshCadence": "每年检查人社部薪酬调查信息"
+      },
+      {
+        "id": "recruitment_reports",
+        "title": "招聘平台公开薪酬报告汇总",
+        "quality": "行业报告",
+        "priority": 2,
+        "refreshCadence": "每季度或半年复核一次公开报告"
+      },
+      {
+        "id": "lifestyle_reports",
+        "title": "公开健康与生活方式调查报告汇总",
+        "quality": "行业报告",
+        "priority": 2,
+        "refreshCadence": "每年复核卫健委、疾控和公开研究报告"
+      },
+      {
+        "id": "housing_reports",
+        "title": "住户调查、城市住房与行业研究报告汇总",
+        "quality": "行业报告",
+        "priority": 2,
+        "refreshCadence": "每半年复核统计年鉴、住户调查和行业研究"
+      },
+      {
+        "id": "personality_model",
+        "title": "性格标签趣味估算模型",
+        "quality": "模型估算",
+        "priority": 3,
+        "refreshCadence": "随产品问卷与公开研究样本迭代"
+      },
+      {
+        "id": "body_lifestyle_model",
+        "title": "身高、运动频率与生活习惯估算模型",
+        "quality": "模型估算",
+        "priority": 3,
+        "refreshCadence": "随权威体质调查与用户匿名反馈迭代"
       }
     ]
   },

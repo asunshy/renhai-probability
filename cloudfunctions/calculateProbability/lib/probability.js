@@ -1,4 +1,5 @@
 const QUALITY_LEVELS = ['官方统计', '行业报告', '模型估算'];
+const ASSET_CATALOG = require('../../../data/seed/catalog.json');
 
 const SOURCES = {
   population_census: {
@@ -358,19 +359,63 @@ function getFilterOptions(regionCode = '000000') {
 }
 
 function getDataCatalog() {
+  const { sources, dimensions } = ASSET_CATALOG;
+
   return {
-    sources: Object.values(SOURCES).map((source) => ({ ...source })),
-    dimensions: Object.entries(DIMENSIONS).map(([key, dimension]) => ({
+    sources: Object.values(sources).map((source) => ({ ...source })),
+    dimensions: Object.entries(dimensions).map(([key, dimension]) => ({
       key,
       label: dimension.label,
       sourceId: dimension.sourceId,
-      quality: SOURCES[dimension.sourceId].quality,
+      quality: sources[dimension.sourceId].quality,
+      coverage: dimension.coverage,
       options: Object.entries(dimension.options).map(([value, option]) => ({
         value,
         label: option.label,
         defaultRate: option.defaultRate
       }))
     }))
+  };
+}
+
+function getCoverageSummary() {
+  const catalog = getDataCatalog();
+  const qualityCounts = {};
+
+  catalog.sources.forEach((source) => {
+    qualityCounts[source.quality] = qualityCounts[source.quality] || 0;
+  });
+
+  catalog.dimensions.forEach((dimension) => {
+    qualityCounts[dimension.quality] = (qualityCounts[dimension.quality] || 0) + 1;
+  });
+
+  const needsRegionalData = catalog.dimensions
+    .filter((dimension) => dimension.coverage !== 'regional')
+    .map((dimension) => ({
+      key: dimension.key,
+      label: dimension.label,
+      coverage: dimension.coverage,
+      quality: dimension.quality
+    }));
+
+  const nextRefresh = catalog.sources
+    .slice()
+    .sort((a, b) => a.priority - b.priority || a.year - b.year)
+    .map((source) => ({
+      id: source.id,
+      title: source.title,
+      quality: source.quality,
+      priority: source.priority,
+      refreshCadence: source.refreshCadence
+    }));
+
+  return {
+    totalSources: catalog.sources.length,
+    totalDimensions: catalog.dimensions.length,
+    qualityCounts,
+    needsRegionalData,
+    nextRefresh
   };
 }
 
@@ -428,6 +473,7 @@ module.exports = {
   getFilterOptions,
   getSourceNotes,
   getDataCatalog,
+  getCoverageSummary,
   validateSeedData,
   REGIONS,
   DIMENSIONS,
