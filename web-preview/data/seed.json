@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T16:34:09.183Z",
+  "generatedAt": "2026-07-06T16:37:55.477Z",
   "options": {
     "region": {
       "code": "000000",
@@ -806,6 +806,7 @@
             "rate": 0.517,
             "quality": "官方统计",
             "sourceId": "population_census",
+            "coverage": "regional",
             "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
           },
           {
@@ -816,6 +817,7 @@
             "rate": 0.083,
             "quality": "官方统计",
             "sourceId": "population_census",
+            "coverage": "regional",
             "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
           },
           {
@@ -826,6 +828,7 @@
             "rate": 0.285,
             "quality": "官方统计",
             "sourceId": "population_census",
+            "coverage": "regional",
             "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
           },
           {
@@ -836,6 +839,7 @@
             "rate": 0.126,
             "quality": "官方统计",
             "sourceId": "stats_yearbook",
+            "coverage": "regional_partial",
             "note": "用于就业、行业、工资等宏观统计口径。"
           },
           {
@@ -846,6 +850,7 @@
             "rate": 0.052,
             "quality": "行业报告",
             "sourceId": "recruitment_reports",
+            "coverage": "regional_partial",
             "note": "用于补充分城市、分职业薪资区间，非逐人精确统计。"
           },
           {
@@ -856,6 +861,7 @@
             "rate": 0.735,
             "quality": "行业报告",
             "sourceId": "lifestyle_reports",
+            "coverage": "national",
             "note": "用于吸烟、饮酒等生活方式估算。"
           },
           {
@@ -866,6 +872,7 @@
             "rate": 0.68,
             "quality": "行业报告",
             "sourceId": "lifestyle_reports",
+            "coverage": "regional_partial",
             "note": "用于吸烟、饮酒等生活方式估算。"
           }
         ],
@@ -877,6 +884,7 @@
           "rate": 0.052,
           "quality": "行业报告",
           "sourceId": "recruitment_reports",
+          "coverage": "regional_partial",
           "note": "用于补充分城市、分职业薪资区间，非逐人精确统计。"
         },
         "confidence": {
@@ -932,7 +940,8 @@
           }
         ],
         "flags": [
-          "contains_non_official_data"
+          "contains_non_official_data",
+          "contains_estimated_or_partial_coverage"
         ]
       }
     },
@@ -978,6 +987,7 @@
             "rate": 0.488,
             "quality": "官方统计",
             "sourceId": "population_census",
+            "coverage": "regional",
             "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
           },
           {
@@ -988,6 +998,7 @@
             "rate": 0.074,
             "quality": "官方统计",
             "sourceId": "population_census",
+            "coverage": "regional",
             "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
           },
           {
@@ -998,6 +1009,7 @@
             "rate": 0.115,
             "quality": "官方统计",
             "sourceId": "population_census",
+            "coverage": "regional",
             "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
           },
           {
@@ -1008,6 +1020,7 @@
             "rate": 0.36,
             "quality": "模型估算",
             "sourceId": "body_lifestyle_model",
+            "coverage": "model_only",
             "note": "用于身高、运动频率等缺少地区交叉公开数据的维度。"
           },
           {
@@ -1018,6 +1031,7 @@
             "rate": 0.38,
             "quality": "模型估算",
             "sourceId": "body_lifestyle_model",
+            "coverage": "model_only",
             "note": "用于身高、运动频率等缺少地区交叉公开数据的维度。"
           },
           {
@@ -1028,6 +1042,7 @@
             "rate": 0.36,
             "quality": "行业报告",
             "sourceId": "housing_reports",
+            "coverage": "regional_partial",
             "note": "用于住房、通勤容忍度等城市生活成本相关估算。"
           },
           {
@@ -1038,6 +1053,7 @@
             "rate": 0.72,
             "quality": "行业报告",
             "sourceId": "housing_reports",
+            "coverage": "national",
             "note": "用于住房、通勤容忍度等城市生活成本相关估算。"
           }
         ],
@@ -1049,6 +1065,7 @@
           "rate": 0.074,
           "quality": "官方统计",
           "sourceId": "population_census",
+          "coverage": "regional",
           "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
         },
         "confidence": {
@@ -1094,7 +1111,8 @@
           }
         ],
         "flags": [
-          "contains_non_official_data"
+          "contains_non_official_data",
+          "contains_estimated_or_partial_coverage"
         ]
       }
     }

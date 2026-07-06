@@ -9,7 +9,10 @@ const {
   getSourceNotes,
   getDataCatalog,
   getCoverageSummary,
-  validateSeedData
+  validateSeedData,
+  REGIONS,
+  DIMENSIONS,
+  SOURCES
 } = require('../cloudfunctions/calculateProbability/lib/probability');
 
 test('seed data exposes source notes with quality levels for every metric', () => {
@@ -137,4 +140,15 @@ test('coverage summary exposes quality mix and dimensions needing better data', 
   assert.ok(summary.qualityCounts['模型估算'] >= 3);
   assert.ok(summary.needsRegionalData.some((item) => item.key === 'height'));
   assert.ok(summary.nextRefresh.length >= 3);
+});
+
+test('probability module exports the standalone catalog as the single source of truth', () => {
+  const assetPath = path.join(__dirname, '..', 'data', 'seed', 'catalog.json');
+  const asset = JSON.parse(fs.readFileSync(assetPath, 'utf8'));
+
+  assert.equal(Object.keys(SOURCES).length, Object.keys(asset.sources).length);
+  assert.equal(Object.keys(REGIONS).length, Object.keys(asset.regions).length);
+  assert.equal(Object.keys(DIMENSIONS).length, Object.keys(asset.dimensions).length);
+  assert.ok(SOURCES.national_data);
+  assert.ok(SOURCES.mohrss_salary);
 });

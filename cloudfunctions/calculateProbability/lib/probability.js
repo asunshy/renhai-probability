@@ -1,233 +1,9 @@
-const QUALITY_LEVELS = ['官方统计', '行业报告', '模型估算'];
 const ASSET_CATALOG = require('../../../data/seed/catalog.json');
 
-const SOURCES = {
-  population_census: {
-    id: 'population_census',
-    title: '第七次全国人口普查与国家统计局公开数据',
-    year: 2020,
-    quality: '官方统计',
-    priority: 1,
-    refreshCadence: '人口普查十年一次，年度人口抽样与统计年鉴补充',
-    url: 'https://www.stats.gov.cn/sj/pcsj/rkpc/7rp/indexch.htm',
-    note: '用于地区常住人口、性别、年龄、受教育程度等基础口径。'
-  },
-  stats_yearbook: {
-    id: 'stats_yearbook',
-    title: '中国统计年鉴',
-    year: 2024,
-    quality: '官方统计',
-    priority: 1,
-    refreshCadence: '每年跟随统计年鉴更新',
-    url: 'https://www.stats.gov.cn/sj/ndsj/',
-    note: '用于就业、行业、工资等宏观统计口径。'
-  },
-  recruitment_reports: {
-    id: 'recruitment_reports',
-    title: '招聘平台公开薪酬报告汇总',
-    year: 2024,
-    quality: '行业报告',
-    priority: 2,
-    refreshCadence: '每季度或半年复核一次公开报告',
-    url: 'https://www.mohrss.gov.cn/',
-    note: '用于补充分城市、分职业薪资区间，非逐人精确统计。'
-  },
-  lifestyle_reports: {
-    id: 'lifestyle_reports',
-    title: '公开健康与生活方式调查报告汇总',
-    year: 2024,
-    quality: '行业报告',
-    priority: 2,
-    refreshCadence: '每年复核卫健委、疾控和公开研究报告',
-    url: 'https://www.nhc.gov.cn/',
-    note: '用于吸烟、饮酒等生活方式估算。'
-  },
-  personality_model: {
-    id: 'personality_model',
-    title: '性格标签趣味估算模型',
-    year: 2026,
-    quality: '模型估算',
-    priority: 3,
-    refreshCadence: '随产品问卷与公开研究样本迭代',
-    url: 'https://data.stats.gov.cn/',
-    note: '性格没有稳定官方分布，首版仅作趣味估算，不作为严肃统计。'
-  },
-  housing_reports: {
-    id: 'housing_reports',
-    title: '住户调查、城市住房与行业研究报告汇总',
-    year: 2024,
-    quality: '行业报告',
-    priority: 2,
-    refreshCadence: '每半年复核统计年鉴、住户调查和行业研究',
-    url: 'https://data.stats.gov.cn/',
-    note: '用于住房、通勤容忍度等城市生活成本相关估算。'
-  },
-  body_lifestyle_model: {
-    id: 'body_lifestyle_model',
-    title: '身高、运动频率与生活习惯估算模型',
-    year: 2026,
-    quality: '模型估算',
-    priority: 3,
-    refreshCadence: '随权威体质调查与用户匿名反馈迭代',
-    url: 'https://www.nhc.gov.cn/',
-    note: '用于身高、运动频率等缺少地区交叉公开数据的维度。'
-  }
-};
-
-const REGIONS = {
-  '110000': { code: '110000', name: '北京市', basePopulation: 21893000 },
-  '310000': { code: '310000', name: '上海市', basePopulation: 24870895 },
-  '440000': { code: '440000', name: '广东省', basePopulation: 126012510 },
-  '540000': { code: '540000', name: '西藏自治区', basePopulation: 3648100 },
-  '000000': { code: '000000', name: '全国', basePopulation: 1411778724 }
-};
-
-const DIMENSIONS = {
-  gender: {
-    label: '性别',
-    sourceId: 'population_census',
-    options: {
-      male: { label: '男', defaultRate: 0.512 },
-      female: { label: '女', defaultRate: 0.488 }
-    },
-    regionRates: {
-      '310000': { male: 0.517, female: 0.483 },
-      '540000': { male: 0.505, female: 0.495 }
-    }
-  },
-  ageRange: {
-    label: '年龄',
-    sourceId: 'population_census',
-    options: {
-      '20-24': { label: '20-24 岁', defaultRate: 0.071 },
-      '25-29': { label: '25-29 岁', defaultRate: 0.074 },
-      '30-34': { label: '30-34 岁', defaultRate: 0.081 },
-      '35-39': { label: '35-39 岁', defaultRate: 0.078 }
-    },
-    regionRates: {
-      '310000': { '25-29': 0.083, '30-34': 0.091 },
-      '540000': { '35-39': 0.07 }
-    }
-  },
-  education: {
-    label: '学历',
-    sourceId: 'population_census',
-    options: {
-      high_school_plus: { label: '高中及以上', defaultRate: 0.42 },
-      college_plus: { label: '大专及以上', defaultRate: 0.22 },
-      bachelor_plus: { label: '本科及以上', defaultRate: 0.115 },
-      master_plus: { label: '硕士及以上', defaultRate: 0.018 }
-    },
-    regionRates: {
-      '110000': { bachelor_plus: 0.31, master_plus: 0.075 },
-      '310000': { bachelor_plus: 0.285, master_plus: 0.061 },
-      '540000': { bachelor_plus: 0.082, master_plus: 0.015 }
-    }
-  },
-  occupation: {
-    label: '职业',
-    sourceId: 'stats_yearbook',
-    options: {
-      tech: { label: '互联网/技术', defaultRate: 0.072 },
-      finance: { label: '金融', defaultRate: 0.036 },
-      education: { label: '教育科研', defaultRate: 0.071 },
-      healthcare: { label: '医疗健康', defaultRate: 0.049 },
-      public_service: { label: '公共服务/机关事业', defaultRate: 0.064 }
-    },
-    regionRates: {
-      '310000': { tech: 0.126, finance: 0.082 },
-      '440000': { tech: 0.101 },
-      '540000': { finance: 0.025 }
-    }
-  },
-  salary: {
-    label: '月收入',
-    sourceId: 'recruitment_reports',
-    options: {
-      '8k_plus': { label: '8k 以上', defaultRate: 0.31 },
-      '12k_plus': { label: '12k 以上', defaultRate: 0.19 },
-      '20k_plus': { label: '20k 以上', defaultRate: 0.082 },
-      '50k_plus': { label: '50k 以上', defaultRate: 0.004 }
-    },
-    regionRates: {
-      '110000': { '20k_plus': 0.141, '50k_plus': 0.011 },
-      '310000': { '20k_plus': 0.052, '50k_plus': 0.014 },
-      '540000': { '50k_plus': 0.006 }
-    }
-  },
-  smoking: {
-    label: '吸烟',
-    sourceId: 'lifestyle_reports',
-    options: {
-      no: { label: '不吸烟', defaultRate: 0.735 },
-      yes: { label: '接受吸烟', defaultRate: 1 }
-    }
-  },
-  drinking: {
-    label: '饮酒',
-    sourceId: 'lifestyle_reports',
-    options: {
-      light_or_no: { label: '少喝或不喝', defaultRate: 0.68 },
-      social_ok: { label: '社交饮酒可接受', defaultRate: 0.88 }
-    },
-    regionRates: {
-      '540000': { light_or_no: 0.75 }
-    }
-  },
-  personality: {
-    label: '性格',
-    sourceId: 'personality_model',
-    options: {
-      extrovert: { label: '外向表达型', defaultRate: 0.33 },
-      introvert: { label: '内向稳定型', defaultRate: 0.31 },
-      intj_like: { label: '理性规划型', defaultRate: 0.02 },
-      gentle: { label: '温和共情型', defaultRate: 0.27 }
-    }
-  },
-  height: {
-    label: '身高',
-    sourceId: 'body_lifestyle_model',
-    options: {
-      any_reasonable: { label: '别太离谱就行', defaultRate: 0.92 },
-      '155_165': { label: '155-165 cm', defaultRate: 0.28 },
-      '165_175': { label: '165-175 cm', defaultRate: 0.36 },
-      '175_185': { label: '175-185 cm', defaultRate: 0.23 },
-      '185_plus': { label: '185 cm 以上', defaultRate: 0.045 }
-    }
-  },
-  exercise: {
-    label: '运动习惯',
-    sourceId: 'body_lifestyle_model',
-    options: {
-      not_required: { label: '不要求', defaultRate: 1 },
-      weekly: { label: '每周运动', defaultRate: 0.38 },
-      frequent: { label: '高频运动', defaultRate: 0.16 }
-    }
-  },
-  homeOwnership: {
-    label: '居住资产',
-    sourceId: 'housing_reports',
-    options: {
-      not_required: { label: '不要求', defaultRate: 1 },
-      has_home: { label: '有自有住房', defaultRate: 0.41 },
-      no_pressure: { label: '无明显居住压力', defaultRate: 0.52 }
-    },
-    regionRates: {
-      '310000': { has_home: 0.32 },
-      '440000': { has_home: 0.36 },
-      '110000': { has_home: 0.31 }
-    }
-  },
-  commuteTolerance: {
-    label: '通勤距离',
-    sourceId: 'housing_reports',
-    options: {
-      not_required: { label: '不要求', defaultRate: 1 },
-      same_city: { label: '同城生活圈', defaultRate: 0.72 },
-      within_hour: { label: '一小时内可见面', defaultRate: 0.54 }
-    }
-  }
-};
+const QUALITY_LEVELS = ASSET_CATALOG.qualityLevels;
+const SOURCES = ASSET_CATALOG.sources;
+const REGIONS = ASSET_CATALOG.regions;
+const DIMENSIONS = ASSET_CATALOG.dimensions;
 
 const COMMENT_TEMPLATES = [
   {
@@ -285,6 +61,7 @@ function getRate(regionCode, key, value) {
     rate: regionRate || option.defaultRate,
     quality: source.quality,
     sourceId: dimension.sourceId,
+    coverage: dimension.coverage,
     note: source.note
   };
 }
@@ -323,6 +100,9 @@ function calculateProbability(filters = {}) {
   if (factors.some((factor) => factor.quality !== '官方统计')) {
     flags.push('contains_non_official_data');
   }
+  if (factors.some((factor) => factor.coverage !== 'regional')) {
+    flags.push('contains_estimated_or_partial_coverage');
+  }
 
   return {
     region,
@@ -359,15 +139,13 @@ function getFilterOptions(regionCode = '000000') {
 }
 
 function getDataCatalog() {
-  const { sources, dimensions } = ASSET_CATALOG;
-
   return {
-    sources: Object.values(sources).map((source) => ({ ...source })),
-    dimensions: Object.entries(dimensions).map(([key, dimension]) => ({
+    sources: Object.values(SOURCES).map((source) => ({ ...source })),
+    dimensions: Object.entries(DIMENSIONS).map(([key, dimension]) => ({
       key,
       label: dimension.label,
       sourceId: dimension.sourceId,
-      quality: sources[dimension.sourceId].quality,
+      quality: SOURCES[dimension.sourceId].quality,
       coverage: dimension.coverage,
       options: Object.entries(dimension.options).map(([value, option]) => ({
         value,
@@ -429,6 +207,15 @@ function getSourceNotes(metricIds = [], factors = []) {
     if (metricId.startsWith('salary_')) {
       notesById.set('recruitment_reports', SOURCES.recruitment_reports);
     }
+    if (metricId.startsWith('personality_')) {
+      notesById.set('personality_model', SOURCES.personality_model);
+    }
+    if (metricId.startsWith('height_') || metricId.startsWith('exercise_')) {
+      notesById.set('body_lifestyle_model', SOURCES.body_lifestyle_model);
+    }
+    if (metricId.startsWith('homeOwnership_') || metricId.startsWith('commuteTolerance_')) {
+      notesById.set('housing_reports', SOURCES.housing_reports);
+    }
   });
 
   factors.forEach((factor) => {
@@ -443,6 +230,7 @@ function getSourceNotes(metricIds = [], factors = []) {
 function validateSeedData() {
   const missingSources = [];
   const invalidQualityLevels = [];
+  const invalidRates = [];
 
   Object.entries(DIMENSIONS).forEach(([key, dimension]) => {
     const source = SOURCES[dimension.sourceId];
@@ -453,6 +241,11 @@ function validateSeedData() {
     if (!QUALITY_LEVELS.includes(source.quality)) {
       invalidQualityLevels.push(key);
     }
+    Object.entries(dimension.options).forEach(([value, option]) => {
+      if (typeof option.defaultRate !== 'number' || option.defaultRate < 0 || option.defaultRate > 1) {
+        invalidRates.push(`${key}.${value}`);
+      }
+    });
   });
 
   Object.values(SOURCES).forEach((source) => {
@@ -462,9 +255,10 @@ function validateSeedData() {
   });
 
   return {
-    ok: missingSources.length === 0 && invalidQualityLevels.length === 0,
+    ok: missingSources.length === 0 && invalidQualityLevels.length === 0 && invalidRates.length === 0,
     missingSources,
-    invalidQualityLevels
+    invalidQualityLevels,
+    invalidRates
   };
 }
 
