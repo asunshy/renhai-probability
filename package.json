@@ -7,7 +7,8 @@
     "test": "\"C:\\Users\\zhang\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" --test tests/*.test.js",
     "export:web-data": "\"C:\\Users\\zhang\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" scripts/export-web-data.js",
     "import:province-demographics": "\"C:\\Users\\zhang\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" scripts/import-province-demographics.js --csv data/raw/province-demographics-2020.csv",
-    "import:region-labor-salary": "\"C:\\Users\\zhang\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" scripts/import-region-labor-salary.js --csv data/raw/region-labor-salary-2024.csv"
+    "import:region-labor-salary": "\"C:\\Users\\zhang\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" scripts/import-region-labor-salary.js --csv data/raw/region-labor-salary-2024.csv",
+    "import:region-housing-commute": "\"C:\\Users\\zhang\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" scripts/import-region-housing-commute.js --csv data/raw/region-housing-commute-2024.csv"
   },
   "devDependencies": {}
 }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T16:49:46.342Z",
+  "generatedAt": "2026-07-06T16:53:33.264Z",
   "options": {
     "region": {
       "code": "000000",
@@ -747,7 +747,7 @@
         "label": "通勤距离",
         "sourceId": "housing_reports",
         "quality": "行业报告",
-        "coverage": "national",
+        "coverage": "regional_partial",
         "options": [
           {
             "value": "not_required",
@@ -828,7 +828,7 @@
       {
         "key": "commuteTolerance",
         "label": "通勤距离",
-        "coverage": "national",
+        "coverage": "regional_partial",
         "quality": "行业报告"
       }
     ],
@@ -930,6 +930,21 @@
       ],
       "coverage": "10 个重点地区",
       "notes": "用于技术、金融、教育、医疗、公共服务职业占比，以及 8k+/12k+/20k+/50k+ 薪资区间。"
+    },
+    {
+      "id": "region_housing_commute_2024",
+      "title": "重点地区住房与通勤生活成本表",
+      "rawPath": "data/raw/region-housing-commute-2024.csv",
+      "sourceId": "housing_reports",
+      "quality": "行业报告",
+      "year": 2024,
+      "importCommand": "npm run import:region-housing-commute",
+      "dimensions": [
+        "homeOwnership",
+        "commuteTolerance"
+      ],
+      "coverage": "10 个重点地区",
+      "notes": "用于有自有住房、无明显居住压力、同城生活圈和一小时内可见面等城市生活成本估算。"
     }
   ],
   "comparison": [
@@ -1474,7 +1489,7 @@
             "rate": 0.72,
             "quality": "行业报告",
             "sourceId": "housing_reports",
-            "coverage": "national",
+            "coverage": "regional_partial",
             "note": "用于住房、通勤容忍度等城市生活成本相关估算。"
           }
         ],

@@ -22,5 +22,17 @@
     "dimensions": ["occupation", "salary"],
     "coverage": "10 个重点地区",
     "notes": "用于技术、金融、教育、医疗、公共服务职业占比，以及 8k+/12k+/20k+/50k+ 薪资区间。"
+  },
+  {
+    "id": "region_housing_commute_2024",
+    "title": "重点地区住房与通勤生活成本表",
+    "rawPath": "data/raw/region-housing-commute-2024.csv",
+    "sourceId": "housing_reports",
+    "quality": "行业报告",
+    "year": 2024,
+    "importCommand": "npm run import:region-housing-commute",
+    "dimensions": ["homeOwnership", "commuteTolerance"],
+    "coverage": "10 个重点地区",
+    "notes": "用于有自有住房、无明显居住压力、同城生活圈和一小时内可见面等城市生活成本估算。"
   }
 ]

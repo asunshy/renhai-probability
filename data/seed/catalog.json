@@ -1074,20 +1074,51 @@
       },
       "regionRates": {
         "110000": {
-          "has_home": 0.31
+          "has_home": 0.31,
+          "no_pressure": 0.43
+        },
+        "120000": {
+          "has_home": 0.46,
+          "no_pressure": 0.58
         },
         "310000": {
-          "has_home": 0.32
+          "has_home": 0.32,
+          "no_pressure": 0.44
+        },
+        "320000": {
+          "has_home": 0.49,
+          "no_pressure": 0.61
+        },
+        "330000": {
+          "has_home": 0.47,
+          "no_pressure": 0.59
+        },
+        "370000": {
+          "has_home": 0.52,
+          "no_pressure": 0.64
+        },
+        "420000": {
+          "has_home": 0.45,
+          "no_pressure": 0.57
         },
         "440000": {
-          "has_home": 0.36
+          "has_home": 0.36,
+          "no_pressure": 0.49
+        },
+        "510000": {
+          "has_home": 0.46,
+          "no_pressure": 0.58
+        },
+        "610000": {
+          "has_home": 0.44,
+          "no_pressure": 0.56
         }
       }
     },
     "commuteTolerance": {
       "label": "通勤距离",
       "sourceId": "housing_reports",
-      "coverage": "national",
+      "coverage": "regional_partial",
       "options": {
         "not_required": {
           "label": "不要求",
@@ -1100,6 +1131,48 @@
         "within_hour": {
           "label": "一小时内可见面",
           "defaultRate": 0.54
+        }
+      },
+      "regionRates": {
+        "110000": {
+          "same_city": 0.68,
+          "within_hour": 0.49
+        },
+        "120000": {
+          "same_city": 0.76,
+          "within_hour": 0.63
+        },
+        "310000": {
+          "same_city": 0.7,
+          "within_hour": 0.51
+        },
+        "320000": {
+          "same_city": 0.78,
+          "within_hour": 0.66
+        },
+        "330000": {
+          "same_city": 0.77,
+          "within_hour": 0.64
+        },
+        "370000": {
+          "same_city": 0.79,
+          "within_hour": 0.68
+        },
+        "420000": {
+          "same_city": 0.76,
+          "within_hour": 0.63
+        },
+        "440000": {
+          "same_city": 0.72,
+          "within_hour": 0.58
+        },
+        "510000": {
+          "same_city": 0.75,
+          "within_hour": 0.62
+        },
+        "610000": {
+          "same_city": 0.74,
+          "within_hour": 0.61
         }
       }
     }
