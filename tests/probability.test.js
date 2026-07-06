@@ -103,6 +103,7 @@ test('expanded catalog documents refresh cadence and source priority', () => {
   assert.ok(catalog.dimensions.some((dimension) => dimension.key === 'height'));
   assert.ok(catalog.dimensions.some((dimension) => dimension.key === 'exercise'));
   assert.ok(catalog.dimensions.some((dimension) => dimension.key === 'homeOwnership'));
+  assert.ok(catalog.dimensions.some((dimension) => dimension.key === 'jobMarket'));
 });
 
 test('new lifestyle and asset dimensions participate in probability calculation', () => {
@@ -123,6 +124,22 @@ test('new lifestyle and asset dimensions participate in probability calculation'
   assert.equal(result.sourceNotes.some((source) => source.id === 'housing_reports'), true);
 });
 
+test('job market dimension participates in probability calculation with traceable source', () => {
+  const result = calculateProbability({
+    regionCode: '310000',
+    gender: 'female',
+    ageRange: '25-29',
+    education: 'bachelor_plus',
+    jobMarket: 'active_market'
+  });
+
+  const jobMarketFactor = result.factors.find((factor) => factor.key === 'jobMarket');
+
+  assert.equal(jobMarketFactor.rate, 0.44);
+  assert.equal(jobMarketFactor.quality, '行业报告');
+  assert.equal(result.sourceNotes.some((source) => source.id === 'recruitment_reports'), true);
+});
+
 test('catalog data is maintained as a standalone data asset', () => {
   const assetPath = path.join(__dirname, '..', 'data', 'seed', 'catalog.json');
   const asset = JSON.parse(fs.readFileSync(assetPath, 'utf8'));
@@ -137,7 +154,7 @@ test('catalog data is maintained as a standalone data asset', () => {
 test('coverage summary exposes quality mix and dimensions needing better data', () => {
   const summary = getCoverageSummary();
 
-  assert.ok(summary.totalDimensions >= 12);
+  assert.ok(summary.totalDimensions >= 13);
   assert.ok(summary.qualityCounts['官方统计'] >= 3);
   assert.ok(summary.qualityCounts['模型估算'] >= 3);
   assert.ok(summary.needsRegionalData.some((item) => item.key === 'height'));
@@ -180,10 +197,11 @@ test('region comparison ranks regions for the same filters', () => {
 test('dataset manifest lists raw import datasets with traceable commands', () => {
   const manifest = getDatasetManifest();
 
-  assert.equal(manifest.length, 3);
+  assert.equal(manifest.length, 4);
   assert.equal(manifest[0].id, 'province_demographics_2020');
   assert.ok(manifest.every((dataset) => dataset.rawPath.startsWith('data/raw/')));
   assert.ok(manifest.every((dataset) => dataset.importCommand.startsWith('npm run import:')));
   assert.ok(manifest.some((dataset) => dataset.dimensions.includes('salary')));
   assert.ok(manifest.some((dataset) => dataset.dimensions.includes('commuteTolerance')));
+  assert.ok(manifest.some((dataset) => dataset.dimensions.includes('jobMarket')));
 });

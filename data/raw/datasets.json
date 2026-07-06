@@ -34,5 +34,17 @@
     "dimensions": ["homeOwnership", "commuteTolerance"],
     "coverage": "10 个重点地区",
     "notes": "用于有自有住房、无明显居住压力、同城生活圈和一小时内可见面等城市生活成本估算。"
+  },
+  {
+    "id": "region_job_market_2024",
+    "title": "重点地区就业行情热度表",
+    "rawPath": "data/raw/region-job-market-2024.csv",
+    "sourceId": "recruitment_reports",
+    "quality": "行业报告",
+    "year": 2024,
+    "importCommand": "npm run import:region-job-market",
+    "dimensions": ["jobMarket"],
+    "coverage": "10 个重点地区",
+    "notes": "用于岗位机会较多、市场比较活跃、竞争压力适中等就业行情估算。"
   }
 ]

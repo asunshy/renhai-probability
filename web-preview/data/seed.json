@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T16:53:33.264Z",
+  "generatedAt": "2026-07-06T16:56:18.487Z",
   "options": {
     "region": {
       "code": "000000",
@@ -355,6 +355,20 @@
         {
           "value": "within_hour",
           "label": "一小时内可见面"
+        }
+      ],
+      "jobMarket": [
+        {
+          "value": "many_openings",
+          "label": "岗位机会较多"
+        },
+        {
+          "value": "active_market",
+          "label": "市场比较活跃"
+        },
+        {
+          "value": "moderate_competition",
+          "label": "竞争压力适中"
         }
       ]
     }
@@ -765,15 +779,39 @@
             "defaultRate": 0.54
           }
         ]
+      },
+      {
+        "key": "jobMarket",
+        "label": "就业行情",
+        "sourceId": "recruitment_reports",
+        "quality": "行业报告",
+        "coverage": "regional_partial",
+        "options": [
+          {
+            "value": "many_openings",
+            "label": "岗位机会较多",
+            "defaultRate": 0.38
+          },
+          {
+            "value": "active_market",
+            "label": "市场比较活跃",
+            "defaultRate": 0.35
+          },
+          {
+            "value": "moderate_competition",
+            "label": "竞争压力适中",
+            "defaultRate": 0.45
+          }
+        ]
       }
     ]
   },
   "coverage": {
     "totalSources": 9,
-    "totalDimensions": 12,
+    "totalDimensions": 13,
     "qualityCounts": {
       "官方统计": 4,
-      "行业报告": 5,
+      "行业报告": 6,
       "模型估算": 3
     },
     "needsRegionalData": [
@@ -828,6 +866,12 @@
       {
         "key": "commuteTolerance",
         "label": "通勤距离",
+        "coverage": "regional_partial",
+        "quality": "行业报告"
+      },
+      {
+        "key": "jobMarket",
+        "label": "就业行情",
         "coverage": "regional_partial",
         "quality": "行业报告"
       }
@@ -945,6 +989,20 @@
       ],
       "coverage": "10 个重点地区",
       "notes": "用于有自有住房、无明显居住压力、同城生活圈和一小时内可见面等城市生活成本估算。"
+    },
+    {
+      "id": "region_job_market_2024",
+      "title": "重点地区就业行情热度表",
+      "rawPath": "data/raw/region-job-market-2024.csv",
+      "sourceId": "recruitment_reports",
+      "quality": "行业报告",
+      "year": 2024,
+      "importCommand": "npm run import:region-job-market",
+      "dimensions": [
+        "jobMarket"
+      ],
+      "coverage": "10 个重点地区",
+      "notes": "用于岗位机会较多、市场比较活跃、竞争压力适中等就业行情估算。"
     }
   ],
   "comparison": [
