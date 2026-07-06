@@ -1,0 +1,31 @@
+<view class="page calculator-page">
+  <view class="intro">
+    <view class="title">先别急着许愿</view>
+    <view class="copy">选几个你在意的条件，看看现实世界会剩下多少可能性。</view>
+  </view>
+
+  <view class="form card">
+    <view class="field">
+      <view class="field-label">地区</view>
+      <picker range="{{regionNames}}" value="{{selected.regionIndex}}" bindchange="onRegionChange">
+        <view class="picker-value">{{selected.regionName}}</view>
+      </picker>
+    </view>
+
+    <block wx:for="{{fields}}" wx:key="key">
+      <view class="field">
+        <view class="field-label">{{item.label}}</view>
+        <picker range="{{item.labels}}" value="{{item.currentIndex}}" data-key="{{item.key}}" bindchange="onFieldChange">
+          <view class="picker-value">{{item.currentLabel}}</view>
+        </picker>
+      </view>
+    </block>
+  </view>
+
+  <button class="primary-button action-button" loading="{{loading}}" disabled="{{loading}}" bindtap="onCalculate">
+    {{loading ? '正在穿过人海...' : '计算遇见概率'}}
+  </button>
+  <button class="secondary-button reset-button" bindtap="onReset">重置条件</button>
+
+  <view class="hint">结果是公开数据下的估算，不代表真实个人价值。人不是筛选器里的选项，别忘了。</view>
+</view>

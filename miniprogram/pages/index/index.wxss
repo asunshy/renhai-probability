@@ -1,0 +1,60 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero {
+  padding: 48rpx 0 36rpx;
+}
+
+.brand {
+  margin-bottom: 36rpx;
+  color: #2563eb;
+  font-size: 30rpx;
+  font-weight: 800;
+}
+
+.headline {
+  color: #0f172a;
+  font-size: 58rpx;
+  font-weight: 900;
+  line-height: 1.16;
+}
+
+.summary {
+  margin-top: 28rpx;
+  color: #526070;
+  font-size: 30rpx;
+  line-height: 1.7;
+}
+
+.start-button {
+  margin-top: 40rpx;
+}
+
+.principles {
+  margin-top: 48rpx;
+  padding: 8rpx 30rpx;
+}
+
+.principle-item {
+  padding: 30rpx 0;
+  border-bottom: 2rpx solid #eef2f7;
+}
+
+.principle-item:last-child {
+  border-bottom: 0;
+}
+
+.principle-title {
+  font-size: 30rpx;
+  font-weight: 800;
+  color: #111827;
+}
+
+.principle-copy {
+  margin-top: 8rpx;
+  font-size: 26rpx;
+  line-height: 1.6;
+  color: #667085;
+}

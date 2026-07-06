@@ -1,0 +1,26 @@
+<view class="page home-page">
+  <view class="hero">
+    <view class="brand">人海相遇概率</view>
+    <view class="headline">在茫茫人海里，遇见一个“刚刚好”的人，到底有多难？</view>
+    <view class="summary">用公开人口、就业、薪资与生活方式数据，算一算你的条件会把世界筛到多安静。</view>
+  </view>
+
+  <navigator class="primary-button start-button" url="/pages/calculator/calculator">
+    开始测算
+  </navigator>
+
+  <view class="principles card">
+    <view class="principle-item">
+      <view class="principle-title">不做社交</view>
+      <view class="principle-copy">没有用户池，没有私信，没有匹配邀请。</view>
+    </view>
+    <view class="principle-item">
+      <view class="principle-title">不存输入</view>
+      <view class="principle-copy">条件只用于本次计算，结果页仅保存在当前会话。</view>
+    </view>
+    <view class="principle-item">
+      <view class="principle-title">标注来源</view>
+      <view class="principle-copy">官方统计、行业报告、模型估算会分开显示。</view>
+    </view>
+  </view>
+</view>

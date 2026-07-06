@@ -1,0 +1,63 @@
+.intro {
+  margin-bottom: 32rpx;
+}
+
+.title {
+  font-size: 46rpx;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+.copy {
+  margin-top: 14rpx;
+  color: #667085;
+  font-size: 28rpx;
+  line-height: 1.6;
+}
+
+.form {
+  padding: 8rpx 28rpx;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 104rpx;
+  border-bottom: 2rpx solid #eef2f7;
+}
+
+.field:last-child {
+  border-bottom: 0;
+}
+
+.field-label {
+  flex: 0 0 180rpx;
+  color: #344054;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.picker-value {
+  max-width: 420rpx;
+  color: #0f172a;
+  font-size: 30rpx;
+  font-weight: 700;
+  text-align: right;
+}
+
+.action-button {
+  margin-top: 36rpx;
+}
+
+.reset-button {
+  margin-top: 20rpx;
+}
+
+.hint {
+  margin-top: 28rpx;
+  color: #7c8798;
+  font-size: 24rpx;
+  line-height: 1.6;
+  text-align: center;
+}

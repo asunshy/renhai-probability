@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+miniprogram_npm/
+
+# WeChat DevTools local files
+.DS_Store
+.idea/
+.vscode/
+.agents/
+*.log
+*.tmp
+
+# build and coverage output
+coverage/
+dist/
+build/
+
+# cloud function install output
+cloudfunctions/**/node_modules/

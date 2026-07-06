@@ -1,0 +1,55 @@
+<view class="page result-page" wx:if="{{result}}">
+  <view class="result-hero">
+    <view class="region">{{result.region.name}}</view>
+    <view class="number">约 {{estimatedPeopleText}} 人</view>
+    <view class="probability">占目标区域常住人口约 {{result.probabilityText}}</view>
+  </view>
+
+  <view class="comment card">
+    <view class="comment-title">人海点评</view>
+    <view class="comment-text">{{result.comment.text}}</view>
+  </view>
+
+  <view class="summary-grid">
+    <view class="summary-card card">
+      <view class="summary-label">可信度</view>
+      <view class="summary-value">{{result.confidence.level}}</view>
+      <view class="summary-copy">{{result.confidence.text}}</view>
+    </view>
+    <view class="summary-card card">
+      <view class="summary-label">最稀缺</view>
+      <view class="summary-value">{{result.rarestFactor.valueLabel || '暂无'}}</view>
+      <view class="summary-copy">{{result.rarestFactor.label || '条件越少，世界越宽。'}}</view>
+    </view>
+  </view>
+
+  <view class="section-title">条件杀伤力</view>
+  <view class="factor-list card">
+    <block wx:for="{{result.factors}}" wx:key="key">
+      <view class="factor-row">
+        <view>
+          <view class="factor-name">{{item.label}}：{{item.valueLabel}}</view>
+          <view class="factor-source">{{item.quality}}</view>
+        </view>
+        <view class="factor-rate">{{item.rateText}}</view>
+      </view>
+    </block>
+  </view>
+
+  <view class="warning" wx:if="{{isUnstable}}">
+    条件已经窄到估算不太稳定了。不是说没有，只是数据世界开始小声说话。
+  </view>
+
+  <navigator class="secondary-button notes-button" url="/pages/data-notes/data-notes">
+    查看数据口径
+  </navigator>
+  <navigator class="primary-button retry-button" url="/pages/calculator/calculator">
+    重新测算
+  </navigator>
+</view>
+
+<view class="page empty-page" wx:else>
+  <view class="empty-title">还没有结果</view>
+  <view class="empty-copy">先选几个条件，让数据穿过人海看看。</view>
+  <navigator class="primary-button" url="/pages/calculator/calculator">开始测算</navigator>
+</view>

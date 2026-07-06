@@ -1,0 +1,22 @@
+<view class="page notes-page">
+  <view class="title">数据不是算命</view>
+  <view class="copy">这里展示的是本次结果使用过的数据来源。官方统计用于打底，行业报告用于补充，模型估算只做趣味参考。</view>
+
+  <view class="source-list">
+    <block wx:for="{{sources}}" wx:key="id">
+      <view class="source-card card">
+        <view class="source-head">
+          <view class="source-title">{{item.title}}</view>
+          <view class="source-quality">{{item.quality}}</view>
+        </view>
+        <view class="source-year">{{item.year}}</view>
+        <view class="source-note">{{item.note}}</view>
+        <view class="source-url">{{item.url}}</view>
+      </view>
+    </block>
+  </view>
+
+  <view class="empty-copy" wx:if="{{!hasSources}}">
+    暂无结果来源。请先完成一次测算。
+  </view>
+</view>

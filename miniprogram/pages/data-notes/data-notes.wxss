@@ -1,0 +1,74 @@
+.title {
+  font-size: 46rpx;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+.copy {
+  margin-top: 16rpx;
+  color: #667085;
+  font-size: 28rpx;
+  line-height: 1.7;
+}
+
+.source-list {
+  margin-top: 32rpx;
+}
+
+.source-card {
+  margin-bottom: 20rpx;
+  padding: 28rpx;
+}
+
+.source-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18rpx;
+}
+
+.source-title {
+  flex: 1;
+  color: #172033;
+  font-size: 30rpx;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.source-quality {
+  flex: 0 0 auto;
+  padding: 8rpx 14rpx;
+  border-radius: 999rpx;
+  background: #e0ecff;
+  color: #1d4ed8;
+  font-size: 22rpx;
+  font-weight: 800;
+}
+
+.source-year {
+  margin-top: 12rpx;
+  color: #475467;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.source-note {
+  margin-top: 14rpx;
+  color: #667085;
+  font-size: 26rpx;
+  line-height: 1.6;
+}
+
+.source-url {
+  margin-top: 14rpx;
+  color: #2563eb;
+  font-size: 22rpx;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.empty-copy {
+  margin-top: 80rpx;
+  color: #667085;
+  font-size: 28rpx;
+}

@@ -1,0 +1,10 @@
+{
+  "name": "renhai-probability-miniprogram",
+  "version": "0.1.0",
+  "private": true,
+  "description": "微信小程序 MVP：人海相遇概率计算器",
+  "scripts": {
+    "test": "\"C:\\Users\\zhang\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" --test tests/*.test.js"
+  },
+  "devDependencies": {}
+}
