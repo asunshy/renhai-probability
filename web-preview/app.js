@@ -10,7 +10,8 @@ const labels = {
   height: '身高',
   exercise: '运动习惯',
   homeOwnership: '居住资产',
-  commuteTolerance: '通勤距离'
+  commuteTolerance: '通勤距离',
+  jobMarket: '就业行情'
 };
 
 const defaultFilters = {
@@ -20,6 +21,7 @@ const defaultFilters = {
   education: 'bachelor_plus',
   occupation: 'tech',
   salary: '20k_plus',
+  jobMarket: 'active_market',
   smoking: 'no',
   drinking: 'light_or_no'
 };
