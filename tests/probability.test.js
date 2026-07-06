@@ -9,6 +9,7 @@ const {
   getSourceNotes,
   getDataCatalog,
   getCoverageSummary,
+  getRegionComparison,
   validateSeedData,
   REGIONS,
   DIMENSIONS,
@@ -151,4 +152,26 @@ test('probability module exports the standalone catalog as the single source of 
   assert.equal(Object.keys(DIMENSIONS).length, Object.keys(asset.dimensions).length);
   assert.ok(SOURCES.national_data);
   assert.ok(SOURCES.mohrss_salary);
+});
+
+test('region catalog covers mainland provincial-level regions', () => {
+  const provinceCodes = Object.keys(REGIONS).filter((code) => code !== '000000');
+
+  assert.ok(provinceCodes.length >= 31);
+  assert.equal(REGIONS['320000'].name, '江苏省');
+  assert.equal(REGIONS['370000'].basePopulation, 101527453);
+  assert.equal(REGIONS['650000'].name, '新疆维吾尔自治区');
+});
+
+test('region comparison ranks regions for the same filters', () => {
+  const comparison = getRegionComparison({
+    gender: 'female',
+    ageRange: '25-29',
+    education: 'bachelor_plus'
+  }, ['310000', '110000', '440000', '320000']);
+
+  assert.equal(comparison.length, 4);
+  assert.equal(comparison[0].region.code, '440000');
+  assert.ok(comparison[0].estimatedPeople > comparison[1].estimatedPeople);
+  assert.ok(comparison.every((item) => item.probabilityText.endsWith('%')));
 });

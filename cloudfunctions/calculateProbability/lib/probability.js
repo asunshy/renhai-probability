@@ -120,6 +120,24 @@ function calculateProbability(filters = {}) {
   };
 }
 
+function getRegionComparison(filters = {}, regionCodes = []) {
+  const codes = regionCodes.length > 0
+    ? regionCodes
+    : Object.keys(REGIONS).filter((code) => code !== '000000');
+
+  return codes
+    .map((regionCode) => calculateProbability({ ...filters, regionCode }))
+    .sort((a, b) => b.estimatedPeople - a.estimatedPeople)
+    .map((result) => ({
+      region: result.region,
+      estimatedPeople: result.estimatedPeople,
+      probability: result.probability,
+      probabilityText: result.probabilityText,
+      confidence: result.confidence,
+      rarestFactor: result.rarestFactor
+    }));
+}
+
 function getFilterOptions(regionCode = '000000') {
   const region = getRegion(regionCode);
   const dimensions = {};
@@ -268,6 +286,7 @@ module.exports = {
   getSourceNotes,
   getDataCatalog,
   getCoverageSummary,
+  getRegionComparison,
   validateSeedData,
   REGIONS,
   DIMENSIONS,

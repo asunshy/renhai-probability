@@ -219,6 +219,33 @@ function renderCatalog() {
   });
 }
 
+function renderRegionComparison() {
+  const list = document.querySelector('#regionComparison');
+  const maxPeople = Math.max(...seed.comparison.map((item) => item.estimatedPeople));
+
+  list.replaceChildren();
+  seed.comparison.forEach((item) => {
+    const row = document.createElement('div');
+    const name = document.createElement('div');
+    const bar = document.createElement('div');
+    const fill = document.createElement('i');
+    const count = document.createElement('div');
+
+    row.className = 'region-row';
+    name.className = 'region-name';
+    bar.className = 'region-bar';
+    count.className = 'region-count';
+
+    name.textContent = item.region.name;
+    fill.style.width = `${Math.max(3, (item.estimatedPeople / maxPeople) * 100)}%`;
+    count.textContent = `约 ${formatPeople(item.estimatedPeople)} 人`;
+
+    bar.appendChild(fill);
+    row.append(name, bar, count);
+    list.appendChild(row);
+  });
+}
+
 function resetFilters() {
   document.querySelector('#filters').reset();
   Object.entries(defaultFilters).forEach(([key, value]) => {
@@ -236,6 +263,7 @@ fetch('./data/seed.json')
     seed = payload;
     renderFilters();
     renderCatalog();
+    renderRegionComparison();
     renderResult(calculateInBrowser(defaultFilters));
 
     document.querySelector('#calculate').addEventListener('click', () => {

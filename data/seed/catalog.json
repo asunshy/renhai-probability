@@ -94,9 +94,36 @@
   },
   "regions": {
     "110000": { "code": "110000", "name": "北京市", "basePopulation": 21893000 },
+    "120000": { "code": "120000", "name": "天津市", "basePopulation": 13866009 },
+    "130000": { "code": "130000", "name": "河北省", "basePopulation": 74610235 },
+    "140000": { "code": "140000", "name": "山西省", "basePopulation": 34915616 },
+    "150000": { "code": "150000", "name": "内蒙古自治区", "basePopulation": 24049155 },
+    "210000": { "code": "210000", "name": "辽宁省", "basePopulation": 42591407 },
+    "220000": { "code": "220000", "name": "吉林省", "basePopulation": 24073453 },
+    "230000": { "code": "230000", "name": "黑龙江省", "basePopulation": 31850088 },
     "310000": { "code": "310000", "name": "上海市", "basePopulation": 24870895 },
+    "320000": { "code": "320000", "name": "江苏省", "basePopulation": 84748016 },
+    "330000": { "code": "330000", "name": "浙江省", "basePopulation": 64567588 },
+    "340000": { "code": "340000", "name": "安徽省", "basePopulation": 61027171 },
+    "350000": { "code": "350000", "name": "福建省", "basePopulation": 41540086 },
+    "360000": { "code": "360000", "name": "江西省", "basePopulation": 45188635 },
+    "370000": { "code": "370000", "name": "山东省", "basePopulation": 101527453 },
+    "410000": { "code": "410000", "name": "河南省", "basePopulation": 99365519 },
+    "420000": { "code": "420000", "name": "湖北省", "basePopulation": 57752557 },
+    "430000": { "code": "430000", "name": "湖南省", "basePopulation": 66444864 },
     "440000": { "code": "440000", "name": "广东省", "basePopulation": 126012510 },
+    "450000": { "code": "450000", "name": "广西壮族自治区", "basePopulation": 50126804 },
+    "460000": { "code": "460000", "name": "海南省", "basePopulation": 10081232 },
+    "500000": { "code": "500000", "name": "重庆市", "basePopulation": 32054159 },
+    "510000": { "code": "510000", "name": "四川省", "basePopulation": 83674866 },
+    "520000": { "code": "520000", "name": "贵州省", "basePopulation": 38562148 },
+    "530000": { "code": "530000", "name": "云南省", "basePopulation": 47209277 },
     "540000": { "code": "540000", "name": "西藏自治区", "basePopulation": 3648100 },
+    "610000": { "code": "610000", "name": "陕西省", "basePopulation": 39528999 },
+    "620000": { "code": "620000", "name": "甘肃省", "basePopulation": 25019831 },
+    "630000": { "code": "630000", "name": "青海省", "basePopulation": 5923957 },
+    "640000": { "code": "640000", "name": "宁夏回族自治区", "basePopulation": 7202654 },
+    "650000": { "code": "650000", "name": "新疆维吾尔自治区", "basePopulation": 25852345 },
     "000000": { "code": "000000", "name": "全国", "basePopulation": 1411778724 }
   },
   "dimensions": {
@@ -109,7 +136,11 @@
         "female": { "label": "女", "defaultRate": 0.488 }
       },
       "regionRates": {
+        "110000": { "male": 0.5114, "female": 0.4886 },
         "310000": { "male": 0.517, "female": 0.483 },
+        "320000": { "male": 0.5078, "female": 0.4922 },
+        "370000": { "male": 0.5066, "female": 0.4934 },
+        "440000": { "male": 0.5307, "female": 0.4693 },
         "540000": { "male": 0.505, "female": 0.495 }
       }
     },
@@ -141,6 +172,9 @@
       "regionRates": {
         "110000": { "bachelor_plus": 0.31, "master_plus": 0.075 },
         "310000": { "bachelor_plus": 0.285, "master_plus": 0.061 },
+        "320000": { "bachelor_plus": 0.1866, "master_plus": 0.025 },
+        "370000": { "bachelor_plus": 0.1438, "master_plus": 0.018 },
+        "440000": { "bachelor_plus": 0.157, "master_plus": 0.018 },
         "540000": { "bachelor_plus": 0.082, "master_plus": 0.015 }
       }
     },

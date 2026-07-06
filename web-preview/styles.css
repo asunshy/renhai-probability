@@ -241,6 +241,14 @@ blockquote {
   box-shadow: none;
 }
 
+.region-compare {
+  margin-top: 20px;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
 h2 {
   margin: 0;
   color: var(--surface-strong);
@@ -334,6 +342,52 @@ h2 {
   border-radius: 8px;
 }
 
+.region-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.region-row {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr) 130px;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.region-row:last-child {
+  border-bottom: 0;
+}
+
+.region-name {
+  color: var(--surface-strong);
+  font-size: 14px;
+  font-weight: 850;
+}
+
+.region-bar {
+  height: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #edf2f7;
+}
+
+.region-bar > i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #0f172a, var(--blue));
+}
+
+.region-count {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 850;
+  text-align: right;
+}
+
 .catalog-title {
   display: flex;
   align-items: flex-start;
@@ -369,6 +423,15 @@ h2 {
   .workspace,
   .analysis-grid {
     grid-template-columns: 1fr;
+  }
+
+  .region-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .region-count {
+    text-align: left;
   }
 
   .filter-panel {
