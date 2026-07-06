@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T16:41:28.736Z",
+  "generatedAt": "2026-07-06T16:44:05.067Z",
   "options": {
     "region": {
       "code": "000000",
@@ -905,9 +905,9 @@
         "name": "广东省",
         "basePopulation": 126012510
       },
-      "estimatedPeople": 687061,
-      "probability": 0.00545233,
-      "probabilityText": "0.55%",
+      "estimatedPeople": 817046,
+      "probability": 0.00648385,
+      "probabilityText": "0.65%",
       "confidence": {
         "level": "高",
         "text": "主要基于官方统计口径。"
@@ -917,7 +917,7 @@
         "label": "年龄",
         "value": "25-29",
         "valueLabel": "25-29 岁",
-        "rate": 0.074,
+        "rate": 0.088,
         "quality": "官方统计",
         "sourceId": "population_census",
         "coverage": "regional",
@@ -930,9 +930,9 @@
         "name": "江苏省",
         "basePopulation": 84748016
       },
-      "estimatedPeople": 575989,
-      "probability": 0.00679649,
-      "probabilityText": "0.68%",
+      "estimatedPeople": 568206,
+      "probability": 0.00670465,
+      "probabilityText": "0.67%",
       "confidence": {
         "level": "高",
         "text": "主要基于官方统计口径。"
@@ -942,7 +942,7 @@
         "label": "年龄",
         "value": "25-29",
         "valueLabel": "25-29 岁",
-        "rate": 0.074,
+        "rate": 0.073,
         "quality": "官方统计",
         "sourceId": "population_census",
         "coverage": "regional",
@@ -955,9 +955,9 @@
         "name": "山东省",
         "basePopulation": 101527453
       },
-      "estimatedPeople": 533056,
-      "probability": 0.00525037,
-      "probabilityText": "0.53%",
+      "estimatedPeople": 504243,
+      "probability": 0.00496656,
+      "probabilityText": "0.50%",
       "confidence": {
         "level": "高",
         "text": "主要基于官方统计口径。"
@@ -967,7 +967,32 @@
         "label": "年龄",
         "value": "25-29",
         "valueLabel": "25-29 岁",
-        "rate": 0.074,
+        "rate": 0.07,
+        "quality": "官方统计",
+        "sourceId": "population_census",
+        "coverage": "regional",
+        "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
+      }
+    },
+    {
+      "region": {
+        "code": "330000",
+        "name": "浙江省",
+        "basePopulation": 64567588
+      },
+      "estimatedPeople": 421604,
+      "probability": 0.00652965,
+      "probabilityText": "0.65%",
+      "confidence": {
+        "level": "高",
+        "text": "主要基于官方统计口径。"
+      },
+      "rarestFactor": {
+        "key": "ageRange",
+        "label": "年龄",
+        "value": "25-29",
+        "valueLabel": "25-29 岁",
+        "rate": 0.081,
         "quality": "官方统计",
         "sourceId": "population_census",
         "coverage": "regional",
@@ -980,9 +1005,9 @@
         "name": "河南省",
         "basePopulation": 99365519
       },
-      "estimatedPeople": 412653,
-      "probability": 0.00415288,
-      "probabilityText": "0.42%",
+      "estimatedPeople": 401253,
+      "probability": 0.00403815,
+      "probabilityText": "0.40%",
       "confidence": {
         "level": "高",
         "text": "主要基于官方统计口径。"
@@ -992,7 +1017,7 @@
         "label": "年龄",
         "value": "25-29",
         "valueLabel": "25-29 岁",
-        "rate": 0.074,
+        "rate": 0.069,
         "quality": "官方统计",
         "sourceId": "population_census",
         "coverage": "regional",
@@ -1005,9 +1030,9 @@
         "name": "四川省",
         "basePopulation": 83674866
       },
-      "estimatedPeople": 347492,
-      "probability": 0.00415288,
-      "probabilityText": "0.42%",
+      "estimatedPeople": 378939,
+      "probability": 0.00452871,
+      "probabilityText": "0.45%",
       "confidence": {
         "level": "高",
         "text": "主要基于官方统计口径。"
@@ -1017,7 +1042,7 @@
         "label": "年龄",
         "value": "25-29",
         "valueLabel": "25-29 岁",
-        "rate": 0.074,
+        "rate": 0.069,
         "quality": "官方统计",
         "sourceId": "population_census",
         "coverage": "regional",
@@ -1030,9 +1055,9 @@
         "name": "河北省",
         "basePopulation": 74610235
       },
-      "estimatedPeople": 309847,
-      "probability": 0.00415288,
-      "probabilityText": "0.42%",
+      "estimatedPeople": 325150,
+      "probability": 0.00435798,
+      "probabilityText": "0.44%",
       "confidence": {
         "level": "高",
         "text": "主要基于官方统计口径。"
@@ -1042,7 +1067,32 @@
         "label": "年龄",
         "value": "25-29",
         "valueLabel": "25-29 岁",
-        "rate": 0.074,
+        "rate": 0.071,
+        "quality": "官方统计",
+        "sourceId": "population_census",
+        "coverage": "regional",
+        "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
+      }
+    },
+    {
+      "region": {
+        "code": "420000",
+        "name": "湖北省",
+        "basePopulation": 57752557
+      },
+      "estimatedPeople": 313107,
+      "probability": 0.00542153,
+      "probabilityText": "0.54%",
+      "confidence": {
+        "level": "高",
+        "text": "主要基于官方统计口径。"
+      },
+      "rarestFactor": {
+        "key": "ageRange",
+        "label": "年龄",
+        "value": "25-29",
+        "valueLabel": "25-29 岁",
+        "rate": 0.072,
         "quality": "官方统计",
         "sourceId": "population_census",
         "coverage": "regional",
@@ -1080,8 +1130,8 @@
         "name": "湖南省",
         "basePopulation": 66444864
       },
-      "estimatedPeople": 275938,
-      "probability": 0.00415288,
+      "estimatedPeople": 278046,
+      "probability": 0.00418461,
       "probabilityText": "0.42%",
       "confidence": {
         "level": "高",
@@ -1092,57 +1142,7 @@
         "label": "年龄",
         "value": "25-29",
         "valueLabel": "25-29 岁",
-        "rate": 0.074,
-        "quality": "官方统计",
-        "sourceId": "population_census",
-        "coverage": "regional",
-        "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
-      }
-    },
-    {
-      "region": {
-        "code": "330000",
-        "name": "浙江省",
-        "basePopulation": 64567588
-      },
-      "estimatedPeople": 268141,
-      "probability": 0.00415288,
-      "probabilityText": "0.42%",
-      "confidence": {
-        "level": "高",
-        "text": "主要基于官方统计口径。"
-      },
-      "rarestFactor": {
-        "key": "ageRange",
-        "label": "年龄",
-        "value": "25-29",
-        "valueLabel": "25-29 岁",
-        "rate": 0.074,
-        "quality": "官方统计",
-        "sourceId": "population_census",
-        "coverage": "regional",
-        "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
-      }
-    },
-    {
-      "region": {
-        "code": "340000",
-        "name": "安徽省",
-        "basePopulation": 61027171
-      },
-      "estimatedPeople": 253439,
-      "probability": 0.00415288,
-      "probabilityText": "0.42%",
-      "confidence": {
-        "level": "高",
-        "text": "主要基于官方统计口径。"
-      },
-      "rarestFactor": {
-        "key": "ageRange",
-        "label": "年龄",
-        "value": "25-29",
-        "valueLabel": "25-29 岁",
-        "rate": 0.074,
+        "rate": 0.07,
         "quality": "官方统计",
         "sourceId": "population_census",
         "coverage": "regional",
@@ -1362,9 +1362,9 @@
           "commuteTolerance": "same_city"
         },
         "basePopulation": 126012510,
-        "estimatedPeople": 24362,
-        "probability": 0.00019333,
-        "probabilityText": "0.0193%",
+        "estimatedPeople": 28971,
+        "probability": 0.00022991,
+        "probabilityText": "0.0230%",
         "factors": [
           {
             "key": "gender",
@@ -1382,7 +1382,7 @@
             "label": "年龄",
             "value": "25-29",
             "valueLabel": "25-29 岁",
-            "rate": 0.074,
+            "rate": 0.088,
             "quality": "官方统计",
             "sourceId": "population_census",
             "coverage": "regional",
@@ -1449,7 +1449,7 @@
           "label": "年龄",
           "value": "25-29",
           "valueLabel": "25-29 岁",
-          "rate": 0.074,
+          "rate": 0.088,
           "quality": "官方统计",
           "sourceId": "population_census",
           "coverage": "regional",

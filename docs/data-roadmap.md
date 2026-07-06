@@ -32,8 +32,15 @@
 ## 当前数据资产
 
 - `data/seed/catalog.json`：长期维护的数据源、地区、维度、默认比例、地区交叉比例。
+- `data/raw/province-demographics-2020.csv`：第七次人口普查省级人口、性别、年龄、学历导入表。
 - `web-preview/data/seed.json`：由脚本生成的网页预览数据，不作为人工维护源。
 - `cloudfunctions/calculateProbability/lib/probability.js`：概率模型和摘要接口，当前已直接读取 `data/seed/catalog.json`。
+
+## 常用数据命令
+
+- `npm run import:province-demographics`：把 `data/raw/province-demographics-2020.csv` 导入 `data/seed/catalog.json`。
+- `npm run export:web-data`：把当前 catalog 和样例结果导出到网页原型。
+- `npm test`：验证数据来源、概率模型、地区覆盖、导入器和网页数据基础能力。
 
 ## 重要口径
 

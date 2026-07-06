@@ -1,5 +1,9 @@
 {
-  "qualityLevels": ["官方统计", "行业报告", "模型估算"],
+  "qualityLevels": [
+    "官方统计",
+    "行业报告",
+    "模型估算"
+  ],
   "sources": {
     "population_census": {
       "id": "population_census",
@@ -93,38 +97,166 @@
     }
   },
   "regions": {
-    "110000": { "code": "110000", "name": "北京市", "basePopulation": 21893000 },
-    "120000": { "code": "120000", "name": "天津市", "basePopulation": 13866009 },
-    "130000": { "code": "130000", "name": "河北省", "basePopulation": 74610235 },
-    "140000": { "code": "140000", "name": "山西省", "basePopulation": 34915616 },
-    "150000": { "code": "150000", "name": "内蒙古自治区", "basePopulation": 24049155 },
-    "210000": { "code": "210000", "name": "辽宁省", "basePopulation": 42591407 },
-    "220000": { "code": "220000", "name": "吉林省", "basePopulation": 24073453 },
-    "230000": { "code": "230000", "name": "黑龙江省", "basePopulation": 31850088 },
-    "310000": { "code": "310000", "name": "上海市", "basePopulation": 24870895 },
-    "320000": { "code": "320000", "name": "江苏省", "basePopulation": 84748016 },
-    "330000": { "code": "330000", "name": "浙江省", "basePopulation": 64567588 },
-    "340000": { "code": "340000", "name": "安徽省", "basePopulation": 61027171 },
-    "350000": { "code": "350000", "name": "福建省", "basePopulation": 41540086 },
-    "360000": { "code": "360000", "name": "江西省", "basePopulation": 45188635 },
-    "370000": { "code": "370000", "name": "山东省", "basePopulation": 101527453 },
-    "410000": { "code": "410000", "name": "河南省", "basePopulation": 99365519 },
-    "420000": { "code": "420000", "name": "湖北省", "basePopulation": 57752557 },
-    "430000": { "code": "430000", "name": "湖南省", "basePopulation": 66444864 },
-    "440000": { "code": "440000", "name": "广东省", "basePopulation": 126012510 },
-    "450000": { "code": "450000", "name": "广西壮族自治区", "basePopulation": 50126804 },
-    "460000": { "code": "460000", "name": "海南省", "basePopulation": 10081232 },
-    "500000": { "code": "500000", "name": "重庆市", "basePopulation": 32054159 },
-    "510000": { "code": "510000", "name": "四川省", "basePopulation": 83674866 },
-    "520000": { "code": "520000", "name": "贵州省", "basePopulation": 38562148 },
-    "530000": { "code": "530000", "name": "云南省", "basePopulation": 47209277 },
-    "540000": { "code": "540000", "name": "西藏自治区", "basePopulation": 3648100 },
-    "610000": { "code": "610000", "name": "陕西省", "basePopulation": 39528999 },
-    "620000": { "code": "620000", "name": "甘肃省", "basePopulation": 25019831 },
-    "630000": { "code": "630000", "name": "青海省", "basePopulation": 5923957 },
-    "640000": { "code": "640000", "name": "宁夏回族自治区", "basePopulation": 7202654 },
-    "650000": { "code": "650000", "name": "新疆维吾尔自治区", "basePopulation": 25852345 },
-    "000000": { "code": "000000", "name": "全国", "basePopulation": 1411778724 }
+    "110000": {
+      "code": "110000",
+      "name": "北京市",
+      "basePopulation": 21893000
+    },
+    "120000": {
+      "code": "120000",
+      "name": "天津市",
+      "basePopulation": 13866009
+    },
+    "130000": {
+      "code": "130000",
+      "name": "河北省",
+      "basePopulation": 74610235
+    },
+    "140000": {
+      "code": "140000",
+      "name": "山西省",
+      "basePopulation": 34915616
+    },
+    "150000": {
+      "code": "150000",
+      "name": "内蒙古自治区",
+      "basePopulation": 24049155
+    },
+    "210000": {
+      "code": "210000",
+      "name": "辽宁省",
+      "basePopulation": 42591407
+    },
+    "220000": {
+      "code": "220000",
+      "name": "吉林省",
+      "basePopulation": 24073453
+    },
+    "230000": {
+      "code": "230000",
+      "name": "黑龙江省",
+      "basePopulation": 31850088
+    },
+    "310000": {
+      "code": "310000",
+      "name": "上海市",
+      "basePopulation": 24870895
+    },
+    "320000": {
+      "code": "320000",
+      "name": "江苏省",
+      "basePopulation": 84748016
+    },
+    "330000": {
+      "code": "330000",
+      "name": "浙江省",
+      "basePopulation": 64567588
+    },
+    "340000": {
+      "code": "340000",
+      "name": "安徽省",
+      "basePopulation": 61027171
+    },
+    "350000": {
+      "code": "350000",
+      "name": "福建省",
+      "basePopulation": 41540086
+    },
+    "360000": {
+      "code": "360000",
+      "name": "江西省",
+      "basePopulation": 45188635
+    },
+    "370000": {
+      "code": "370000",
+      "name": "山东省",
+      "basePopulation": 101527453
+    },
+    "410000": {
+      "code": "410000",
+      "name": "河南省",
+      "basePopulation": 99365519
+    },
+    "420000": {
+      "code": "420000",
+      "name": "湖北省",
+      "basePopulation": 57752557
+    },
+    "430000": {
+      "code": "430000",
+      "name": "湖南省",
+      "basePopulation": 66444864
+    },
+    "440000": {
+      "code": "440000",
+      "name": "广东省",
+      "basePopulation": 126012510
+    },
+    "450000": {
+      "code": "450000",
+      "name": "广西壮族自治区",
+      "basePopulation": 50126804
+    },
+    "460000": {
+      "code": "460000",
+      "name": "海南省",
+      "basePopulation": 10081232
+    },
+    "500000": {
+      "code": "500000",
+      "name": "重庆市",
+      "basePopulation": 32054159
+    },
+    "510000": {
+      "code": "510000",
+      "name": "四川省",
+      "basePopulation": 83674866
+    },
+    "520000": {
+      "code": "520000",
+      "name": "贵州省",
+      "basePopulation": 38562148
+    },
+    "530000": {
+      "code": "530000",
+      "name": "云南省",
+      "basePopulation": 47209277
+    },
+    "540000": {
+      "code": "540000",
+      "name": "西藏自治区",
+      "basePopulation": 3648100
+    },
+    "610000": {
+      "code": "610000",
+      "name": "陕西省",
+      "basePopulation": 39528999
+    },
+    "620000": {
+      "code": "620000",
+      "name": "甘肃省",
+      "basePopulation": 25019831
+    },
+    "630000": {
+      "code": "630000",
+      "name": "青海省",
+      "basePopulation": 5923957
+    },
+    "640000": {
+      "code": "640000",
+      "name": "宁夏回族自治区",
+      "basePopulation": 7202654
+    },
+    "650000": {
+      "code": "650000",
+      "name": "新疆维吾尔自治区",
+      "basePopulation": 25852345
+    },
+    "000000": {
+      "code": "000000",
+      "name": "全国",
+      "basePopulation": 1411778724
+    }
   },
   "dimensions": {
     "gender": {
@@ -132,16 +264,140 @@
       "sourceId": "population_census",
       "coverage": "regional",
       "options": {
-        "male": { "label": "男", "defaultRate": 0.512 },
-        "female": { "label": "女", "defaultRate": 0.488 }
+        "male": {
+          "label": "男",
+          "defaultRate": 0.512
+        },
+        "female": {
+          "label": "女",
+          "defaultRate": 0.488
+        }
       },
       "regionRates": {
-        "110000": { "male": 0.5114, "female": 0.4886 },
-        "310000": { "male": 0.517, "female": 0.483 },
-        "320000": { "male": 0.5078, "female": 0.4922 },
-        "370000": { "male": 0.5066, "female": 0.4934 },
-        "440000": { "male": 0.5307, "female": 0.4693 },
-        "540000": { "male": 0.505, "female": 0.495 }
+        "110000": {
+          "male": 0.5114,
+          "female": 0.4886
+        },
+        "120000": {
+          "male": 0.5153,
+          "female": 0.4847
+        },
+        "130000": {
+          "male": 0.505,
+          "female": 0.495
+        },
+        "140000": {
+          "male": 0.5099,
+          "female": 0.4901
+        },
+        "150000": {
+          "male": 0.5126,
+          "female": 0.4874
+        },
+        "210000": {
+          "male": 0.499,
+          "female": 0.501
+        },
+        "220000": {
+          "male": 0.501,
+          "female": 0.499
+        },
+        "230000": {
+          "male": 0.5015,
+          "female": 0.4985
+        },
+        "310000": {
+          "male": 0.517,
+          "female": 0.483
+        },
+        "320000": {
+          "male": 0.5078,
+          "female": 0.4922
+        },
+        "330000": {
+          "male": 0.523,
+          "female": 0.477
+        },
+        "340000": {
+          "male": 0.5097,
+          "female": 0.4903
+        },
+        "350000": {
+          "male": 0.5168,
+          "female": 0.4832
+        },
+        "360000": {
+          "male": 0.516,
+          "female": 0.484
+        },
+        "370000": {
+          "male": 0.5066,
+          "female": 0.4934
+        },
+        "410000": {
+          "male": 0.5015,
+          "female": 0.4985
+        },
+        "420000": {
+          "male": 0.5142,
+          "female": 0.4858
+        },
+        "430000": {
+          "male": 0.5116,
+          "female": 0.4884
+        },
+        "440000": {
+          "male": 0.5307,
+          "female": 0.4693
+        },
+        "450000": {
+          "male": 0.517,
+          "female": 0.483
+        },
+        "460000": {
+          "male": 0.5302,
+          "female": 0.4698
+        },
+        "500000": {
+          "male": 0.5055,
+          "female": 0.4945
+        },
+        "510000": {
+          "male": 0.5054,
+          "female": 0.4946
+        },
+        "520000": {
+          "male": 0.511,
+          "female": 0.489
+        },
+        "530000": {
+          "male": 0.5173,
+          "female": 0.4827
+        },
+        "540000": {
+          "male": 0.5245,
+          "female": 0.4755
+        },
+        "610000": {
+          "male": 0.5117,
+          "female": 0.4883
+        },
+        "620000": {
+          "male": 0.5076,
+          "female": 0.4924
+        },
+        "630000": {
+          "male": 0.5121,
+          "female": 0.4879
+        },
+        "640000": {
+          "male": 0.5094,
+          "female": 0.4906
+        },
+        "650000": {
+          "male": 0.5166,
+          "female": 0.4834
+        }
       }
     },
     "ageRange": {
@@ -149,14 +405,210 @@
       "sourceId": "population_census",
       "coverage": "regional",
       "options": {
-        "20-24": { "label": "20-24 岁", "defaultRate": 0.071 },
-        "25-29": { "label": "25-29 岁", "defaultRate": 0.074 },
-        "30-34": { "label": "30-34 岁", "defaultRate": 0.081 },
-        "35-39": { "label": "35-39 岁", "defaultRate": 0.078 }
+        "20-24": {
+          "label": "20-24 岁",
+          "defaultRate": 0.071
+        },
+        "25-29": {
+          "label": "25-29 岁",
+          "defaultRate": 0.074
+        },
+        "30-34": {
+          "label": "30-34 岁",
+          "defaultRate": 0.081
+        },
+        "35-39": {
+          "label": "35-39 岁",
+          "defaultRate": 0.078
+        }
       },
       "regionRates": {
-        "310000": { "25-29": 0.083, "30-34": 0.091 },
-        "540000": { "35-39": 0.07 }
+        "110000": {
+          "20-24": 0.06,
+          "25-29": 0.078,
+          "30-34": 0.088,
+          "35-39": 0.082
+        },
+        "120000": {
+          "20-24": 0.062,
+          "25-29": 0.071,
+          "30-34": 0.079,
+          "35-39": 0.075
+        },
+        "130000": {
+          "20-24": 0.07,
+          "25-29": 0.071,
+          "30-34": 0.078,
+          "35-39": 0.08
+        },
+        "140000": {
+          "20-24": 0.068,
+          "25-29": 0.07,
+          "30-34": 0.077,
+          "35-39": 0.079
+        },
+        "150000": {
+          "20-24": 0.066,
+          "25-29": 0.069,
+          "30-34": 0.076,
+          "35-39": 0.077
+        },
+        "210000": {
+          "20-24": 0.054,
+          "25-29": 0.062,
+          "30-34": 0.073,
+          "35-39": 0.079
+        },
+        "220000": {
+          "20-24": 0.056,
+          "25-29": 0.063,
+          "30-34": 0.073,
+          "35-39": 0.078
+        },
+        "230000": {
+          "20-24": 0.055,
+          "25-29": 0.062,
+          "30-34": 0.073,
+          "35-39": 0.079
+        },
+        "310000": {
+          "20-24": 0.062,
+          "25-29": 0.083,
+          "30-34": 0.091,
+          "35-39": 0.08
+        },
+        "320000": {
+          "20-24": 0.064,
+          "25-29": 0.073,
+          "30-34": 0.083,
+          "35-39": 0.08
+        },
+        "330000": {
+          "20-24": 0.068,
+          "25-29": 0.081,
+          "30-34": 0.09,
+          "35-39": 0.08
+        },
+        "340000": {
+          "20-24": 0.071,
+          "25-29": 0.07,
+          "30-34": 0.078,
+          "35-39": 0.079
+        },
+        "350000": {
+          "20-24": 0.071,
+          "25-29": 0.076,
+          "30-34": 0.084,
+          "35-39": 0.079
+        },
+        "360000": {
+          "20-24": 0.073,
+          "25-29": 0.071,
+          "30-34": 0.079,
+          "35-39": 0.08
+        },
+        "370000": {
+          "20-24": 0.068,
+          "25-29": 0.07,
+          "30-34": 0.078,
+          "35-39": 0.08
+        },
+        "410000": {
+          "20-24": 0.072,
+          "25-29": 0.069,
+          "30-34": 0.077,
+          "35-39": 0.08
+        },
+        "420000": {
+          "20-24": 0.065,
+          "25-29": 0.072,
+          "30-34": 0.082,
+          "35-39": 0.079
+        },
+        "430000": {
+          "20-24": 0.068,
+          "25-29": 0.07,
+          "30-34": 0.079,
+          "35-39": 0.08
+        },
+        "440000": {
+          "20-24": 0.073,
+          "25-29": 0.088,
+          "30-34": 0.095,
+          "35-39": 0.082
+        },
+        "450000": {
+          "20-24": 0.073,
+          "25-29": 0.071,
+          "30-34": 0.079,
+          "35-39": 0.08
+        },
+        "460000": {
+          "20-24": 0.071,
+          "25-29": 0.075,
+          "30-34": 0.083,
+          "35-39": 0.079
+        },
+        "500000": {
+          "20-24": 0.063,
+          "25-29": 0.07,
+          "30-34": 0.08,
+          "35-39": 0.079
+        },
+        "510000": {
+          "20-24": 0.064,
+          "25-29": 0.069,
+          "30-34": 0.079,
+          "35-39": 0.08
+        },
+        "520000": {
+          "20-24": 0.073,
+          "25-29": 0.07,
+          "30-34": 0.078,
+          "35-39": 0.08
+        },
+        "530000": {
+          "20-24": 0.071,
+          "25-29": 0.07,
+          "30-34": 0.078,
+          "35-39": 0.079
+        },
+        "540000": {
+          "20-24": 0.073,
+          "25-29": 0.069,
+          "30-34": 0.075,
+          "35-39": 0.07
+        },
+        "610000": {
+          "20-24": 0.065,
+          "25-29": 0.071,
+          "30-34": 0.081,
+          "35-39": 0.079
+        },
+        "620000": {
+          "20-24": 0.07,
+          "25-29": 0.069,
+          "30-34": 0.077,
+          "35-39": 0.079
+        },
+        "630000": {
+          "20-24": 0.071,
+          "25-29": 0.07,
+          "30-34": 0.078,
+          "35-39": 0.079
+        },
+        "640000": {
+          "20-24": 0.071,
+          "25-29": 0.07,
+          "30-34": 0.078,
+          "35-39": 0.079
+        },
+        "650000": {
+          "20-24": 0.073,
+          "25-29": 0.071,
+          "30-34": 0.079,
+          "35-39": 0.079
+        }
       }
     },
     "education": {
@@ -164,18 +616,148 @@
       "sourceId": "population_census",
       "coverage": "regional",
       "options": {
-        "high_school_plus": { "label": "高中及以上", "defaultRate": 0.42 },
-        "college_plus": { "label": "大专及以上", "defaultRate": 0.22 },
-        "bachelor_plus": { "label": "本科及以上", "defaultRate": 0.115 },
-        "master_plus": { "label": "硕士及以上", "defaultRate": 0.018 }
+        "high_school_plus": {
+          "label": "高中及以上",
+          "defaultRate": 0.42
+        },
+        "college_plus": {
+          "label": "大专及以上",
+          "defaultRate": 0.22
+        },
+        "bachelor_plus": {
+          "label": "本科及以上",
+          "defaultRate": 0.115
+        },
+        "master_plus": {
+          "label": "硕士及以上",
+          "defaultRate": 0.018
+        }
       },
       "regionRates": {
-        "110000": { "bachelor_plus": 0.31, "master_plus": 0.075 },
-        "310000": { "bachelor_plus": 0.285, "master_plus": 0.061 },
-        "320000": { "bachelor_plus": 0.1866, "master_plus": 0.025 },
-        "370000": { "bachelor_plus": 0.1438, "master_plus": 0.018 },
-        "440000": { "bachelor_plus": 0.157, "master_plus": 0.018 },
-        "540000": { "bachelor_plus": 0.082, "master_plus": 0.015 }
+        "110000": {
+          "bachelor_plus": 0.31,
+          "master_plus": 0.075
+        },
+        "120000": {
+          "bachelor_plus": 0.185,
+          "master_plus": 0.022
+        },
+        "130000": {
+          "bachelor_plus": 0.124,
+          "master_plus": 0.012
+        },
+        "140000": {
+          "bachelor_plus": 0.132,
+          "master_plus": 0.012
+        },
+        "150000": {
+          "bachelor_plus": 0.148,
+          "master_plus": 0.013
+        },
+        "210000": {
+          "bachelor_plus": 0.182,
+          "master_plus": 0.019
+        },
+        "220000": {
+          "bachelor_plus": 0.167,
+          "master_plus": 0.017
+        },
+        "230000": {
+          "bachelor_plus": 0.158,
+          "master_plus": 0.015
+        },
+        "310000": {
+          "bachelor_plus": 0.285,
+          "master_plus": 0.061
+        },
+        "320000": {
+          "bachelor_plus": 0.1866,
+          "master_plus": 0.025
+        },
+        "330000": {
+          "bachelor_plus": 0.169,
+          "master_plus": 0.019
+        },
+        "340000": {
+          "bachelor_plus": 0.128,
+          "master_plus": 0.012
+        },
+        "350000": {
+          "bachelor_plus": 0.1415,
+          "master_plus": 0.014
+        },
+        "360000": {
+          "bachelor_plus": 0.119,
+          "master_plus": 0.011
+        },
+        "370000": {
+          "bachelor_plus": 0.1438,
+          "master_plus": 0.018
+        },
+        "410000": {
+          "bachelor_plus": 0.1174,
+          "master_plus": 0.011
+        },
+        "420000": {
+          "bachelor_plus": 0.155,
+          "master_plus": 0.018
+        },
+        "430000": {
+          "bachelor_plus": 0.1224,
+          "master_plus": 0.012
+        },
+        "440000": {
+          "bachelor_plus": 0.157,
+          "master_plus": 0.018
+        },
+        "450000": {
+          "bachelor_plus": 0.1081,
+          "master_plus": 0.01
+        },
+        "460000": {
+          "bachelor_plus": 0.1392,
+          "master_plus": 0.013
+        },
+        "500000": {
+          "bachelor_plus": 0.1541,
+          "master_plus": 0.016
+        },
+        "510000": {
+          "bachelor_plus": 0.1327,
+          "master_plus": 0.013
+        },
+        "520000": {
+          "bachelor_plus": 0.1095,
+          "master_plus": 0.01
+        },
+        "530000": {
+          "bachelor_plus": 0.116,
+          "master_plus": 0.011
+        },
+        "540000": {
+          "bachelor_plus": 0.082,
+          "master_plus": 0.015
+        },
+        "610000": {
+          "bachelor_plus": 0.184,
+          "master_plus": 0.019
+        },
+        "620000": {
+          "bachelor_plus": 0.1451,
+          "master_plus": 0.013
+        },
+        "630000": {
+          "bachelor_plus": 0.1488,
+          "master_plus": 0.013
+        },
+        "640000": {
+          "bachelor_plus": 0.1734,
+          "master_plus": 0.014
+        },
+        "650000": {
+          "bachelor_plus": 0.1654,
+          "master_plus": 0.013
+        }
       }
     },
     "occupation": {
@@ -183,16 +765,38 @@
       "sourceId": "stats_yearbook",
       "coverage": "regional_partial",
       "options": {
-        "tech": { "label": "互联网/技术", "defaultRate": 0.072 },
-        "finance": { "label": "金融", "defaultRate": 0.036 },
-        "education": { "label": "教育科研", "defaultRate": 0.071 },
-        "healthcare": { "label": "医疗健康", "defaultRate": 0.049 },
-        "public_service": { "label": "公共服务/机关事业", "defaultRate": 0.064 }
+        "tech": {
+          "label": "互联网/技术",
+          "defaultRate": 0.072
+        },
+        "finance": {
+          "label": "金融",
+          "defaultRate": 0.036
+        },
+        "education": {
+          "label": "教育科研",
+          "defaultRate": 0.071
+        },
+        "healthcare": {
+          "label": "医疗健康",
+          "defaultRate": 0.049
+        },
+        "public_service": {
+          "label": "公共服务/机关事业",
+          "defaultRate": 0.064
+        }
       },
       "regionRates": {
-        "310000": { "tech": 0.126, "finance": 0.082 },
-        "440000": { "tech": 0.101 },
-        "540000": { "finance": 0.025 }
+        "310000": {
+          "tech": 0.126,
+          "finance": 0.082
+        },
+        "440000": {
+          "tech": 0.101
+        },
+        "540000": {
+          "finance": 0.025
+        }
       }
     },
     "salary": {
@@ -200,15 +804,35 @@
       "sourceId": "recruitment_reports",
       "coverage": "regional_partial",
       "options": {
-        "8k_plus": { "label": "8k 以上", "defaultRate": 0.31 },
-        "12k_plus": { "label": "12k 以上", "defaultRate": 0.19 },
-        "20k_plus": { "label": "20k 以上", "defaultRate": 0.082 },
-        "50k_plus": { "label": "50k 以上", "defaultRate": 0.004 }
+        "8k_plus": {
+          "label": "8k 以上",
+          "defaultRate": 0.31
+        },
+        "12k_plus": {
+          "label": "12k 以上",
+          "defaultRate": 0.19
+        },
+        "20k_plus": {
+          "label": "20k 以上",
+          "defaultRate": 0.082
+        },
+        "50k_plus": {
+          "label": "50k 以上",
+          "defaultRate": 0.004
+        }
       },
       "regionRates": {
-        "110000": { "20k_plus": 0.141, "50k_plus": 0.011 },
-        "310000": { "20k_plus": 0.052, "50k_plus": 0.014 },
-        "540000": { "50k_plus": 0.006 }
+        "110000": {
+          "20k_plus": 0.141,
+          "50k_plus": 0.011
+        },
+        "310000": {
+          "20k_plus": 0.052,
+          "50k_plus": 0.014
+        },
+        "540000": {
+          "50k_plus": 0.006
+        }
       }
     },
     "smoking": {
@@ -216,8 +840,14 @@
       "sourceId": "lifestyle_reports",
       "coverage": "national",
       "options": {
-        "no": { "label": "不吸烟", "defaultRate": 0.735 },
-        "yes": { "label": "接受吸烟", "defaultRate": 1 }
+        "no": {
+          "label": "不吸烟",
+          "defaultRate": 0.735
+        },
+        "yes": {
+          "label": "接受吸烟",
+          "defaultRate": 1
+        }
       }
     },
     "drinking": {
@@ -225,11 +855,19 @@
       "sourceId": "lifestyle_reports",
       "coverage": "regional_partial",
       "options": {
-        "light_or_no": { "label": "少喝或不喝", "defaultRate": 0.68 },
-        "social_ok": { "label": "社交饮酒可接受", "defaultRate": 0.88 }
+        "light_or_no": {
+          "label": "少喝或不喝",
+          "defaultRate": 0.68
+        },
+        "social_ok": {
+          "label": "社交饮酒可接受",
+          "defaultRate": 0.88
+        }
       },
       "regionRates": {
-        "540000": { "light_or_no": 0.75 }
+        "540000": {
+          "light_or_no": 0.75
+        }
       }
     },
     "personality": {
@@ -237,10 +875,22 @@
       "sourceId": "personality_model",
       "coverage": "model_only",
       "options": {
-        "extrovert": { "label": "外向表达型", "defaultRate": 0.33 },
-        "introvert": { "label": "内向稳定型", "defaultRate": 0.31 },
-        "intj_like": { "label": "理性规划型", "defaultRate": 0.02 },
-        "gentle": { "label": "温和共情型", "defaultRate": 0.27 }
+        "extrovert": {
+          "label": "外向表达型",
+          "defaultRate": 0.33
+        },
+        "introvert": {
+          "label": "内向稳定型",
+          "defaultRate": 0.31
+        },
+        "intj_like": {
+          "label": "理性规划型",
+          "defaultRate": 0.02
+        },
+        "gentle": {
+          "label": "温和共情型",
+          "defaultRate": 0.27
+        }
       }
     },
     "height": {
@@ -248,11 +898,26 @@
       "sourceId": "body_lifestyle_model",
       "coverage": "model_only",
       "options": {
-        "any_reasonable": { "label": "别太离谱就行", "defaultRate": 0.92 },
-        "155_165": { "label": "155-165 cm", "defaultRate": 0.28 },
-        "165_175": { "label": "165-175 cm", "defaultRate": 0.36 },
-        "175_185": { "label": "175-185 cm", "defaultRate": 0.23 },
-        "185_plus": { "label": "185 cm 以上", "defaultRate": 0.045 }
+        "any_reasonable": {
+          "label": "别太离谱就行",
+          "defaultRate": 0.92
+        },
+        "155_165": {
+          "label": "155-165 cm",
+          "defaultRate": 0.28
+        },
+        "165_175": {
+          "label": "165-175 cm",
+          "defaultRate": 0.36
+        },
+        "175_185": {
+          "label": "175-185 cm",
+          "defaultRate": 0.23
+        },
+        "185_plus": {
+          "label": "185 cm 以上",
+          "defaultRate": 0.045
+        }
       }
     },
     "exercise": {
@@ -260,9 +925,18 @@
       "sourceId": "body_lifestyle_model",
       "coverage": "model_only",
       "options": {
-        "not_required": { "label": "不要求", "defaultRate": 1 },
-        "weekly": { "label": "每周运动", "defaultRate": 0.38 },
-        "frequent": { "label": "高频运动", "defaultRate": 0.16 }
+        "not_required": {
+          "label": "不要求",
+          "defaultRate": 1
+        },
+        "weekly": {
+          "label": "每周运动",
+          "defaultRate": 0.38
+        },
+        "frequent": {
+          "label": "高频运动",
+          "defaultRate": 0.16
+        }
       }
     },
     "homeOwnership": {
@@ -270,14 +944,29 @@
       "sourceId": "housing_reports",
       "coverage": "regional_partial",
       "options": {
-        "not_required": { "label": "不要求", "defaultRate": 1 },
-        "has_home": { "label": "有自有住房", "defaultRate": 0.41 },
-        "no_pressure": { "label": "无明显居住压力", "defaultRate": 0.52 }
+        "not_required": {
+          "label": "不要求",
+          "defaultRate": 1
+        },
+        "has_home": {
+          "label": "有自有住房",
+          "defaultRate": 0.41
+        },
+        "no_pressure": {
+          "label": "无明显居住压力",
+          "defaultRate": 0.52
+        }
       },
       "regionRates": {
-        "310000": { "has_home": 0.32 },
-        "440000": { "has_home": 0.36 },
-        "110000": { "has_home": 0.31 }
+        "110000": {
+          "has_home": 0.31
+        },
+        "310000": {
+          "has_home": 0.32
+        },
+        "440000": {
+          "has_home": 0.36
+        }
       }
     },
     "commuteTolerance": {
@@ -285,9 +974,18 @@
       "sourceId": "housing_reports",
       "coverage": "national",
       "options": {
-        "not_required": { "label": "不要求", "defaultRate": 1 },
-        "same_city": { "label": "同城生活圈", "defaultRate": 0.72 },
-        "within_hour": { "label": "一小时内可见面", "defaultRate": 0.54 }
+        "not_required": {
+          "label": "不要求",
+          "defaultRate": 1
+        },
+        "same_city": {
+          "label": "同城生活圈",
+          "defaultRate": 0.72
+        },
+        "within_hour": {
+          "label": "一小时内可见面",
+          "defaultRate": 0.54
+        }
       }
     }
   }
