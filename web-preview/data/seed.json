@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T16:44:05.067Z",
+  "generatedAt": "2026-07-06T16:47:11.382Z",
   "options": {
     "region": {
       "code": "000000",
@@ -1181,9 +1181,9 @@
           "drinking": "light_or_no"
         },
         "basePopulation": 24870895,
-        "estimatedPeople": 996,
-        "probability": 0.00004005,
-        "probabilityText": "0.0040%",
+        "estimatedPeople": 3371,
+        "probability": 0.00013555,
+        "probabilityText": "0.0136%",
         "factors": [
           {
             "key": "gender",
@@ -1234,7 +1234,7 @@
             "label": "月收入",
             "value": "20k_plus",
             "valueLabel": "20k 以上",
-            "rate": 0.052,
+            "rate": 0.176,
             "quality": "行业报告",
             "sourceId": "recruitment_reports",
             "coverage": "regional_partial",
@@ -1264,15 +1264,15 @@
           }
         ],
         "rarestFactor": {
-          "key": "salary",
-          "label": "月收入",
-          "value": "20k_plus",
-          "valueLabel": "20k 以上",
-          "rate": 0.052,
-          "quality": "行业报告",
-          "sourceId": "recruitment_reports",
-          "coverage": "regional_partial",
-          "note": "用于补充分城市、分职业薪资区间，非逐人精确统计。"
+          "key": "ageRange",
+          "label": "年龄",
+          "value": "25-29",
+          "valueLabel": "25-29 岁",
+          "rate": 0.083,
+          "quality": "官方统计",
+          "sourceId": "population_census",
+          "coverage": "regional",
+          "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
         },
         "confidence": {
           "level": "中",

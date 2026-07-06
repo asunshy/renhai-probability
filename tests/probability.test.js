@@ -31,7 +31,7 @@ test('calculates explainable probability and factor contributions for common fil
     ageRange: '25-29',
     education: 'bachelor_plus',
     occupation: 'tech',
-    salary: '20k_plus',
+    salary: '50k_plus',
     smoking: 'no',
     drinking: 'light_or_no'
   });
