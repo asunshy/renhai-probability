@@ -6,6 +6,8 @@ const SOURCES = {
     title: '第七次全国人口普查与国家统计局公开数据',
     year: 2020,
     quality: '官方统计',
+    priority: 1,
+    refreshCadence: '人口普查十年一次，年度人口抽样与统计年鉴补充',
     url: 'https://www.stats.gov.cn/sj/pcsj/rkpc/7rp/indexch.htm',
     note: '用于地区常住人口、性别、年龄、受教育程度等基础口径。'
   },
@@ -14,6 +16,8 @@ const SOURCES = {
     title: '中国统计年鉴',
     year: 2024,
     quality: '官方统计',
+    priority: 1,
+    refreshCadence: '每年跟随统计年鉴更新',
     url: 'https://www.stats.gov.cn/sj/ndsj/',
     note: '用于就业、行业、工资等宏观统计口径。'
   },
@@ -22,6 +26,8 @@ const SOURCES = {
     title: '招聘平台公开薪酬报告汇总',
     year: 2024,
     quality: '行业报告',
+    priority: 2,
+    refreshCadence: '每季度或半年复核一次公开报告',
     url: 'https://www.mohrss.gov.cn/',
     note: '用于补充分城市、分职业薪资区间，非逐人精确统计。'
   },
@@ -30,6 +36,8 @@ const SOURCES = {
     title: '公开健康与生活方式调查报告汇总',
     year: 2024,
     quality: '行业报告',
+    priority: 2,
+    refreshCadence: '每年复核卫健委、疾控和公开研究报告',
     url: 'https://www.nhc.gov.cn/',
     note: '用于吸烟、饮酒等生活方式估算。'
   },
@@ -38,8 +46,30 @@ const SOURCES = {
     title: '性格标签趣味估算模型',
     year: 2026,
     quality: '模型估算',
+    priority: 3,
+    refreshCadence: '随产品问卷与公开研究样本迭代',
     url: 'https://data.stats.gov.cn/',
     note: '性格没有稳定官方分布，首版仅作趣味估算，不作为严肃统计。'
+  },
+  housing_reports: {
+    id: 'housing_reports',
+    title: '住户调查、城市住房与行业研究报告汇总',
+    year: 2024,
+    quality: '行业报告',
+    priority: 2,
+    refreshCadence: '每半年复核统计年鉴、住户调查和行业研究',
+    url: 'https://data.stats.gov.cn/',
+    note: '用于住房、通勤容忍度等城市生活成本相关估算。'
+  },
+  body_lifestyle_model: {
+    id: 'body_lifestyle_model',
+    title: '身高、运动频率与生活习惯估算模型',
+    year: 2026,
+    quality: '模型估算',
+    priority: 3,
+    refreshCadence: '随权威体质调查与用户匿名反馈迭代',
+    url: 'https://www.nhc.gov.cn/',
+    note: '用于身高、运动频率等缺少地区交叉公开数据的维度。'
   }
 };
 
@@ -151,6 +181,49 @@ const DIMENSIONS = {
       introvert: { label: '内向稳定型', defaultRate: 0.31 },
       intj_like: { label: '理性规划型', defaultRate: 0.02 },
       gentle: { label: '温和共情型', defaultRate: 0.27 }
+    }
+  },
+  height: {
+    label: '身高',
+    sourceId: 'body_lifestyle_model',
+    options: {
+      any_reasonable: { label: '别太离谱就行', defaultRate: 0.92 },
+      '155_165': { label: '155-165 cm', defaultRate: 0.28 },
+      '165_175': { label: '165-175 cm', defaultRate: 0.36 },
+      '175_185': { label: '175-185 cm', defaultRate: 0.23 },
+      '185_plus': { label: '185 cm 以上', defaultRate: 0.045 }
+    }
+  },
+  exercise: {
+    label: '运动习惯',
+    sourceId: 'body_lifestyle_model',
+    options: {
+      not_required: { label: '不要求', defaultRate: 1 },
+      weekly: { label: '每周运动', defaultRate: 0.38 },
+      frequent: { label: '高频运动', defaultRate: 0.16 }
+    }
+  },
+  homeOwnership: {
+    label: '居住资产',
+    sourceId: 'housing_reports',
+    options: {
+      not_required: { label: '不要求', defaultRate: 1 },
+      has_home: { label: '有自有住房', defaultRate: 0.41 },
+      no_pressure: { label: '无明显居住压力', defaultRate: 0.52 }
+    },
+    regionRates: {
+      '310000': { has_home: 0.32 },
+      '440000': { has_home: 0.36 },
+      '110000': { has_home: 0.31 }
+    }
+  },
+  commuteTolerance: {
+    label: '通勤距离',
+    sourceId: 'housing_reports',
+    options: {
+      not_required: { label: '不要求', defaultRate: 1 },
+      same_city: { label: '同城生活圈', defaultRate: 0.72 },
+      within_hour: { label: '一小时内可见面', defaultRate: 0.54 }
     }
   }
 };
@@ -284,6 +357,23 @@ function getFilterOptions(regionCode = '000000') {
   };
 }
 
+function getDataCatalog() {
+  return {
+    sources: Object.values(SOURCES).map((source) => ({ ...source })),
+    dimensions: Object.entries(DIMENSIONS).map(([key, dimension]) => ({
+      key,
+      label: dimension.label,
+      sourceId: dimension.sourceId,
+      quality: SOURCES[dimension.sourceId].quality,
+      options: Object.entries(dimension.options).map(([value, option]) => ({
+        value,
+        label: option.label,
+        defaultRate: option.defaultRate
+      }))
+    }))
+  };
+}
+
 function getSourceNotes(metricIds = [], factors = []) {
   const notesById = new Map();
 
@@ -337,6 +427,7 @@ module.exports = {
   calculateProbability,
   getFilterOptions,
   getSourceNotes,
+  getDataCatalog,
   validateSeedData,
   REGIONS,
   DIMENSIONS,

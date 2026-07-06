@@ -49,6 +49,25 @@ const DIMENSIONS = {
     { value: 'introvert', label: '内向稳定型' },
     { value: 'intj_like', label: '理性规划型' },
     { value: 'gentle', label: '温和共情型' }
+  ],
+  height: [
+    { value: 'any_reasonable', label: '别太离谱就行' },
+    { value: '155_165', label: '155-165 cm' },
+    { value: '165_175', label: '165-175 cm' },
+    { value: '175_185', label: '175-185 cm' },
+    { value: '185_plus', label: '185 cm 以上' }
+  ],
+  exercise: [
+    { value: 'weekly', label: '每周运动' },
+    { value: 'frequent', label: '高频运动' }
+  ],
+  homeOwnership: [
+    { value: 'has_home', label: '有自有住房' },
+    { value: 'no_pressure', label: '无明显居住压力' }
+  ],
+  commuteTolerance: [
+    { value: 'same_city', label: '同城生活圈' },
+    { value: 'within_hour', label: '一小时内可见面' }
   ]
 };
 

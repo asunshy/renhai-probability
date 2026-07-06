@@ -5,6 +5,7 @@ const {
   calculateProbability,
   getFilterOptions,
   getSourceNotes,
+  getDataCatalog,
   validateSeedData
 } = require('../cloudfunctions/calculateProbability/lib/probability');
 
@@ -84,4 +85,32 @@ test('source notes can be fetched by metric ids', () => {
   assert.equal(notes.length, 2);
   assert.equal(notes[0].quality, '官方统计');
   assert.ok(notes[0].url.startsWith('https://'));
+});
+
+test('expanded catalog documents refresh cadence and source priority', () => {
+  const catalog = getDataCatalog();
+
+  assert.ok(catalog.sources.length >= 6);
+  assert.ok(catalog.sources.every((source) => source.priority >= 1 && source.refreshCadence));
+  assert.ok(catalog.dimensions.some((dimension) => dimension.key === 'height'));
+  assert.ok(catalog.dimensions.some((dimension) => dimension.key === 'exercise'));
+  assert.ok(catalog.dimensions.some((dimension) => dimension.key === 'homeOwnership'));
+});
+
+test('new lifestyle and asset dimensions participate in probability calculation', () => {
+  const result = calculateProbability({
+    regionCode: '440000',
+    gender: 'female',
+    ageRange: '25-29',
+    education: 'bachelor_plus',
+    height: '165_175',
+    exercise: 'weekly',
+    homeOwnership: 'has_home',
+    commuteTolerance: 'same_city'
+  });
+
+  assert.equal(result.factors.length, 7);
+  assert.equal(result.factors.some((factor) => factor.key === 'height'), true);
+  assert.equal(result.factors.some((factor) => factor.quality === '模型估算'), true);
+  assert.equal(result.sourceNotes.some((source) => source.id === 'housing_reports'), true);
 });

@@ -9,7 +9,11 @@ const FIELD_CONFIG = [
   { key: 'salary', label: '月收入' },
   { key: 'smoking', label: '吸烟' },
   { key: 'drinking', label: '饮酒' },
-  { key: 'personality', label: '性格' }
+  { key: 'personality', label: '性格' },
+  { key: 'height', label: '身高' },
+  { key: 'exercise', label: '运动习惯' },
+  { key: 'homeOwnership', label: '居住资产' },
+  { key: 'commuteTolerance', label: '通勤距离' }
 ];
 
 function makeInitialSelected() {

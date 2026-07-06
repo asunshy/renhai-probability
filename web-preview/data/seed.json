@@ -1,0 +1,940 @@
+{
+  "generatedAt": "2026-07-06T16:29:53.443Z",
+  "options": {
+    "region": {
+      "code": "000000",
+      "name": "全国",
+      "basePopulation": 1411778724
+    },
+    "regions": [
+      {
+        "code": "110000",
+        "name": "北京市",
+        "basePopulation": 21893000
+      },
+      {
+        "code": "310000",
+        "name": "上海市",
+        "basePopulation": 24870895
+      },
+      {
+        "code": "440000",
+        "name": "广东省",
+        "basePopulation": 126012510
+      },
+      {
+        "code": "540000",
+        "name": "西藏自治区",
+        "basePopulation": 3648100
+      },
+      {
+        "code": "000000",
+        "name": "全国",
+        "basePopulation": 1411778724
+      }
+    ],
+    "dimensions": {
+      "gender": [
+        {
+          "value": "male",
+          "label": "男"
+        },
+        {
+          "value": "female",
+          "label": "女"
+        }
+      ],
+      "ageRange": [
+        {
+          "value": "20-24",
+          "label": "20-24 岁"
+        },
+        {
+          "value": "25-29",
+          "label": "25-29 岁"
+        },
+        {
+          "value": "30-34",
+          "label": "30-34 岁"
+        },
+        {
+          "value": "35-39",
+          "label": "35-39 岁"
+        }
+      ],
+      "education": [
+        {
+          "value": "high_school_plus",
+          "label": "高中及以上"
+        },
+        {
+          "value": "college_plus",
+          "label": "大专及以上"
+        },
+        {
+          "value": "bachelor_plus",
+          "label": "本科及以上"
+        },
+        {
+          "value": "master_plus",
+          "label": "硕士及以上"
+        }
+      ],
+      "occupation": [
+        {
+          "value": "tech",
+          "label": "互联网/技术"
+        },
+        {
+          "value": "finance",
+          "label": "金融"
+        },
+        {
+          "value": "education",
+          "label": "教育科研"
+        },
+        {
+          "value": "healthcare",
+          "label": "医疗健康"
+        },
+        {
+          "value": "public_service",
+          "label": "公共服务/机关事业"
+        }
+      ],
+      "salary": [
+        {
+          "value": "8k_plus",
+          "label": "8k 以上"
+        },
+        {
+          "value": "12k_plus",
+          "label": "12k 以上"
+        },
+        {
+          "value": "20k_plus",
+          "label": "20k 以上"
+        },
+        {
+          "value": "50k_plus",
+          "label": "50k 以上"
+        }
+      ],
+      "smoking": [
+        {
+          "value": "no",
+          "label": "不吸烟"
+        },
+        {
+          "value": "yes",
+          "label": "接受吸烟"
+        }
+      ],
+      "drinking": [
+        {
+          "value": "light_or_no",
+          "label": "少喝或不喝"
+        },
+        {
+          "value": "social_ok",
+          "label": "社交饮酒可接受"
+        }
+      ],
+      "personality": [
+        {
+          "value": "extrovert",
+          "label": "外向表达型"
+        },
+        {
+          "value": "introvert",
+          "label": "内向稳定型"
+        },
+        {
+          "value": "intj_like",
+          "label": "理性规划型"
+        },
+        {
+          "value": "gentle",
+          "label": "温和共情型"
+        }
+      ],
+      "height": [
+        {
+          "value": "any_reasonable",
+          "label": "别太离谱就行"
+        },
+        {
+          "value": "155_165",
+          "label": "155-165 cm"
+        },
+        {
+          "value": "165_175",
+          "label": "165-175 cm"
+        },
+        {
+          "value": "175_185",
+          "label": "175-185 cm"
+        },
+        {
+          "value": "185_plus",
+          "label": "185 cm 以上"
+        }
+      ],
+      "exercise": [
+        {
+          "value": "not_required",
+          "label": "不要求"
+        },
+        {
+          "value": "weekly",
+          "label": "每周运动"
+        },
+        {
+          "value": "frequent",
+          "label": "高频运动"
+        }
+      ],
+      "homeOwnership": [
+        {
+          "value": "not_required",
+          "label": "不要求"
+        },
+        {
+          "value": "has_home",
+          "label": "有自有住房"
+        },
+        {
+          "value": "no_pressure",
+          "label": "无明显居住压力"
+        }
+      ],
+      "commuteTolerance": [
+        {
+          "value": "not_required",
+          "label": "不要求"
+        },
+        {
+          "value": "same_city",
+          "label": "同城生活圈"
+        },
+        {
+          "value": "within_hour",
+          "label": "一小时内可见面"
+        }
+      ]
+    }
+  },
+  "catalog": {
+    "sources": [
+      {
+        "id": "population_census",
+        "title": "第七次全国人口普查与国家统计局公开数据",
+        "year": 2020,
+        "quality": "官方统计",
+        "priority": 1,
+        "refreshCadence": "人口普查十年一次，年度人口抽样与统计年鉴补充",
+        "url": "https://www.stats.gov.cn/sj/pcsj/rkpc/7rp/indexch.htm",
+        "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
+      },
+      {
+        "id": "stats_yearbook",
+        "title": "中国统计年鉴",
+        "year": 2024,
+        "quality": "官方统计",
+        "priority": 1,
+        "refreshCadence": "每年跟随统计年鉴更新",
+        "url": "https://www.stats.gov.cn/sj/ndsj/",
+        "note": "用于就业、行业、工资等宏观统计口径。"
+      },
+      {
+        "id": "recruitment_reports",
+        "title": "招聘平台公开薪酬报告汇总",
+        "year": 2024,
+        "quality": "行业报告",
+        "priority": 2,
+        "refreshCadence": "每季度或半年复核一次公开报告",
+        "url": "https://www.mohrss.gov.cn/",
+        "note": "用于补充分城市、分职业薪资区间，非逐人精确统计。"
+      },
+      {
+        "id": "lifestyle_reports",
+        "title": "公开健康与生活方式调查报告汇总",
+        "year": 2024,
+        "quality": "行业报告",
+        "priority": 2,
+        "refreshCadence": "每年复核卫健委、疾控和公开研究报告",
+        "url": "https://www.nhc.gov.cn/",
+        "note": "用于吸烟、饮酒等生活方式估算。"
+      },
+      {
+        "id": "personality_model",
+        "title": "性格标签趣味估算模型",
+        "year": 2026,
+        "quality": "模型估算",
+        "priority": 3,
+        "refreshCadence": "随产品问卷与公开研究样本迭代",
+        "url": "https://data.stats.gov.cn/",
+        "note": "性格没有稳定官方分布，首版仅作趣味估算，不作为严肃统计。"
+      },
+      {
+        "id": "housing_reports",
+        "title": "住户调查、城市住房与行业研究报告汇总",
+        "year": 2024,
+        "quality": "行业报告",
+        "priority": 2,
+        "refreshCadence": "每半年复核统计年鉴、住户调查和行业研究",
+        "url": "https://data.stats.gov.cn/",
+        "note": "用于住房、通勤容忍度等城市生活成本相关估算。"
+      },
+      {
+        "id": "body_lifestyle_model",
+        "title": "身高、运动频率与生活习惯估算模型",
+        "year": 2026,
+        "quality": "模型估算",
+        "priority": 3,
+        "refreshCadence": "随权威体质调查与用户匿名反馈迭代",
+        "url": "https://www.nhc.gov.cn/",
+        "note": "用于身高、运动频率等缺少地区交叉公开数据的维度。"
+      }
+    ],
+    "dimensions": [
+      {
+        "key": "gender",
+        "label": "性别",
+        "sourceId": "population_census",
+        "quality": "官方统计",
+        "options": [
+          {
+            "value": "male",
+            "label": "男",
+            "defaultRate": 0.512
+          },
+          {
+            "value": "female",
+            "label": "女",
+            "defaultRate": 0.488
+          }
+        ]
+      },
+      {
+        "key": "ageRange",
+        "label": "年龄",
+        "sourceId": "population_census",
+        "quality": "官方统计",
+        "options": [
+          {
+            "value": "20-24",
+            "label": "20-24 岁",
+            "defaultRate": 0.071
+          },
+          {
+            "value": "25-29",
+            "label": "25-29 岁",
+            "defaultRate": 0.074
+          },
+          {
+            "value": "30-34",
+            "label": "30-34 岁",
+            "defaultRate": 0.081
+          },
+          {
+            "value": "35-39",
+            "label": "35-39 岁",
+            "defaultRate": 0.078
+          }
+        ]
+      },
+      {
+        "key": "education",
+        "label": "学历",
+        "sourceId": "population_census",
+        "quality": "官方统计",
+        "options": [
+          {
+            "value": "high_school_plus",
+            "label": "高中及以上",
+            "defaultRate": 0.42
+          },
+          {
+            "value": "college_plus",
+            "label": "大专及以上",
+            "defaultRate": 0.22
+          },
+          {
+            "value": "bachelor_plus",
+            "label": "本科及以上",
+            "defaultRate": 0.115
+          },
+          {
+            "value": "master_plus",
+            "label": "硕士及以上",
+            "defaultRate": 0.018
+          }
+        ]
+      },
+      {
+        "key": "occupation",
+        "label": "职业",
+        "sourceId": "stats_yearbook",
+        "quality": "官方统计",
+        "options": [
+          {
+            "value": "tech",
+            "label": "互联网/技术",
+            "defaultRate": 0.072
+          },
+          {
+            "value": "finance",
+            "label": "金融",
+            "defaultRate": 0.036
+          },
+          {
+            "value": "education",
+            "label": "教育科研",
+            "defaultRate": 0.071
+          },
+          {
+            "value": "healthcare",
+            "label": "医疗健康",
+            "defaultRate": 0.049
+          },
+          {
+            "value": "public_service",
+            "label": "公共服务/机关事业",
+            "defaultRate": 0.064
+          }
+        ]
+      },
+      {
+        "key": "salary",
+        "label": "月收入",
+        "sourceId": "recruitment_reports",
+        "quality": "行业报告",
+        "options": [
+          {
+            "value": "8k_plus",
+            "label": "8k 以上",
+            "defaultRate": 0.31
+          },
+          {
+            "value": "12k_plus",
+            "label": "12k 以上",
+            "defaultRate": 0.19
+          },
+          {
+            "value": "20k_plus",
+            "label": "20k 以上",
+            "defaultRate": 0.082
+          },
+          {
+            "value": "50k_plus",
+            "label": "50k 以上",
+            "defaultRate": 0.004
+          }
+        ]
+      },
+      {
+        "key": "smoking",
+        "label": "吸烟",
+        "sourceId": "lifestyle_reports",
+        "quality": "行业报告",
+        "options": [
+          {
+            "value": "no",
+            "label": "不吸烟",
+            "defaultRate": 0.735
+          },
+          {
+            "value": "yes",
+            "label": "接受吸烟",
+            "defaultRate": 1
+          }
+        ]
+      },
+      {
+        "key": "drinking",
+        "label": "饮酒",
+        "sourceId": "lifestyle_reports",
+        "quality": "行业报告",
+        "options": [
+          {
+            "value": "light_or_no",
+            "label": "少喝或不喝",
+            "defaultRate": 0.68
+          },
+          {
+            "value": "social_ok",
+            "label": "社交饮酒可接受",
+            "defaultRate": 0.88
+          }
+        ]
+      },
+      {
+        "key": "personality",
+        "label": "性格",
+        "sourceId": "personality_model",
+        "quality": "模型估算",
+        "options": [
+          {
+            "value": "extrovert",
+            "label": "外向表达型",
+            "defaultRate": 0.33
+          },
+          {
+            "value": "introvert",
+            "label": "内向稳定型",
+            "defaultRate": 0.31
+          },
+          {
+            "value": "intj_like",
+            "label": "理性规划型",
+            "defaultRate": 0.02
+          },
+          {
+            "value": "gentle",
+            "label": "温和共情型",
+            "defaultRate": 0.27
+          }
+        ]
+      },
+      {
+        "key": "height",
+        "label": "身高",
+        "sourceId": "body_lifestyle_model",
+        "quality": "模型估算",
+        "options": [
+          {
+            "value": "any_reasonable",
+            "label": "别太离谱就行",
+            "defaultRate": 0.92
+          },
+          {
+            "value": "155_165",
+            "label": "155-165 cm",
+            "defaultRate": 0.28
+          },
+          {
+            "value": "165_175",
+            "label": "165-175 cm",
+            "defaultRate": 0.36
+          },
+          {
+            "value": "175_185",
+            "label": "175-185 cm",
+            "defaultRate": 0.23
+          },
+          {
+            "value": "185_plus",
+            "label": "185 cm 以上",
+            "defaultRate": 0.045
+          }
+        ]
+      },
+      {
+        "key": "exercise",
+        "label": "运动习惯",
+        "sourceId": "body_lifestyle_model",
+        "quality": "模型估算",
+        "options": [
+          {
+            "value": "not_required",
+            "label": "不要求",
+            "defaultRate": 1
+          },
+          {
+            "value": "weekly",
+            "label": "每周运动",
+            "defaultRate": 0.38
+          },
+          {
+            "value": "frequent",
+            "label": "高频运动",
+            "defaultRate": 0.16
+          }
+        ]
+      },
+      {
+        "key": "homeOwnership",
+        "label": "居住资产",
+        "sourceId": "housing_reports",
+        "quality": "行业报告",
+        "options": [
+          {
+            "value": "not_required",
+            "label": "不要求",
+            "defaultRate": 1
+          },
+          {
+            "value": "has_home",
+            "label": "有自有住房",
+            "defaultRate": 0.41
+          },
+          {
+            "value": "no_pressure",
+            "label": "无明显居住压力",
+            "defaultRate": 0.52
+          }
+        ]
+      },
+      {
+        "key": "commuteTolerance",
+        "label": "通勤距离",
+        "sourceId": "housing_reports",
+        "quality": "行业报告",
+        "options": [
+          {
+            "value": "not_required",
+            "label": "不要求",
+            "defaultRate": 1
+          },
+          {
+            "value": "same_city",
+            "label": "同城生活圈",
+            "defaultRate": 0.72
+          },
+          {
+            "value": "within_hour",
+            "label": "一小时内可见面",
+            "defaultRate": 0.54
+          }
+        ]
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "shanghai-tech",
+      "title": "上海技术青年样例",
+      "filters": {
+        "regionCode": "310000",
+        "gender": "male",
+        "ageRange": "25-29",
+        "education": "bachelor_plus",
+        "occupation": "tech",
+        "salary": "20k_plus",
+        "smoking": "no",
+        "drinking": "light_or_no"
+      },
+      "result": {
+        "region": {
+          "code": "310000",
+          "name": "上海市",
+          "basePopulation": 24870895
+        },
+        "filters": {
+          "regionCode": "310000",
+          "gender": "male",
+          "ageRange": "25-29",
+          "education": "bachelor_plus",
+          "occupation": "tech",
+          "salary": "20k_plus",
+          "smoking": "no",
+          "drinking": "light_or_no"
+        },
+        "basePopulation": 24870895,
+        "estimatedPeople": 996,
+        "probability": 0.00004005,
+        "probabilityText": "0.0040%",
+        "factors": [
+          {
+            "key": "gender",
+            "label": "性别",
+            "value": "male",
+            "valueLabel": "男",
+            "rate": 0.517,
+            "quality": "官方统计",
+            "sourceId": "population_census",
+            "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
+          },
+          {
+            "key": "ageRange",
+            "label": "年龄",
+            "value": "25-29",
+            "valueLabel": "25-29 岁",
+            "rate": 0.083,
+            "quality": "官方统计",
+            "sourceId": "population_census",
+            "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
+          },
+          {
+            "key": "education",
+            "label": "学历",
+            "value": "bachelor_plus",
+            "valueLabel": "本科及以上",
+            "rate": 0.285,
+            "quality": "官方统计",
+            "sourceId": "population_census",
+            "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
+          },
+          {
+            "key": "occupation",
+            "label": "职业",
+            "value": "tech",
+            "valueLabel": "互联网/技术",
+            "rate": 0.126,
+            "quality": "官方统计",
+            "sourceId": "stats_yearbook",
+            "note": "用于就业、行业、工资等宏观统计口径。"
+          },
+          {
+            "key": "salary",
+            "label": "月收入",
+            "value": "20k_plus",
+            "valueLabel": "20k 以上",
+            "rate": 0.052,
+            "quality": "行业报告",
+            "sourceId": "recruitment_reports",
+            "note": "用于补充分城市、分职业薪资区间，非逐人精确统计。"
+          },
+          {
+            "key": "smoking",
+            "label": "吸烟",
+            "value": "no",
+            "valueLabel": "不吸烟",
+            "rate": 0.735,
+            "quality": "行业报告",
+            "sourceId": "lifestyle_reports",
+            "note": "用于吸烟、饮酒等生活方式估算。"
+          },
+          {
+            "key": "drinking",
+            "label": "饮酒",
+            "value": "light_or_no",
+            "valueLabel": "少喝或不喝",
+            "rate": 0.68,
+            "quality": "行业报告",
+            "sourceId": "lifestyle_reports",
+            "note": "用于吸烟、饮酒等生活方式估算。"
+          }
+        ],
+        "rarestFactor": {
+          "key": "salary",
+          "label": "月收入",
+          "value": "20k_plus",
+          "valueLabel": "20k 以上",
+          "rate": 0.052,
+          "quality": "行业报告",
+          "sourceId": "recruitment_reports",
+          "note": "用于补充分城市、分职业薪资区间，非逐人精确统计。"
+        },
+        "confidence": {
+          "level": "中",
+          "text": "包含行业报告补充，适合趋势判断。"
+        },
+        "comment": {
+          "band": "low",
+          "tone": "warm",
+          "min": 0,
+          "text": "标准越精确，世界越安静。也许可以给真实的人留一点余地。"
+        },
+        "sourceNotes": [
+          {
+            "id": "population_census",
+            "title": "第七次全国人口普查与国家统计局公开数据",
+            "year": 2020,
+            "quality": "官方统计",
+            "priority": 1,
+            "refreshCadence": "人口普查十年一次，年度人口抽样与统计年鉴补充",
+            "url": "https://www.stats.gov.cn/sj/pcsj/rkpc/7rp/indexch.htm",
+            "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
+          },
+          {
+            "id": "recruitment_reports",
+            "title": "招聘平台公开薪酬报告汇总",
+            "year": 2024,
+            "quality": "行业报告",
+            "priority": 2,
+            "refreshCadence": "每季度或半年复核一次公开报告",
+            "url": "https://www.mohrss.gov.cn/",
+            "note": "用于补充分城市、分职业薪资区间，非逐人精确统计。"
+          },
+          {
+            "id": "stats_yearbook",
+            "title": "中国统计年鉴",
+            "year": 2024,
+            "quality": "官方统计",
+            "priority": 1,
+            "refreshCadence": "每年跟随统计年鉴更新",
+            "url": "https://www.stats.gov.cn/sj/ndsj/",
+            "note": "用于就业、行业、工资等宏观统计口径。"
+          },
+          {
+            "id": "lifestyle_reports",
+            "title": "公开健康与生活方式调查报告汇总",
+            "year": 2024,
+            "quality": "行业报告",
+            "priority": 2,
+            "refreshCadence": "每年复核卫健委、疾控和公开研究报告",
+            "url": "https://www.nhc.gov.cn/",
+            "note": "用于吸烟、饮酒等生活方式估算。"
+          }
+        ],
+        "flags": [
+          "contains_non_official_data"
+        ]
+      }
+    },
+    {
+      "id": "guangdong-balanced",
+      "title": "广东生活圈样例",
+      "filters": {
+        "regionCode": "440000",
+        "gender": "female",
+        "ageRange": "25-29",
+        "education": "bachelor_plus",
+        "height": "165_175",
+        "exercise": "weekly",
+        "homeOwnership": "has_home",
+        "commuteTolerance": "same_city"
+      },
+      "result": {
+        "region": {
+          "code": "440000",
+          "name": "广东省",
+          "basePopulation": 126012510
+        },
+        "filters": {
+          "regionCode": "440000",
+          "gender": "female",
+          "ageRange": "25-29",
+          "education": "bachelor_plus",
+          "height": "165_175",
+          "exercise": "weekly",
+          "homeOwnership": "has_home",
+          "commuteTolerance": "same_city"
+        },
+        "basePopulation": 126012510,
+        "estimatedPeople": 18556,
+        "probability": 0.00014726,
+        "probabilityText": "0.0147%",
+        "factors": [
+          {
+            "key": "gender",
+            "label": "性别",
+            "value": "female",
+            "valueLabel": "女",
+            "rate": 0.488,
+            "quality": "官方统计",
+            "sourceId": "population_census",
+            "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
+          },
+          {
+            "key": "ageRange",
+            "label": "年龄",
+            "value": "25-29",
+            "valueLabel": "25-29 岁",
+            "rate": 0.074,
+            "quality": "官方统计",
+            "sourceId": "population_census",
+            "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
+          },
+          {
+            "key": "education",
+            "label": "学历",
+            "value": "bachelor_plus",
+            "valueLabel": "本科及以上",
+            "rate": 0.115,
+            "quality": "官方统计",
+            "sourceId": "population_census",
+            "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
+          },
+          {
+            "key": "height",
+            "label": "身高",
+            "value": "165_175",
+            "valueLabel": "165-175 cm",
+            "rate": 0.36,
+            "quality": "模型估算",
+            "sourceId": "body_lifestyle_model",
+            "note": "用于身高、运动频率等缺少地区交叉公开数据的维度。"
+          },
+          {
+            "key": "exercise",
+            "label": "运动习惯",
+            "value": "weekly",
+            "valueLabel": "每周运动",
+            "rate": 0.38,
+            "quality": "模型估算",
+            "sourceId": "body_lifestyle_model",
+            "note": "用于身高、运动频率等缺少地区交叉公开数据的维度。"
+          },
+          {
+            "key": "homeOwnership",
+            "label": "居住资产",
+            "value": "has_home",
+            "valueLabel": "有自有住房",
+            "rate": 0.36,
+            "quality": "行业报告",
+            "sourceId": "housing_reports",
+            "note": "用于住房、通勤容忍度等城市生活成本相关估算。"
+          },
+          {
+            "key": "commuteTolerance",
+            "label": "通勤距离",
+            "value": "same_city",
+            "valueLabel": "同城生活圈",
+            "rate": 0.72,
+            "quality": "行业报告",
+            "sourceId": "housing_reports",
+            "note": "用于住房、通勤容忍度等城市生活成本相关估算。"
+          }
+        ],
+        "rarestFactor": {
+          "key": "ageRange",
+          "label": "年龄",
+          "value": "25-29",
+          "valueLabel": "25-29 岁",
+          "rate": 0.074,
+          "quality": "官方统计",
+          "sourceId": "population_census",
+          "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
+        },
+        "confidence": {
+          "level": "低",
+          "text": "包含模型估算维度，适合趣味参考。"
+        },
+        "comment": {
+          "band": "low",
+          "tone": "warm",
+          "min": 0,
+          "text": "标准越精确，世界越安静。也许可以给真实的人留一点余地。"
+        },
+        "sourceNotes": [
+          {
+            "id": "population_census",
+            "title": "第七次全国人口普查与国家统计局公开数据",
+            "year": 2020,
+            "quality": "官方统计",
+            "priority": 1,
+            "refreshCadence": "人口普查十年一次，年度人口抽样与统计年鉴补充",
+            "url": "https://www.stats.gov.cn/sj/pcsj/rkpc/7rp/indexch.htm",
+            "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
+          },
+          {
+            "id": "body_lifestyle_model",
+            "title": "身高、运动频率与生活习惯估算模型",
+            "year": 2026,
+            "quality": "模型估算",
+            "priority": 3,
+            "refreshCadence": "随权威体质调查与用户匿名反馈迭代",
+            "url": "https://www.nhc.gov.cn/",
+            "note": "用于身高、运动频率等缺少地区交叉公开数据的维度。"
+          },
+          {
+            "id": "housing_reports",
+            "title": "住户调查、城市住房与行业研究报告汇总",
+            "year": 2024,
+            "quality": "行业报告",
+            "priority": 2,
+            "refreshCadence": "每半年复核统计年鉴、住户调查和行业研究",
+            "url": "https://data.stats.gov.cn/",
+            "note": "用于住房、通勤容忍度等城市生活成本相关估算。"
+          }
+        ],
+        "flags": [
+          "contains_non_official_data"
+        ]
+      }
+    }
+  ]
+}

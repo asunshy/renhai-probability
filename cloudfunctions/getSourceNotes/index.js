@@ -38,6 +38,22 @@ const SOURCES = {
     quality: '模型估算',
     url: 'https://data.stats.gov.cn/',
     note: '性格没有稳定官方分布，首版仅作趣味估算，不作为严肃统计。'
+  },
+  housing_reports: {
+    id: 'housing_reports',
+    title: '住户调查、城市住房与行业研究报告汇总',
+    year: 2024,
+    quality: '行业报告',
+    url: 'https://data.stats.gov.cn/',
+    note: '用于住房、通勤容忍度等城市生活成本相关估算。'
+  },
+  body_lifestyle_model: {
+    id: 'body_lifestyle_model',
+    title: '身高、运动频率与生活习惯估算模型',
+    year: 2026,
+    quality: '模型估算',
+    url: 'https://www.nhc.gov.cn/',
+    note: '用于身高、运动频率等缺少地区交叉公开数据的维度。'
   }
 };
 
@@ -54,6 +70,12 @@ exports.main = async (event = {}) => {
     }
     if (metricId.startsWith('personality_')) {
       notes.set('personality_model', SOURCES.personality_model);
+    }
+    if (metricId.startsWith('height_') || metricId.startsWith('exercise_')) {
+      notes.set('body_lifestyle_model', SOURCES.body_lifestyle_model);
+    }
+    if (metricId.startsWith('homeOwnership_') || metricId.startsWith('commuteTolerance_')) {
+      notes.set('housing_reports', SOURCES.housing_reports);
     }
   });
 

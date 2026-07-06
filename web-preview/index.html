@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人海相遇概率 - 网页原型</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace">
+        <aside class="filter-panel">
+          <div class="brand">人海相遇概率</div>
+          <h1>把愿望放进数据里，看人海还剩多宽。</h1>
+          <p class="intro">无社交、无登录、无用户池。这里只看公开数据下的概率估算。</p>
+
+          <form id="filters" class="filters">
+            <label>
+              <span>地区</span>
+              <select name="regionCode"></select>
+            </label>
+          </form>
+
+          <div class="actions">
+            <button class="primary" id="calculate" type="button">重新计算</button>
+            <button class="ghost" id="reset" type="button">清空条件</button>
+          </div>
+        </aside>
+
+        <section class="result-panel">
+          <div class="topline">
+            <span id="regionName">全国</span>
+            <span id="confidence">可信度：中</span>
+          </div>
+
+          <div class="result-hero">
+            <div>
+              <p class="eyebrow">满足条件的人数估算</p>
+              <div class="people" id="people">--</div>
+              <div class="probability" id="probability">--</div>
+            </div>
+            <div class="meter" aria-label="概率仪表">
+              <div class="meter-ring">
+                <span id="meterValue">0%</span>
+              </div>
+            </div>
+          </div>
+
+          <blockquote id="comment">标准越精确，世界越安静。也许可以给真实的人留一点余地。</blockquote>
+
+          <section class="analysis-grid">
+            <div class="analysis-main">
+              <div class="section-head">
+                <h2>条件杀伤力</h2>
+                <span id="rarest">最稀缺：--</span>
+              </div>
+              <div id="factors" class="factor-list"></div>
+            </div>
+
+            <aside class="catalog-panel">
+              <div class="section-head">
+                <h2>数据目录</h2>
+                <span>持续扩展</span>
+              </div>
+              <div id="catalog" class="catalog-list"></div>
+            </aside>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
