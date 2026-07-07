@@ -1,5 +1,6 @@
 const ASSET_CATALOG = require('../../../data/seed/catalog.json');
 const DATASET_MANIFEST = require('../../../data/raw/datasets.json');
+const COLLECTION_BACKLOG = require('../../../data/raw/collection-backlog.json');
 
 const QUALITY_LEVELS = ASSET_CATALOG.qualityLevels;
 const SOURCES = ASSET_CATALOG.sources;
@@ -220,6 +221,57 @@ function getDatasetManifest() {
   return DATASET_MANIFEST.map((dataset) => ({ ...dataset }));
 }
 
+function getCollectionBacklog() {
+  return {
+    ...COLLECTION_BACKLOG,
+    items: COLLECTION_BACKLOG.items.map((item) => ({ ...item }))
+  };
+}
+
+function getDataCoverageAudit() {
+  const backlog = getCollectionBacklog();
+  const datasets = getDatasetManifest();
+  const seededDimensions = new Set();
+
+  datasets.forEach((dataset) => {
+    dataset.dimensions.forEach((dimension) => seededDimensions.add(dimension));
+  });
+
+  const backlogByStatus = backlog.statusLevels.reduce((summary, status) => {
+    summary[status] = backlog.items.filter((item) => item.status === status).length;
+    return summary;
+  }, {});
+
+  const upcomingDimensions = Array.from(new Set(
+    backlog.items
+      .filter((item) => item.status !== 'blocked_by_source')
+      .flatMap((item) => item.dimensions)
+      .filter((dimension) => !seededDimensions.has(dimension))
+  ));
+
+  const officialPriorityItems = backlog.items
+    .filter((item) => item.qualityTarget === '官方统计')
+    .sort((a, b) => a.priority - b.priority)
+    .map((item) => ({
+      id: item.id,
+      title: item.title,
+      priority: item.priority,
+      status: item.status,
+      dimensions: item.dimensions,
+      nextAction: item.nextAction
+    }));
+
+  return {
+    updatedAt: backlog.updatedAt,
+    seededDatasetCount: datasets.length,
+    seededDimensions: Array.from(seededDimensions).sort(),
+    backlogCount: backlog.items.length,
+    backlogByStatus,
+    upcomingDimensions,
+    officialPriorityItems
+  };
+}
+
 function getSourceNotes(metricIds = [], factors = []) {
   const notesById = new Map();
 
@@ -293,6 +345,8 @@ module.exports = {
   getCoverageSummary,
   getRegionComparison,
   getDatasetManifest,
+  getCollectionBacklog,
+  getDataCoverageAudit,
   validateSeedData,
   REGIONS,
   DIMENSIONS,

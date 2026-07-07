@@ -5,6 +5,7 @@
   "description": "微信小程序 MVP：人海相遇概率计算器",
   "scripts": {
     "test": "\"C:\\Users\\zhang\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" --test tests/*.test.js",
+    "serve:web-preview": "\"C:\\Users\\zhang\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" scripts/serve-web-preview.js",
     "export:web-data": "\"C:\\Users\\zhang\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" scripts/export-web-data.js",
     "import:province-demographics": "\"C:\\Users\\zhang\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" scripts/import-province-demographics.js --csv data/raw/province-demographics-2020.csv",
     "import:region-labor-salary": "\"C:\\Users\\zhang\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" scripts/import-region-labor-salary.js --csv data/raw/region-labor-salary-2024.csv",

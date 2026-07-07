@@ -187,9 +187,11 @@ function renderCatalog() {
   const catalog = document.querySelector('#catalog');
   const coverage = document.querySelector('#coverage');
   const datasets = document.querySelector('#datasets');
+  const backlog = document.querySelector('#backlog');
   catalog.replaceChildren();
   coverage.replaceChildren();
   datasets.replaceChildren();
+  backlog.replaceChildren();
 
   [
     ['数据源', seed.coverage.totalSources],
@@ -253,6 +255,29 @@ function renderCatalog() {
     item.append(title, meta, command);
     datasets.appendChild(item);
   });
+
+  seed.backlog.items
+    .slice()
+    .sort((a, b) => a.priority - b.priority)
+    .slice(0, 5)
+    .forEach((task) => {
+      const item = document.createElement('article');
+      const title = document.createElement('div');
+      const meta = document.createElement('div');
+      const action = document.createElement('p');
+
+      item.className = 'backlog-item';
+      title.className = 'dataset-title';
+      meta.className = 'dataset-meta';
+      action.className = 'catalog-note';
+
+      title.textContent = task.title;
+      meta.textContent = `${task.qualityTarget} · P${task.priority} · ${task.status} · ${task.dimensions.join(' / ')}`;
+      action.textContent = task.nextAction;
+
+      item.append(title, meta, action);
+      backlog.appendChild(item);
+    });
 }
 
 function renderRegionComparison() {

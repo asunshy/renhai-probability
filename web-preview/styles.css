@@ -451,11 +451,24 @@ h2 {
   margin-top: 16px;
 }
 
+.backlog-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
 .dataset-item {
   padding: 14px;
   border-radius: 8px;
   border: 1px dashed #c8d3e3;
   background: #fbfdff;
+}
+
+.backlog-item {
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #fed7aa;
+  background: #fff7ed;
 }
 
 .dataset-title {

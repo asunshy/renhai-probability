@@ -4,6 +4,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const sourcePath = path.join(__dirname, '..', 'data', 'raw', 'source-candidates.json');
+const backlogPath = path.join(__dirname, '..', 'data', 'raw', 'collection-backlog.json');
+const catalogPath = path.join(__dirname, '..', 'data', 'seed', 'catalog.json');
 
 test('source candidates are traceable and ready for import planning', () => {
   const payload = JSON.parse(fs.readFileSync(sourcePath, 'utf8'));
@@ -29,4 +31,25 @@ test('source candidates are traceable and ready for import planning', () => {
   assert.ok(payload.metrics.some((metric) => metric.dimension === 'youthInflow'));
   assert.ok(payload.metrics.some((metric) => metric.dimension === 'overtimeIntensity'));
   assert.ok(payload.metrics.some((metric) => metric.dimension === 'relationshipIntent'));
+});
+
+test('collection backlog references known public source candidates', () => {
+  const candidates = JSON.parse(fs.readFileSync(sourcePath, 'utf8'));
+  const backlog = JSON.parse(fs.readFileSync(backlogPath, 'utf8'));
+  const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'));
+  const knownSourceIds = new Set([
+    ...candidates.sources.map((source) => source.id),
+    ...Object.keys(catalog.sources)
+  ]);
+
+  assert.equal(backlog.policy.includes('personal profiles'), true);
+  assert.ok(backlog.items.length >= 6);
+
+  backlog.items.forEach((item) => {
+    assert.ok(backlog.statusLevels.includes(item.status));
+    assert.ok(item.sourceCandidates.length > 0);
+    item.sourceCandidates.forEach((sourceId) => {
+      assert.equal(knownSourceIds.has(sourceId), true, `${item.id} references unknown source ${sourceId}`);
+    });
+  });
 });

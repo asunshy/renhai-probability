@@ -11,6 +11,8 @@ const {
   getCoverageSummary,
   getRegionComparison,
   getDatasetManifest,
+  getCollectionBacklog,
+  getDataCoverageAudit,
   validateSeedData,
   REGIONS,
   DIMENSIONS,
@@ -204,4 +206,39 @@ test('dataset manifest lists raw import datasets with traceable commands', () =>
   assert.ok(manifest.some((dataset) => dataset.dimensions.includes('salary')));
   assert.ok(manifest.some((dataset) => dataset.dimensions.includes('commuteTolerance')));
   assert.ok(manifest.some((dataset) => dataset.dimensions.includes('jobMarket')));
+});
+
+test('collection backlog tracks next public data acquisition work', () => {
+  const backlog = getCollectionBacklog();
+
+  assert.equal(backlog.updatedAt, '2026-07-07');
+  assert.ok(backlog.items.length >= 6);
+  assert.ok(backlog.statusLevels.includes('researching'));
+
+  backlog.items.forEach((item) => {
+    assert.ok(item.id);
+    assert.ok(item.title);
+    assert.ok(item.priority >= 1 && item.priority <= 4);
+    assert.ok(backlog.statusLevels.includes(item.status));
+    assert.ok(['官方统计', '行业报告', '模型估算'].includes(item.qualityTarget));
+    assert.ok(item.sourceCandidates.length > 0);
+    assert.ok(item.dimensions.length > 0);
+    assert.ok(item.nextAction);
+  });
+
+  assert.ok(backlog.items.some((item) => item.dimensions.includes('youthInflow')));
+  assert.ok(backlog.items.some((item) => item.dimensions.includes('rentIncomeRatio')));
+  assert.ok(backlog.items.some((item) => item.dimensions.includes('relationshipIntent')));
+});
+
+test('data coverage audit separates seeded dimensions from upcoming dimensions', () => {
+  const audit = getDataCoverageAudit();
+
+  assert.equal(audit.seededDatasetCount, 4);
+  assert.ok(audit.seededDimensions.includes('gender'));
+  assert.ok(audit.seededDimensions.includes('salary'));
+  assert.ok(audit.upcomingDimensions.includes('youthInflow'));
+  assert.ok(audit.upcomingDimensions.includes('rentIncomeRatio'));
+  assert.ok(audit.backlogByStatus.researching >= 1);
+  assert.ok(audit.officialPriorityItems.some((item) => item.id === 'city_youth_population_flow'));
 });

@@ -53,3 +53,21 @@
 ## 重要口径
 
 本项目输出的是公开数据下的估算，不是对真实个体的判断。任何缺少官方交叉分布的数据都必须标注为行业报告或模型估算。
+
+## 采集任务板
+
+`data/raw/collection-backlog.json` 记录下一批公开数据采集任务，字段包括：
+
+- `status`：`seeded`、`ready_to_import`、`researching`、`blocked_by_source`。
+- `qualityTarget`：目标可信等级，必须是 `官方统计`、`行业报告` 或 `模型估算`。
+- `sourceCandidates`：候选来源 ID，对应 `data/raw/source-candidates.json` 或 `data/seed/catalog.json` 中的来源。
+- `dimensions`：采集完成后会影响的筛选维度或解释维度。
+- `nextAction`：下一次人工或脚本采集时的具体动作。
+
+新增数据的推荐顺序：
+
+1. 先把目标写入 `collection-backlog.json`，明确来源、质量等级和目标形态。
+2. 找到公开数据后，落到 `data/raw/`，并在 `data/raw/datasets.json` 登记。
+3. 编写或复用 `scripts/import-*.js`，把原始数据导入 `data/seed/catalog.json`。
+4. 补充 `tests/`，保证来源、年份、可信等级、覆盖范围不会丢失。
+5. 运行 `npm run export:web-data`，刷新网页预览的数据包。

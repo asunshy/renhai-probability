@@ -7,7 +7,9 @@ const {
   getDataCatalog,
   getCoverageSummary,
   getRegionComparison,
-  getDatasetManifest
+  getDatasetManifest,
+  getCollectionBacklog,
+  getDataCoverageAudit
 } = require('../cloudfunctions/calculateProbability/lib/probability');
 
 const outputDir = path.join(__dirname, '..', 'web-preview', 'data');
@@ -52,6 +54,8 @@ const payload = {
   catalog: getDataCatalog(),
   coverage: getCoverageSummary(),
   datasets: getDatasetManifest(),
+  backlog: getCollectionBacklog(),
+  coverageAudit: getDataCoverageAudit(),
   comparison: getRegionComparison({
     gender: 'female',
     ageRange: '25-29',
