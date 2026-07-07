@@ -11,17 +11,19 @@ const labels = {
   exercise: '运动习惯',
   homeOwnership: '居住资产',
   commuteTolerance: '通勤距离',
-  jobMarket: '就业行情'
+  jobMarket: '就业行情',
+  youthInflow: '青年活跃度'
 };
 
 const defaultFilters = {
-  regionCode: '310000',
+  regionCode: '440300',
   gender: 'male',
   ageRange: '25-29',
   education: 'bachelor_plus',
   occupation: 'tech',
   salary: '20k_plus',
   jobMarket: 'active_market',
+  youthInflow: 'talent_density',
   smoking: 'no',
   drinking: 'light_or_no'
 };

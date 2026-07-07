@@ -94,13 +94,23 @@
       "refreshCadence": "随权威体质调查与用户匿名反馈迭代",
       "url": "https://www.nhc.gov.cn/",
       "note": "用于身高、运动频率等缺少地区交叉公开数据的维度。"
+    },
+    "city_youth_reports": {
+      "id": "city_youth_reports",
+      "title": "重点城市统计公报与青年人口活跃度公开资料汇总",
+      "year": 2024,
+      "quality": "行业报告",
+      "priority": 2,
+      "refreshCadence": "每半年复核重点城市统计公报、人才报告和公开研究",
+      "url": "https://data.stats.gov.cn/",
+      "note": "用于重点城市青年人口活跃、人才密度等趋势估算；城市常住人口采用公开统计口径，活跃比例按行业报告和模型估算融合。"
     }
   },
   "regions": {
     "110000": {
       "code": "110000",
       "name": "北京市",
-      "basePopulation": 21893000
+      "basePopulation": 21893095
     },
     "120000": {
       "code": "120000",
@@ -147,10 +157,20 @@
       "name": "江苏省",
       "basePopulation": 84748016
     },
+    "320100": {
+      "code": "320100",
+      "name": "南京市",
+      "basePopulation": 9314685
+    },
     "330000": {
       "code": "330000",
       "name": "浙江省",
       "basePopulation": 64567588
+    },
+    "330100": {
+      "code": "330100",
+      "name": "杭州市",
+      "basePopulation": 11936010
     },
     "340000": {
       "code": "340000",
@@ -182,6 +202,11 @@
       "name": "湖北省",
       "basePopulation": 57752557
     },
+    "420100": {
+      "code": "420100",
+      "name": "武汉市",
+      "basePopulation": 12326518
+    },
     "430000": {
       "code": "430000",
       "name": "湖南省",
@@ -191,6 +216,16 @@
       "code": "440000",
       "name": "广东省",
       "basePopulation": 126012510
+    },
+    "440100": {
+      "code": "440100",
+      "name": "广州市",
+      "basePopulation": 18676605
+    },
+    "440300": {
+      "code": "440300",
+      "name": "深圳市",
+      "basePopulation": 17560061
     },
     "450000": {
       "code": "450000",
@@ -212,6 +247,11 @@
       "name": "四川省",
       "basePopulation": 83674866
     },
+    "510100": {
+      "code": "510100",
+      "name": "成都市",
+      "basePopulation": 20937757
+    },
     "520000": {
       "code": "520000",
       "name": "贵州省",
@@ -231,6 +271,11 @@
       "code": "610000",
       "name": "陕西省",
       "basePopulation": 39528999
+    },
+    "610100": {
+      "code": "610100",
+      "name": "西安市",
+      "basePopulation": 12952907
     },
     "620000": {
       "code": "620000",
@@ -1244,6 +1289,77 @@
           "many_openings": 0.34,
           "active_market": 0.32,
           "moderate_competition": 0.46
+        }
+      }
+    },
+    "youthInflow": {
+      "label": "青年活跃度",
+      "sourceId": "city_youth_reports",
+      "coverage": "city_partial",
+      "options": {
+        "youth_active": {
+          "label": "青年活跃城市",
+          "defaultRate": 0.62
+        },
+        "youth_highly_active": {
+          "label": "青年高度活跃",
+          "defaultRate": 0.42
+        },
+        "talent_density": {
+          "label": "人才密度较高",
+          "defaultRate": 0.36
+        }
+      },
+      "regionRates": {
+        "110000": {
+          "youth_active": 0.74,
+          "youth_highly_active": 0.58,
+          "talent_density": 0.52
+        },
+        "120000": {
+          "youth_active": 0.6,
+          "youth_highly_active": 0.38,
+          "talent_density": 0.35
+        },
+        "310000": {
+          "youth_active": 0.76,
+          "youth_highly_active": 0.6,
+          "talent_density": 0.55
+        },
+        "320100": {
+          "youth_active": 0.7,
+          "youth_highly_active": 0.5,
+          "talent_density": 0.48
+        },
+        "330100": {
+          "youth_active": 0.78,
+          "youth_highly_active": 0.62,
+          "talent_density": 0.6
+        },
+        "420100": {
+          "youth_active": 0.7,
+          "youth_highly_active": 0.5,
+          "talent_density": 0.48
+        },
+        "440100": {
+          "youth_active": 0.72,
+          "youth_highly_active": 0.54,
+          "talent_density": 0.5
+        },
+        "440300": {
+          "youth_active": 0.84,
+          "youth_highly_active": 0.7,
+          "talent_density": 0.68
+        },
+        "510100": {
+          "youth_active": 0.75,
+          "youth_highly_active": 0.58,
+          "talent_density": 0.55
+        },
+        "610100": {
+          "youth_active": 0.68,
+          "youth_highly_active": 0.48,
+          "talent_density": 0.46
         }
       }
     }

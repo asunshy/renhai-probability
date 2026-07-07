@@ -6,14 +6,14 @@
     {
       "id": "city_youth_population_flow",
       "title": "重点城市青年人口流入与年龄结构",
-      "status": "researching",
+      "status": "seeded",
       "priority": 1,
-      "qualityTarget": "官方统计",
-      "sourceCandidates": ["population_census_7", "local_stats_bureaus", "nbs_national_data"],
+      "qualityTarget": "行业报告",
+      "sourceCandidates": ["population_census_7", "local_stats_bureaus", "nbs_national_data", "city_youth_reports"],
       "dimensions": ["ageRange", "youthInflow", "cityPopulation"],
       "targetShape": "cityRates",
       "whyItMatters": "用于解释哪些城市年轻人更集中，也能让同条件地区对比更可信。",
-      "nextAction": "优先查找北京、上海、广州、深圳、杭州、南京、成都、西安、武汉、天津统计年鉴或人口公报。"
+      "nextAction": "已接入 10 个重点城市第一版青年活跃估算；下一步继续补官方年龄结构和城市净流入交叉口径。"
     },
     {
       "id": "industry_salary_distribution",

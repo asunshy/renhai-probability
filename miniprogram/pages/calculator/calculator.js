@@ -13,7 +13,8 @@ const FIELD_CONFIG = [
   { key: 'height', label: '身高' },
   { key: 'exercise', label: '运动习惯' },
   { key: 'homeOwnership', label: '居住资产' },
-  { key: 'commuteTolerance', label: '通勤距离' }
+  { key: 'commuteTolerance', label: '通勤距离' },
+  { key: 'youthInflow', label: '青年活跃度' }
 ];
 
 function makeInitialSelected() {

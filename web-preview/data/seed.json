@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-07T04:44:47.228Z",
+  "generatedAt": "2026-07-07T05:10:47.504Z",
   "options": {
     "region": {
       "code": "000000",
@@ -10,7 +10,7 @@
       {
         "code": "110000",
         "name": "北京市",
-        "basePopulation": 21893000
+        "basePopulation": 21893095
       },
       {
         "code": "120000",
@@ -58,9 +58,19 @@
         "basePopulation": 84748016
       },
       {
+        "code": "320100",
+        "name": "南京市",
+        "basePopulation": 9314685
+      },
+      {
         "code": "330000",
         "name": "浙江省",
         "basePopulation": 64567588
+      },
+      {
+        "code": "330100",
+        "name": "杭州市",
+        "basePopulation": 11936010
       },
       {
         "code": "340000",
@@ -93,6 +103,11 @@
         "basePopulation": 57752557
       },
       {
+        "code": "420100",
+        "name": "武汉市",
+        "basePopulation": 12326518
+      },
+      {
         "code": "430000",
         "name": "湖南省",
         "basePopulation": 66444864
@@ -101,6 +116,16 @@
         "code": "440000",
         "name": "广东省",
         "basePopulation": 126012510
+      },
+      {
+        "code": "440100",
+        "name": "广州市",
+        "basePopulation": 18676605
+      },
+      {
+        "code": "440300",
+        "name": "深圳市",
+        "basePopulation": 17560061
       },
       {
         "code": "450000",
@@ -123,6 +148,11 @@
         "basePopulation": 83674866
       },
       {
+        "code": "510100",
+        "name": "成都市",
+        "basePopulation": 20937757
+      },
+      {
         "code": "520000",
         "name": "贵州省",
         "basePopulation": 38562148
@@ -141,6 +171,11 @@
         "code": "610000",
         "name": "陕西省",
         "basePopulation": 39528999
+      },
+      {
+        "code": "610100",
+        "name": "西安市",
+        "basePopulation": 12952907
       },
       {
         "code": "620000",
@@ -370,6 +405,20 @@
           "value": "moderate_competition",
           "label": "竞争压力适中"
         }
+      ],
+      "youthInflow": [
+        {
+          "value": "youth_active",
+          "label": "青年活跃城市"
+        },
+        {
+          "value": "youth_highly_active",
+          "label": "青年高度活跃"
+        },
+        {
+          "value": "talent_density",
+          "label": "人才密度较高"
+        }
       ]
     }
   },
@@ -464,6 +513,16 @@
         "refreshCadence": "随权威体质调查与用户匿名反馈迭代",
         "url": "https://www.nhc.gov.cn/",
         "note": "用于身高、运动频率等缺少地区交叉公开数据的维度。"
+      },
+      {
+        "id": "city_youth_reports",
+        "title": "重点城市统计公报与青年人口活跃度公开资料汇总",
+        "year": 2024,
+        "quality": "行业报告",
+        "priority": 2,
+        "refreshCadence": "每半年复核重点城市统计公报、人才报告和公开研究",
+        "url": "https://data.stats.gov.cn/",
+        "note": "用于重点城市青年人口活跃、人才密度等趋势估算；城市常住人口采用公开统计口径，活跃比例按行业报告和模型估算融合。"
       }
     ],
     "dimensions": [
@@ -803,15 +862,39 @@
             "defaultRate": 0.45
           }
         ]
+      },
+      {
+        "key": "youthInflow",
+        "label": "青年活跃度",
+        "sourceId": "city_youth_reports",
+        "quality": "行业报告",
+        "coverage": "city_partial",
+        "options": [
+          {
+            "value": "youth_active",
+            "label": "青年活跃城市",
+            "defaultRate": 0.62
+          },
+          {
+            "value": "youth_highly_active",
+            "label": "青年高度活跃",
+            "defaultRate": 0.42
+          },
+          {
+            "value": "talent_density",
+            "label": "人才密度较高",
+            "defaultRate": 0.36
+          }
+        ]
       }
     ]
   },
   "coverage": {
-    "totalSources": 9,
-    "totalDimensions": 13,
+    "totalSources": 10,
+    "totalDimensions": 14,
     "qualityCounts": {
       "官方统计": 4,
-      "行业报告": 6,
+      "行业报告": 7,
       "模型估算": 3
     },
     "needsRegionalData": [
@@ -874,6 +957,12 @@
         "label": "就业行情",
         "coverage": "regional_partial",
         "quality": "行业报告"
+      },
+      {
+        "key": "youthInflow",
+        "label": "青年活跃度",
+        "coverage": "city_partial",
+        "quality": "行业报告"
       }
     ],
     "nextRefresh": [
@@ -925,6 +1014,13 @@
         "quality": "行业报告",
         "priority": 2,
         "refreshCadence": "每半年复核统计年鉴、住户调查和行业研究"
+      },
+      {
+        "id": "city_youth_reports",
+        "title": "重点城市统计公报与青年人口活跃度公开资料汇总",
+        "quality": "行业报告",
+        "priority": 2,
+        "refreshCadence": "每半年复核重点城市统计公报、人才报告和公开研究"
       },
       {
         "id": "personality_model",
@@ -1003,6 +1099,21 @@
       ],
       "coverage": "10 个重点地区",
       "notes": "用于岗位机会较多、市场比较活跃、竞争压力适中等就业行情估算。"
+    },
+    {
+      "id": "city_youth_inflow_2024",
+      "title": "重点城市青年活跃与人才密度估算表",
+      "rawPath": "data/raw/city-youth-inflow-2024.csv",
+      "sourceId": "city_youth_reports",
+      "quality": "行业报告",
+      "year": 2024,
+      "importCommand": "npm run import:city-youth-inflow",
+      "dimensions": [
+        "region",
+        "youthInflow"
+      ],
+      "coverage": "10 个重点城市",
+      "notes": "用于青年活跃城市、青年高度活跃、人才密度较高等城市级趋势估算；城市常住人口采用公开统计口径，活跃比例按行业报告和模型估算融合。"
     }
   ],
   "backlog": {
@@ -1018,13 +1129,14 @@
       {
         "id": "city_youth_population_flow",
         "title": "重点城市青年人口流入与年龄结构",
-        "status": "researching",
+        "status": "seeded",
         "priority": 1,
-        "qualityTarget": "官方统计",
+        "qualityTarget": "行业报告",
         "sourceCandidates": [
           "population_census_7",
           "local_stats_bureaus",
-          "nbs_national_data"
+          "nbs_national_data",
+          "city_youth_reports"
         ],
         "dimensions": [
           "ageRange",
@@ -1033,7 +1145,7 @@
         ],
         "targetShape": "cityRates",
         "whyItMatters": "用于解释哪些城市年轻人更集中，也能让同条件地区对比更可信。",
-        "nextAction": "优先查找北京、上海、广州、深圳、杭州、南京、成都、西安、武汉、天津统计年鉴或人口公报。"
+        "nextAction": "已接入 10 个重点城市第一版青年活跃估算；下一步继续补官方年龄结构和城市净流入交叉口径。"
       },
       {
         "id": "industry_salary_distribution",
@@ -1135,7 +1247,7 @@
   },
   "coverageAudit": {
     "updatedAt": "2026-07-07",
-    "seededDatasetCount": 4,
+    "seededDatasetCount": 5,
     "seededDimensions": [
       "ageRange",
       "commuteTolerance",
@@ -1145,17 +1257,17 @@
       "jobMarket",
       "occupation",
       "region",
-      "salary"
+      "salary",
+      "youthInflow"
     ],
     "backlogCount": 6,
     "backlogByStatus": {
-      "seeded": 0,
+      "seeded": 1,
       "ready_to_import": 1,
-      "researching": 4,
+      "researching": 3,
       "blocked_by_source": 1
     },
     "upcomingDimensions": [
-      "youthInflow",
       "cityPopulation",
       "averageWage",
       "smoking",
@@ -1166,18 +1278,6 @@
       "remoteWork"
     ],
     "officialPriorityItems": [
-      {
-        "id": "city_youth_population_flow",
-        "title": "重点城市青年人口流入与年龄结构",
-        "priority": 1,
-        "status": "researching",
-        "dimensions": [
-          "ageRange",
-          "youthInflow",
-          "cityPopulation"
-        ],
-        "nextAction": "优先查找北京、上海、广州、深圳、杭州、南京、成都、西安、武汉、天津统计年鉴或人口公报。"
-      },
       {
         "id": "industry_salary_distribution",
         "title": "分地区分行业薪资分布",

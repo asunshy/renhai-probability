@@ -46,5 +46,17 @@
     "dimensions": ["jobMarket"],
     "coverage": "10 个重点地区",
     "notes": "用于岗位机会较多、市场比较活跃、竞争压力适中等就业行情估算。"
+  },
+  {
+    "id": "city_youth_inflow_2024",
+    "title": "重点城市青年活跃与人才密度估算表",
+    "rawPath": "data/raw/city-youth-inflow-2024.csv",
+    "sourceId": "city_youth_reports",
+    "quality": "行业报告",
+    "year": 2024,
+    "importCommand": "npm run import:city-youth-inflow",
+    "dimensions": ["region", "youthInflow"],
+    "coverage": "10 个重点城市",
+    "notes": "用于青年活跃城市、青年高度活跃、人才密度较高等城市级趋势估算；城市常住人口采用公开统计口径，活跃比例按行业报告和模型估算融合。"
   }
 ]

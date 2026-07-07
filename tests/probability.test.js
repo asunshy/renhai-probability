@@ -106,6 +106,7 @@ test('expanded catalog documents refresh cadence and source priority', () => {
   assert.ok(catalog.dimensions.some((dimension) => dimension.key === 'exercise'));
   assert.ok(catalog.dimensions.some((dimension) => dimension.key === 'homeOwnership'));
   assert.ok(catalog.dimensions.some((dimension) => dimension.key === 'jobMarket'));
+  assert.ok(catalog.dimensions.some((dimension) => dimension.key === 'youthInflow'));
 });
 
 test('new lifestyle and asset dimensions participate in probability calculation', () => {
@@ -140,6 +141,26 @@ test('job market dimension participates in probability calculation with traceabl
   assert.equal(jobMarketFactor.rate, 0.44);
   assert.equal(jobMarketFactor.quality, '行业报告');
   assert.equal(result.sourceNotes.some((source) => source.id === 'recruitment_reports'), true);
+});
+
+test('city youth inflow dimension supports city-level probability estimates', () => {
+  const result = calculateProbability({
+    regionCode: '440300',
+    gender: 'male',
+    ageRange: '25-29',
+    education: 'bachelor_plus',
+    occupation: 'tech',
+    youthInflow: 'talent_density'
+  });
+
+  const youthFactor = result.factors.find((factor) => factor.key === 'youthInflow');
+
+  assert.equal(result.region.name, '深圳市');
+  assert.equal(result.basePopulation, 17560061);
+  assert.equal(youthFactor.rate, 0.68);
+  assert.equal(youthFactor.quality, '行业报告');
+  assert.equal(result.sourceNotes.some((source) => source.id === 'city_youth_reports'), true);
+  assert.equal(result.flags.includes('contains_non_official_data'), true);
 });
 
 test('catalog data is maintained as a standalone data asset', () => {
@@ -199,13 +220,14 @@ test('region comparison ranks regions for the same filters', () => {
 test('dataset manifest lists raw import datasets with traceable commands', () => {
   const manifest = getDatasetManifest();
 
-  assert.equal(manifest.length, 4);
+  assert.equal(manifest.length, 5);
   assert.equal(manifest[0].id, 'province_demographics_2020');
   assert.ok(manifest.every((dataset) => dataset.rawPath.startsWith('data/raw/')));
   assert.ok(manifest.every((dataset) => dataset.importCommand.startsWith('npm run import:')));
   assert.ok(manifest.some((dataset) => dataset.dimensions.includes('salary')));
   assert.ok(manifest.some((dataset) => dataset.dimensions.includes('commuteTolerance')));
   assert.ok(manifest.some((dataset) => dataset.dimensions.includes('jobMarket')));
+  assert.ok(manifest.some((dataset) => dataset.dimensions.includes('youthInflow')));
 });
 
 test('collection backlog tracks next public data acquisition work', () => {
@@ -234,11 +256,13 @@ test('collection backlog tracks next public data acquisition work', () => {
 test('data coverage audit separates seeded dimensions from upcoming dimensions', () => {
   const audit = getDataCoverageAudit();
 
-  assert.equal(audit.seededDatasetCount, 4);
+  assert.equal(audit.seededDatasetCount, 5);
   assert.ok(audit.seededDimensions.includes('gender'));
   assert.ok(audit.seededDimensions.includes('salary'));
-  assert.ok(audit.upcomingDimensions.includes('youthInflow'));
+  assert.ok(audit.seededDimensions.includes('youthInflow'));
+  assert.equal(audit.upcomingDimensions.includes('youthInflow'), false);
   assert.ok(audit.upcomingDimensions.includes('rentIncomeRatio'));
+  assert.ok(audit.backlogByStatus.seeded >= 1);
   assert.ok(audit.backlogByStatus.researching >= 1);
-  assert.ok(audit.officialPriorityItems.some((item) => item.id === 'city_youth_population_flow'));
+  assert.ok(audit.officialPriorityItems.some((item) => item.id === 'industry_salary_distribution'));
 });

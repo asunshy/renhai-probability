@@ -2,8 +2,16 @@ const DEFAULT_OPTIONS = {
   regions: [
     { code: '000000', name: '全国' },
     { code: '110000', name: '北京市' },
+    { code: '120000', name: '天津市' },
     { code: '310000', name: '上海市' },
+    { code: '440100', name: '广州市' },
+    { code: '440300', name: '深圳市' },
     { code: '440000', name: '广东省' },
+    { code: '330100', name: '杭州市' },
+    { code: '320100', name: '南京市' },
+    { code: '510100', name: '成都市' },
+    { code: '610100', name: '西安市' },
+    { code: '420100', name: '武汉市' },
     { code: '540000', name: '西藏自治区' }
   ],
   dimensions: {
@@ -80,6 +88,12 @@ const DEFAULT_OPTIONS = {
       { value: '', label: '不限' },
       { value: 'same_city', label: '同城生活圈' },
       { value: 'within_hour', label: '一小时内可见面' }
+    ],
+    youthInflow: [
+      { value: '', label: '不限' },
+      { value: 'youth_active', label: '青年活跃城市' },
+      { value: 'youth_highly_active', label: '青年高度活跃' },
+      { value: 'talent_density', label: '人才密度较高' }
     ]
   }
 };

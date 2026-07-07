@@ -13,6 +13,7 @@
 - 生活习惯：吸烟、饮酒、运动习惯。
 - 趣味画像：性格、身高。
 - 城市生活：居住资产、通勤距离。
+- 城市青年：重点城市青年活跃度、人才密度较高等趋势估算。
 
 ## 后续可扩展维度
 
@@ -36,6 +37,7 @@
 - `data/raw/region-labor-salary-2024.csv`：重点地区职业结构与薪资区间导入表，当前按行业报告等级使用。
 - `data/raw/region-housing-commute-2024.csv`：重点地区住房状态与通勤生活圈导入表，当前按行业报告等级使用。
 - `data/raw/region-job-market-2024.csv`：重点地区就业行情热度导入表，当前按行业报告等级使用。
+- `data/raw/city-youth-inflow-2024.csv`：重点城市常住人口、青年活跃和人才密度估算导入表，当前按行业报告等级使用。
 - `data/raw/source-candidates.json`：下一批公开数据源候选库，记录来源链接、可信等级、候选维度、导入优先级和下一步动作。
 - `data/raw/datasets.json`：原始数据集清单，记录导入命令、覆盖维度、数据等级和原始文件路径。
 - `web-preview/data/seed.json`：由脚本生成的网页预览数据，不作为人工维护源。
@@ -47,6 +49,7 @@
 - `npm run import:region-labor-salary`：把重点地区职业/薪资比例导入 `data/seed/catalog.json`。
 - `npm run import:region-housing-commute`：把重点地区住房/通勤比例导入 `data/seed/catalog.json`。
 - `npm run import:region-job-market`：把重点地区就业行情比例导入 `data/seed/catalog.json`。
+- `npm run import:city-youth-inflow`：把重点城市青年活跃和人才密度估算导入 `data/seed/catalog.json`。
 - `npm run export:web-data`：把当前 catalog 和样例结果导出到网页原型。
 - `npm test`：验证数据来源、概率模型、地区覆盖、导入器和网页数据基础能力。
 

@@ -102,6 +102,16 @@
       "refreshCadence": "年度/专题",
       "candidateDimensions": ["relationshipIntent", "marriageIntent", "longDistanceTolerance", "petPreference"],
       "nextAction": "仅用于趣味维度和文案解释，缺少抽样口径时降级为模型估算。"
+    },
+    {
+      "id": "city_youth_reports",
+      "title": "重点城市统计公报与青年人口活跃度公开资料汇总",
+      "url": "https://data.stats.gov.cn/",
+      "quality": "行业报告",
+      "owner": "统计公报/人才报告/公开研究汇总",
+      "refreshCadence": "半年/年度",
+      "candidateDimensions": ["cityPopulation", "youthInflow", "talentDensity"],
+      "nextAction": "继续补重点城市统计公报、人才报告和青年流入研究，逐步把模型估算替换为更稳定的公开统计口径。"
     }
   ],
   "metrics": [
