@@ -85,6 +85,17 @@ function calculateInBrowser(filters) {
   };
 }
 
+function buildRelaxAdvice(result) {
+  if (!result.rarestFactor) {
+    return '可以先选择几个核心条件，再看哪一项最影响结果。';
+  }
+  return `可以先放宽「${result.rarestFactor.label}」这一项：当前「${result.rarestFactor.valueLabel}」只覆盖约 ${(result.rarestFactor.rate * 100).toFixed(result.rarestFactor.rate < 0.01 ? 2 : 1)}% 的人群，稍微松一点，人海会明显热闹。`;
+}
+
+function buildShareSummary(result) {
+  return `${result.region.name} · 约 ${formatPeople(result.estimatedPeople)} 人 · ${result.probabilityText}。适合截图分享，但别拿它替真实的人下结论。`;
+}
+
 function makeOption(value, label, selectedValue) {
   const option = document.createElement('option');
   option.value = value;
@@ -137,6 +148,8 @@ function renderResult(result) {
   document.querySelector('#people').textContent = `约 ${formatPeople(result.estimatedPeople)} 人`;
   document.querySelector('#probability').textContent = `约占目标区域常住人口 ${result.probabilityText}`;
   document.querySelector('#comment').textContent = result.comment;
+  document.querySelector('#relaxAdvice').textContent = buildRelaxAdvice(result);
+  document.querySelector('#shareSummary').textContent = buildShareSummary(result);
   document.querySelector('#rarest').textContent = result.rarestFactor
     ? `最稀缺：${result.rarestFactor.label} · ${result.rarestFactor.valueLabel}`
     : '最稀缺：暂无';
