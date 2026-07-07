@@ -36,6 +36,7 @@
 - `data/raw/region-labor-salary-2024.csv`：重点地区职业结构与薪资区间导入表，当前按行业报告等级使用。
 - `data/raw/region-housing-commute-2024.csv`：重点地区住房状态与通勤生活圈导入表，当前按行业报告等级使用。
 - `data/raw/region-job-market-2024.csv`：重点地区就业行情热度导入表，当前按行业报告等级使用。
+- `data/raw/source-candidates.json`：下一批公开数据源候选库，记录来源链接、可信等级、候选维度、导入优先级和下一步动作。
 - `data/raw/datasets.json`：原始数据集清单，记录导入命令、覆盖维度、数据等级和原始文件路径。
 - `web-preview/data/seed.json`：由脚本生成的网页预览数据，不作为人工维护源。
 - `cloudfunctions/calculateProbability/lib/probability.js`：概率模型和摘要接口，当前已直接读取 `data/seed/catalog.json`。

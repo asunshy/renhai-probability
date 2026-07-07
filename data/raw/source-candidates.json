@@ -1,0 +1,217 @@
+{
+  "collectedAt": "2026-07-07",
+  "policy": "Only public aggregate data is collected. No user profile, login identity, contact information, or private matching pool is stored.",
+  "qualityLevels": ["官方统计", "行业报告", "模型估算"],
+  "sources": [
+    {
+      "id": "nbs_yearbook",
+      "title": "国家统计局中国统计年鉴",
+      "url": "https://www.stats.gov.cn/sj/ndsj/",
+      "quality": "官方统计",
+      "owner": "国家统计局",
+      "refreshCadence": "年度",
+      "candidateDimensions": ["industryEmployment", "averageWage", "urbanPopulation", "householdIncome"],
+      "nextAction": "按年份抓取就业、工资、人口和住户收入表，优先转为省级 CSV。"
+    },
+    {
+      "id": "nbs_national_data",
+      "title": "国家数据",
+      "url": "https://data.stats.gov.cn/",
+      "quality": "官方统计",
+      "owner": "国家统计局",
+      "refreshCadence": "月度/季度/年度",
+      "candidateDimensions": ["surveyedUnemployment", "employmentTrend", "incomeTrend", "consumerPrice"],
+      "nextAction": "确认可稳定下载的指标代码，建立国家数据指标映射表。"
+    },
+    {
+      "id": "population_census_7",
+      "title": "第七次全国人口普查公开数据",
+      "url": "https://www.stats.gov.cn/sj/pcsj/rkpc/7rp/indexch.htm",
+      "quality": "官方统计",
+      "owner": "国家统计局",
+      "refreshCadence": "十年一次，年度人口抽样补充",
+      "candidateDimensions": ["gender", "ageRange", "education", "regionPopulation"],
+      "nextAction": "继续补齐年龄细分、教育细分和省级交叉口径。"
+    },
+    {
+      "id": "mohrss_public",
+      "title": "人力资源和社会保障部公开资料",
+      "url": "https://www.mohrss.gov.cn/",
+      "quality": "官方统计",
+      "owner": "人力资源和社会保障部",
+      "refreshCadence": "年度/不定期",
+      "candidateDimensions": ["jobMarket", "occupation", "wageSurvey", "skillDemand"],
+      "nextAction": "收集企业薪酬调查、就业形势和技能人才公开资料，作为招聘报告的官方校验。"
+    },
+    {
+      "id": "nhc_public",
+      "title": "国家卫生健康委员会公开信息",
+      "url": "https://www.nhc.gov.cn/",
+      "quality": "官方统计",
+      "owner": "国家卫生健康委员会",
+      "refreshCadence": "年度/专题",
+      "candidateDimensions": ["smoking", "drinking", "healthLifestyle", "sleep"],
+      "nextAction": "筛选健康生活方式、控烟、饮酒相关公开报告，补充生活习惯口径说明。"
+    },
+    {
+      "id": "china_cdc",
+      "title": "中国疾病预防控制中心公开资料",
+      "url": "https://www.chinacdc.cn/",
+      "quality": "官方统计",
+      "owner": "中国疾病预防控制中心",
+      "refreshCadence": "年度/专题",
+      "candidateDimensions": ["smoking", "drinking", "exercise", "healthRisk"],
+      "nextAction": "查找慢病、控烟和健康行为监测报告，提取全国或分性别比例。"
+    },
+    {
+      "id": "mohurd_public",
+      "title": "住房和城乡建设部公开信息",
+      "url": "https://www.mohurd.gov.cn/",
+      "quality": "官方统计",
+      "owner": "住房和城乡建设部",
+      "refreshCadence": "年度/专题",
+      "candidateDimensions": ["rentIncomeRatio", "housingCost", "urbanHousing"],
+      "nextAction": "寻找住房、租赁和城市建设统计公报，验证房租收入比估算。"
+    },
+    {
+      "id": "local_stats_bureaus",
+      "title": "省市统计局公开数据入口",
+      "url": "https://www.stats.gov.cn/sj/ndsj/",
+      "quality": "官方统计",
+      "owner": "各省市统计局",
+      "refreshCadence": "年度",
+      "candidateDimensions": ["cityPopulation", "youthInflow", "localWage", "industryStructure"],
+      "nextAction": "优先北京、上海、广东、江苏、浙江等重点地区，补地市级公开统计。"
+    },
+    {
+      "id": "recruitment_platform_reports",
+      "title": "招聘平台公开报告汇总",
+      "url": "https://www.mohrss.gov.cn/",
+      "quality": "行业报告",
+      "owner": "招聘平台/研究机构",
+      "refreshCadence": "季度/半年/年度",
+      "candidateDimensions": ["jobMarket", "overtimeIntensity", "remoteWork", "salaryBand"],
+      "nextAction": "只采集公开聚合报告，标记行业报告等级，不混同为官方统计。"
+    },
+    {
+      "id": "relationship_survey_reports",
+      "title": "公开婚恋与生活方式研究报告",
+      "url": "https://data.stats.gov.cn/",
+      "quality": "行业报告",
+      "owner": "研究机构/公开调查",
+      "refreshCadence": "年度/专题",
+      "candidateDimensions": ["relationshipIntent", "marriageIntent", "longDistanceTolerance", "petPreference"],
+      "nextAction": "仅用于趣味维度和文案解释，缺少抽样口径时降级为模型估算。"
+    }
+  ],
+  "metrics": [
+    {
+      "dimension": "rentIncomeRatio",
+      "label": "房租收入比",
+      "sourceId": "mohurd_public",
+      "quality": "官方统计",
+      "importPriority": 1,
+      "targetShape": "regionRates",
+      "notes": "用于解释城市生活成本，先做重点城市区间。"
+    },
+    {
+      "dimension": "youthInflow",
+      "label": "青年人口净流入",
+      "sourceId": "local_stats_bureaus",
+      "quality": "官方统计",
+      "importPriority": 1,
+      "targetShape": "regionRates",
+      "notes": "用于判断城市年轻人活跃度和地区对比。"
+    },
+    {
+      "dimension": "surveyedUnemployment",
+      "label": "调查失业率",
+      "sourceId": "nbs_national_data",
+      "quality": "官方统计",
+      "importPriority": 1,
+      "targetShape": "timeSeries",
+      "notes": "用于就业行情解释层，不直接等同个人求职难度。"
+    },
+    {
+      "dimension": "averageWage",
+      "label": "城镇单位平均工资",
+      "sourceId": "nbs_yearbook",
+      "quality": "官方统计",
+      "importPriority": 1,
+      "targetShape": "regionIndustryRates",
+      "notes": "用于校验薪资区间，不直接替代招聘平台薪资分布。"
+    },
+    {
+      "dimension": "industryEmployment",
+      "label": "行业就业结构",
+      "sourceId": "nbs_yearbook",
+      "quality": "官方统计",
+      "importPriority": 2,
+      "targetShape": "regionRates",
+      "notes": "用于职业大类概率的官方底盘。"
+    },
+    {
+      "dimension": "overtimeIntensity",
+      "label": "加班强度",
+      "sourceId": "recruitment_platform_reports",
+      "quality": "行业报告",
+      "importPriority": 2,
+      "targetShape": "regionRates",
+      "notes": "用于就业行情幽默解释，必须显示行业报告等级。"
+    },
+    {
+      "dimension": "remoteWork",
+      "label": "远程办公接受度",
+      "sourceId": "recruitment_platform_reports",
+      "quality": "行业报告",
+      "importPriority": 2,
+      "targetShape": "defaultRate",
+      "notes": "用于异地和通勤放宽建议。"
+    },
+    {
+      "dimension": "smoking",
+      "label": "吸烟比例",
+      "sourceId": "china_cdc",
+      "quality": "官方统计",
+      "importPriority": 2,
+      "targetShape": "genderRates",
+      "notes": "替换当前全国默认比例，优先按性别细分。"
+    },
+    {
+      "dimension": "drinking",
+      "label": "饮酒比例",
+      "sourceId": "nhc_public",
+      "quality": "官方统计",
+      "importPriority": 3,
+      "targetShape": "genderRates",
+      "notes": "缺少稳定交叉口径时继续按行业/研究报告估算。"
+    },
+    {
+      "dimension": "exercise",
+      "label": "运动频率",
+      "sourceId": "china_cdc",
+      "quality": "官方统计",
+      "importPriority": 3,
+      "targetShape": "defaultRate",
+      "notes": "用于生活习惯筛选和健康生活方式说明。"
+    },
+    {
+      "dimension": "relationshipIntent",
+      "label": "恋爱/长期关系意愿",
+      "sourceId": "relationship_survey_reports",
+      "quality": "行业报告",
+      "importPriority": 3,
+      "targetShape": "defaultRate",
+      "notes": "敏感表达要温和，不用于给个体贴标签。"
+    },
+    {
+      "dimension": "longDistanceTolerance",
+      "label": "异地接受度",
+      "sourceId": "relationship_survey_reports",
+      "quality": "行业报告",
+      "importPriority": 4,
+      "targetShape": "defaultRate",
+      "notes": "可用于放宽建议：同城条件过窄时提示异地选择。"
+    }
+  ]
+}
