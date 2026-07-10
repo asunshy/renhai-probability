@@ -40,7 +40,8 @@ function getSegmentRate(dimension, value, filters = {}) {
 
   const segmentPriority = [
     ['gender', filters.gender],
-    ['ageRange', filters.ageRange]
+    ['ageRange', filters.ageRange],
+    ['occupation', filters.occupation]
   ];
 
   for (const [segmentType, segmentKey] of segmentPriority) {

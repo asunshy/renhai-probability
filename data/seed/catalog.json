@@ -134,6 +134,16 @@
       "refreshCadence": "每半年复核公开租赁报告、城市生活成本研究和统计资料",
       "url": "https://data.stats.gov.cn/",
       "note": "用于结果页城市生活成本解释；租金为公开报告估算，不作为个人资产判断。"
+    },
+    "workstyle_reports": {
+      "id": "workstyle_reports",
+      "title": "职业工作节奏与远程办公公开报告汇总",
+      "year": 2024,
+      "quality": "行业报告",
+      "priority": 2,
+      "refreshCadence": "每半年复核招聘平台、职场研究和公开行业报告",
+      "url": "https://www.mohrss.gov.cn/",
+      "note": "用于加班强度、远程办公和稳定作息估算；不采集职位详情或个人简历。"
     }
   },
   "regions": {
@@ -1450,6 +1460,54 @@
           "youth_active": 0.68,
           "youth_highly_active": 0.48,
           "talent_density": 0.46
+        }
+      }
+    },
+    "workStyle": {
+      "label": "工作节奏",
+      "sourceId": "workstyle_reports",
+      "coverage": "occupation_partial",
+      "options": {
+        "low_overtime": {
+          "label": "低加班强度",
+          "defaultRate": 0.45
+        },
+        "remote_friendly": {
+          "label": "远程办公友好",
+          "defaultRate": 0.28
+        },
+        "stable_schedule": {
+          "label": "作息较稳定",
+          "defaultRate": 0.52
+        }
+      },
+      "segmentRates": {
+        "occupation": {
+          "tech": {
+            "low_overtime": 0.34,
+            "remote_friendly": 0.58,
+            "stable_schedule": 0.42
+          },
+          "finance": {
+            "low_overtime": 0.28,
+            "remote_friendly": 0.3,
+            "stable_schedule": 0.38
+          },
+          "education": {
+            "low_overtime": 0.62,
+            "remote_friendly": 0.24,
+            "stable_schedule": 0.68
+          },
+          "healthcare": {
+            "low_overtime": 0.36,
+            "remote_friendly": 0.12,
+            "stable_schedule": 0.45
+          },
+          "public_service": {
+            "low_overtime": 0.7,
+            "remote_friendly": 0.18,
+            "stable_schedule": 0.76
+          }
         }
       }
     }

@@ -94,6 +94,12 @@ const DEFAULT_OPTIONS = {
       { value: 'youth_active', label: '青年活跃城市' },
       { value: 'youth_highly_active', label: '青年高度活跃' },
       { value: 'talent_density', label: '人才密度较高' }
+    ],
+    workStyle: [
+      { value: '', label: '不限' },
+      { value: 'low_overtime', label: '低加班强度' },
+      { value: 'remote_friendly', label: '远程办公友好' },
+      { value: 'stable_schedule', label: '作息较稳定' }
     ]
   }
 };

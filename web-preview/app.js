@@ -12,7 +12,8 @@ const labels = {
   homeOwnership: '居住资产',
   commuteTolerance: '通勤距离',
   jobMarket: '就业行情',
-  youthInflow: '青年活跃度'
+  youthInflow: '青年活跃度',
+  workStyle: '工作节奏'
 };
 
 const defaultFilters = {
@@ -24,6 +25,7 @@ const defaultFilters = {
   salary: '20k_plus',
   jobMarket: 'active_market',
   youthInflow: 'talent_density',
+  workStyle: 'remote_friendly',
   smoking: 'no',
   drinking: 'light_or_no'
 };
@@ -44,7 +46,8 @@ function getSegmentRate(dimension, value, filters) {
 
   const segmentPriority = [
     ['gender', filters.gender],
-    ['ageRange', filters.ageRange]
+    ['ageRange', filters.ageRange],
+    ['occupation', filters.occupation]
   ];
 
   for (const [segmentType, segmentKey] of segmentPriority) {
@@ -137,6 +140,7 @@ function getEmploymentInsight(regionCode, filters) {
 
   return {
     occupationLabel: occupation.label,
+    monthlySalary: salary,
     salaryText: `${formatCny(salary.p25)}-${formatCny(salary.p75)} / 月，中位数约 ${formatCny(salary.p50)} / 月`,
     quality: source.quality,
     note: source.note

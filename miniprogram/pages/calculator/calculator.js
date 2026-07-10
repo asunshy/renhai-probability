@@ -14,7 +14,8 @@ const FIELD_CONFIG = [
   { key: 'exercise', label: '运动习惯' },
   { key: 'homeOwnership', label: '居住资产' },
   { key: 'commuteTolerance', label: '通勤距离' },
-  { key: 'youthInflow', label: '青年活跃度' }
+  { key: 'youthInflow', label: '青年活跃度' },
+  { key: 'workStyle', label: '工作节奏' }
 ];
 
 function makeInitialSelected() {

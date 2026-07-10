@@ -142,6 +142,16 @@
       "refreshCadence": "半年/年度",
       "candidateDimensions": ["rentIncomeRatio", "livingCostInsight", "housingCost"],
       "nextAction": "继续补官方住房、租赁和收入资料，校验公开租金报告估算。"
+    },
+    {
+      "id": "workstyle_reports",
+      "title": "职业工作节奏与远程办公公开报告汇总",
+      "url": "https://www.mohrss.gov.cn/",
+      "quality": "行业报告",
+      "owner": "招聘平台公开报告/职场研究/行业研究汇总",
+      "refreshCadence": "半年/年度",
+      "candidateDimensions": ["workStyle", "overtimeIntensity", "remoteWork"],
+      "nextAction": "继续补充按城市和行业交叉的公开工作节奏数据，避免使用职位详情或个人简历。"
     }
   ],
   "metrics": [

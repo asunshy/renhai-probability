@@ -54,14 +54,14 @@
     {
       "id": "work_life_balance",
       "title": "加班强度与远程办公接受度",
-      "status": "researching",
+      "status": "seeded",
       "priority": 3,
       "qualityTarget": "行业报告",
-      "sourceCandidates": ["recruitment_platform_reports", "relationship_survey_reports"],
-      "dimensions": ["overtimeIntensity", "remoteWork", "jobMarket"],
+      "sourceCandidates": ["recruitment_platform_reports", "relationship_survey_reports", "workstyle_reports"],
+      "dimensions": ["overtimeIntensity", "remoteWork", "jobMarket", "workStyle"],
       "targetShape": "occupationRates",
       "whyItMatters": "就业行情不只看薪资，也要告诉年轻人行业生活节奏和关系维护成本。",
-      "nextAction": "只接入公开聚合报告，不抓职位详情和个人简历。"
+      "nextAction": "已接入职业大类工作节奏第一版；下一步继续补城市和行业交叉公开数据。"
     },
     {
       "id": "relationship_attitude_fun_metrics",

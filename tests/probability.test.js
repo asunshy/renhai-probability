@@ -110,6 +110,7 @@ test('expanded catalog documents refresh cadence and source priority', () => {
   assert.ok(catalog.dimensions.some((dimension) => dimension.key === 'homeOwnership'));
   assert.ok(catalog.dimensions.some((dimension) => dimension.key === 'jobMarket'));
   assert.ok(catalog.dimensions.some((dimension) => dimension.key === 'youthInflow'));
+  assert.ok(catalog.dimensions.some((dimension) => dimension.key === 'workStyle'));
 });
 
 test('new lifestyle and asset dimensions participate in probability calculation', () => {
@@ -215,6 +216,21 @@ test('lifestyle segment rates adjust smoking and drinking by selected gender and
   assert.equal(maleResult.sourceNotes.some((source) => source.id === 'lifestyle_segment_reports'), true);
 });
 
+test('work style rates adjust by selected occupation', () => {
+  const result = calculateProbability({
+    regionCode: '440300',
+    occupation: 'tech',
+    workStyle: 'remote_friendly'
+  });
+
+  const factor = result.factors.find((item) => item.key === 'workStyle');
+
+  assert.equal(factor.rate, 0.58);
+  assert.equal(factor.segment.type, 'occupation');
+  assert.equal(factor.quality, '行业报告');
+  assert.equal(result.sourceNotes.some((source) => source.id === 'workstyle_reports'), true);
+});
+
 test('benchmark catalog exposes industry salary data for preview surfaces', () => {
   const benchmarks = getBenchmarkCatalog();
   const insight = getEmploymentInsight('310000', { occupation: 'finance' });
@@ -298,7 +314,7 @@ test('region comparison ranks regions for the same filters', () => {
 test('dataset manifest lists raw import datasets with traceable commands', () => {
   const manifest = getDatasetManifest();
 
-  assert.equal(manifest.length, 8);
+  assert.equal(manifest.length, 9);
   assert.equal(manifest[0].id, 'province_demographics_2020');
   assert.ok(manifest.every((dataset) => dataset.rawPath.startsWith('data/raw/')));
   assert.ok(manifest.every((dataset) => dataset.importCommand.startsWith('npm run import:')));
@@ -309,6 +325,7 @@ test('dataset manifest lists raw import datasets with traceable commands', () =>
   assert.ok(manifest.some((dataset) => dataset.dimensions.includes('employmentInsight')));
   assert.ok(manifest.some((dataset) => dataset.id === 'lifestyle_gender_age_2024'));
   assert.ok(manifest.some((dataset) => dataset.dimensions.includes('livingCostInsight')));
+  assert.ok(manifest.some((dataset) => dataset.dimensions.includes('workStyle')));
 });
 
 test('collection backlog tracks next public data acquisition work', () => {
@@ -337,7 +354,7 @@ test('collection backlog tracks next public data acquisition work', () => {
 test('data coverage audit separates seeded dimensions from upcoming dimensions', () => {
   const audit = getDataCoverageAudit();
 
-  assert.equal(audit.seededDatasetCount, 8);
+  assert.equal(audit.seededDatasetCount, 9);
   assert.ok(audit.seededDimensions.includes('gender'));
   assert.ok(audit.seededDimensions.includes('salary'));
   assert.ok(audit.seededDimensions.includes('youthInflow'));
@@ -345,12 +362,15 @@ test('data coverage audit separates seeded dimensions from upcoming dimensions',
   assert.ok(audit.seededDimensions.includes('smoking'));
   assert.ok(audit.seededDimensions.includes('drinking'));
   assert.ok(audit.seededDimensions.includes('livingCostInsight'));
+  assert.ok(audit.seededDimensions.includes('workStyle'));
   assert.equal(audit.upcomingDimensions.includes('youthInflow'), false);
   assert.equal(audit.upcomingDimensions.includes('employmentInsight'), false);
   assert.equal(audit.upcomingDimensions.includes('smoking'), false);
   assert.equal(audit.upcomingDimensions.includes('drinking'), false);
   assert.equal(audit.upcomingDimensions.includes('rentIncomeRatio'), false);
   assert.equal(audit.upcomingDimensions.includes('livingCostInsight'), false);
+  assert.equal(audit.upcomingDimensions.includes('workStyle'), false);
   assert.ok(audit.backlogByStatus.seeded >= 1);
-  assert.ok(audit.backlogByStatus.researching >= 1);
+  assert.ok(audit.backlogCount >= 6);
+  assert.ok(audit.backlogByStatus.blocked_by_source >= 1);
 });

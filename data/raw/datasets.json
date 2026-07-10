@@ -94,5 +94,17 @@
     "dimensions": ["rentIncomeRatio", "livingCostInsight"],
     "coverage": "9 个重点城市",
     "notes": "用于结果页展示单间/一居租金和租金收入比，不直接作为概率筛选比例。"
+  },
+  {
+    "id": "occupation_workstyle_2024",
+    "title": "职业工作节奏与远程办公估算表",
+    "rawPath": "data/raw/occupation-workstyle-2024.csv",
+    "sourceId": "workstyle_reports",
+    "quality": "行业报告",
+    "year": 2024,
+    "importCommand": "npm run import:occupation-workstyle",
+    "dimensions": ["workStyle", "occupation"],
+    "coverage": "5 个职业大类",
+    "notes": "用于低加班、远程办公友好、作息较稳定等工作节奏筛选；按职业大类做条件修正。"
   }
 ]
