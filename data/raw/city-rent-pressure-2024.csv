@@ -1,0 +1,10 @@
+region_code,region_name,studio_rent_monthly,one_bedroom_rent_monthly,typical_rent_income_ratio,pressure_level
+110000,北京市,5200,7200,0.30,high
+310000,上海市,5600,7600,0.31,high
+440300,深圳市,5000,7000,0.29,high
+440100,广州市,3300,4800,0.25,medium
+330100,杭州市,3600,5200,0.24,medium
+320100,南京市,2800,4000,0.23,medium
+510100,成都市,2400,3400,0.21,medium
+420100,武汉市,2200,3200,0.22,medium
+610100,西安市,2000,3000,0.21,medium

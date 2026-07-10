@@ -13,6 +13,7 @@ function decorateResult(result) {
   return {
     ...result,
     hasEmploymentInsight: Boolean(result.employmentInsight),
+    hasLivingCostInsight: Boolean(result.livingCostInsight),
     factors: result.factors.map((factor) => ({
       ...factor,
       rateText: `${(factor.rate * 100).toFixed(factor.rate < 0.01 ? 2 : 1)}%`

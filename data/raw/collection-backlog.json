@@ -42,14 +42,14 @@
     {
       "id": "housing_rent_pressure",
       "title": "重点城市住房与租金压力",
-      "status": "researching",
+      "status": "seeded",
       "priority": 2,
       "qualityTarget": "行业报告",
-      "sourceCandidates": ["mohurd_public", "housing_reports", "local_stats_bureaus"],
-      "dimensions": ["homeOwnership", "rentIncomeRatio", "commuteTolerance"],
+      "sourceCandidates": ["mohurd_public", "housing_reports", "local_stats_bureaus", "city_rent_pressure"],
+      "dimensions": ["homeOwnership", "rentIncomeRatio", "commuteTolerance", "livingCostInsight"],
       "targetShape": "cityRates",
       "whyItMatters": "用于解释城市生活成本、通勤放宽建议和结果页就业行情背景。",
-      "nextAction": "补充官方城市建设统计和公开租金报告，明确标注非官方估算。"
+      "nextAction": "已接入重点城市租金压力第一版；下一步继续补官方住房、租赁和收入资料校验。"
     },
     {
       "id": "work_life_balance",

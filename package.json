@@ -8,6 +8,7 @@
     "serve:web-preview": "\"C:\\Users\\zhang\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" scripts/serve-web-preview.js",
     "export:web-data": "\"C:\\Users\\zhang\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" scripts/export-web-data.js",
     "import:province-demographics": "\"C:\\Users\\zhang\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" scripts/import-province-demographics.js --csv data/raw/province-demographics-2020.csv",
+    "import:city-rent-pressure": "\"C:\\Users\\zhang\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" scripts/import-city-rent-pressure.js --csv data/raw/city-rent-pressure-2024.csv",
     "import:city-youth-inflow": "\"C:\\Users\\zhang\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" scripts/import-city-youth-inflow.js --csv data/raw/city-youth-inflow-2024.csv",
     "import:industry-salary-benchmark": "\"C:\\Users\\zhang\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" scripts/import-industry-salary-benchmark.js --csv data/raw/industry-salary-benchmark-2024.csv",
     "import:lifestyle-gender-age": "\"C:\\Users\\zhang\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe\" scripts/import-lifestyle-gender-age.js --csv data/raw/lifestyle-gender-age-2024.csv",

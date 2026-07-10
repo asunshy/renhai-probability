@@ -151,6 +151,7 @@ function calculateProbability(filters = {}) {
     confidence: calculateConfidence(factors),
     comment: pickComment(probability),
     employmentInsight: getEmploymentInsight(region.code, filters),
+    livingCostInsight: getLivingCostInsight(region.code, filters),
     sourceNotes,
     flags
   };
@@ -295,6 +296,35 @@ function getEmploymentInsight(regionCode, filters = {}) {
   };
 }
 
+function getLivingCostInsight(regionCode, filters = {}) {
+  const benchmark = BENCHMARKS.cityRentPressure;
+  if (!benchmark || !benchmark.metrics || !benchmark.metrics[regionCode]) {
+    return null;
+  }
+
+  const rent = benchmark.metrics[regionCode];
+  const source = SOURCES[benchmark.sourceId];
+  const employmentInsight = getEmploymentInsight(regionCode, filters);
+  const computedRatio = employmentInsight
+    ? Number((rent.studioRent / employmentInsight.monthlySalary.p50).toFixed(2))
+    : rent.typicalRentIncomeRatio;
+
+  if (!source) {
+    return null;
+  }
+
+  return {
+    region: getRegion(regionCode),
+    rent,
+    rentPressureRatio: computedRatio,
+    rentPressureText: `单间约 ${formatCny(rent.studioRent)} / 月，一居约 ${formatCny(rent.oneBedroomRent)} / 月；租金压力约 ${(computedRatio * 100).toFixed(0)}%`,
+    pressureLevel: rent.pressureLevel,
+    quality: source.quality,
+    sourceId: benchmark.sourceId,
+    note: source.note
+  };
+}
+
 function getCollectionBacklog() {
   return {
     ...COLLECTION_BACKLOG,
@@ -421,6 +451,7 @@ module.exports = {
   getDatasetManifest,
   getBenchmarkCatalog,
   getEmploymentInsight,
+  getLivingCostInsight,
   getCollectionBacklog,
   getDataCoverageAudit,
   validateSeedData,

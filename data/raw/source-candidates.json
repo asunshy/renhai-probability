@@ -132,6 +132,16 @@
       "refreshCadence": "年度/专题",
       "candidateDimensions": ["smoking", "drinking", "healthLifestyle"],
       "nextAction": "继续查找可公开引用的分性别、年龄和地区交叉数据；缺口保持行业报告或模型估算等级。"
+    },
+    {
+      "id": "city_rent_pressure",
+      "title": "重点城市租金压力公开资料汇总",
+      "url": "https://data.stats.gov.cn/",
+      "quality": "行业报告",
+      "owner": "公开租赁报告/城市生活成本研究/统计资料汇总",
+      "refreshCadence": "半年/年度",
+      "candidateDimensions": ["rentIncomeRatio", "livingCostInsight", "housingCost"],
+      "nextAction": "继续补官方住房、租赁和收入资料，校验公开租金报告估算。"
     }
   ],
   "metrics": [

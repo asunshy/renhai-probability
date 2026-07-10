@@ -82,5 +82,17 @@
     "dimensions": ["smoking", "drinking"],
     "coverage": "性别与 20-39 岁年龄段",
     "notes": "用于吸烟和饮酒筛选的性别/年龄条件修正；无对应细分条件时回退默认比例。"
+  },
+  {
+    "id": "city_rent_pressure_2024",
+    "title": "重点城市租金压力基准表",
+    "rawPath": "data/raw/city-rent-pressure-2024.csv",
+    "sourceId": "city_rent_pressure",
+    "quality": "行业报告",
+    "year": 2024,
+    "importCommand": "npm run import:city-rent-pressure",
+    "dimensions": ["rentIncomeRatio", "livingCostInsight"],
+    "coverage": "9 个重点城市",
+    "notes": "用于结果页展示单间/一居租金和租金收入比，不直接作为概率筛选比例。"
   }
 ]

@@ -13,6 +13,7 @@ const {
   getDatasetManifest,
   getBenchmarkCatalog,
   getEmploymentInsight,
+  getLivingCostInsight,
   getCollectionBacklog,
   getDataCoverageAudit,
   validateSeedData,
@@ -219,8 +220,25 @@ test('benchmark catalog exposes industry salary data for preview surfaces', () =
   const insight = getEmploymentInsight('310000', { occupation: 'finance' });
 
   assert.equal(benchmarks.industrySalary.metrics['310000'].tech.p50, 25000);
+  assert.equal(benchmarks.cityRentPressure.metrics['310000'].studioRent, 5600);
   assert.equal(insight.monthlySalary.p75, 36000);
   assert.equal(insight.sourceId, 'industry_salary_benchmark');
+});
+
+test('living cost insight explains rent pressure without changing probability factors', () => {
+  const result = calculateProbability({
+    regionCode: '440300',
+    gender: 'male',
+    ageRange: '25-29',
+    occupation: 'tech'
+  });
+  const insight = getLivingCostInsight('440300', { occupation: 'tech' });
+
+  assert.equal(result.livingCostInsight.rent.studioRent, 5000);
+  assert.equal(result.livingCostInsight.rentPressureRatio, 0.2);
+  assert.match(result.livingCostInsight.rentPressureText, /租金压力约 20%/);
+  assert.equal(insight.sourceId, 'city_rent_pressure');
+  assert.equal(result.factors.some((factor) => factor.key === 'livingCostInsight'), false);
 });
 
 test('catalog data is maintained as a standalone data asset', () => {
@@ -280,7 +298,7 @@ test('region comparison ranks regions for the same filters', () => {
 test('dataset manifest lists raw import datasets with traceable commands', () => {
   const manifest = getDatasetManifest();
 
-  assert.equal(manifest.length, 7);
+  assert.equal(manifest.length, 8);
   assert.equal(manifest[0].id, 'province_demographics_2020');
   assert.ok(manifest.every((dataset) => dataset.rawPath.startsWith('data/raw/')));
   assert.ok(manifest.every((dataset) => dataset.importCommand.startsWith('npm run import:')));
@@ -290,6 +308,7 @@ test('dataset manifest lists raw import datasets with traceable commands', () =>
   assert.ok(manifest.some((dataset) => dataset.dimensions.includes('youthInflow')));
   assert.ok(manifest.some((dataset) => dataset.dimensions.includes('employmentInsight')));
   assert.ok(manifest.some((dataset) => dataset.id === 'lifestyle_gender_age_2024'));
+  assert.ok(manifest.some((dataset) => dataset.dimensions.includes('livingCostInsight')));
 });
 
 test('collection backlog tracks next public data acquisition work', () => {
@@ -318,18 +337,20 @@ test('collection backlog tracks next public data acquisition work', () => {
 test('data coverage audit separates seeded dimensions from upcoming dimensions', () => {
   const audit = getDataCoverageAudit();
 
-  assert.equal(audit.seededDatasetCount, 7);
+  assert.equal(audit.seededDatasetCount, 8);
   assert.ok(audit.seededDimensions.includes('gender'));
   assert.ok(audit.seededDimensions.includes('salary'));
   assert.ok(audit.seededDimensions.includes('youthInflow'));
   assert.ok(audit.seededDimensions.includes('employmentInsight'));
   assert.ok(audit.seededDimensions.includes('smoking'));
   assert.ok(audit.seededDimensions.includes('drinking'));
+  assert.ok(audit.seededDimensions.includes('livingCostInsight'));
   assert.equal(audit.upcomingDimensions.includes('youthInflow'), false);
   assert.equal(audit.upcomingDimensions.includes('employmentInsight'), false);
   assert.equal(audit.upcomingDimensions.includes('smoking'), false);
   assert.equal(audit.upcomingDimensions.includes('drinking'), false);
-  assert.ok(audit.upcomingDimensions.includes('rentIncomeRatio'));
+  assert.equal(audit.upcomingDimensions.includes('rentIncomeRatio'), false);
+  assert.equal(audit.upcomingDimensions.includes('livingCostInsight'), false);
   assert.ok(audit.backlogByStatus.seeded >= 1);
   assert.ok(audit.backlogByStatus.researching >= 1);
 });

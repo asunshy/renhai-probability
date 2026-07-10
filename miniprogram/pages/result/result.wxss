@@ -103,6 +103,34 @@
   line-height: 1.55;
 }
 
+.living-card {
+  margin-top: 24rpx;
+  padding: 28rpx;
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.living-title {
+  color: #15803d;
+  font-size: 25rpx;
+  font-weight: 800;
+}
+
+.living-main {
+  margin-top: 14rpx;
+  color: #0f172a;
+  font-size: 30rpx;
+  font-weight: 900;
+  line-height: 1.45;
+}
+
+.living-copy {
+  margin-top: 12rpx;
+  color: #475569;
+  font-size: 23rpx;
+  line-height: 1.55;
+}
+
 .factor-list {
   padding: 0 28rpx;
 }

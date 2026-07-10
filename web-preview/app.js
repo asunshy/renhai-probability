@@ -112,7 +112,8 @@ function calculateInBrowser(filters) {
     rarestFactor,
     confidence,
     comment,
-    employmentInsight: getEmploymentInsight(region.code, filters)
+    employmentInsight: getEmploymentInsight(region.code, filters),
+    livingCostInsight: getLivingCostInsight(region.code, filters)
   };
 }
 
@@ -137,6 +138,31 @@ function getEmploymentInsight(regionCode, filters) {
   return {
     occupationLabel: occupation.label,
     salaryText: `${formatCny(salary.p25)}-${formatCny(salary.p75)} / 月，中位数约 ${formatCny(salary.p50)} / 月`,
+    quality: source.quality,
+    note: source.note
+  };
+}
+
+function getLivingCostInsight(regionCode, filters) {
+  if (!seed.benchmarks.cityRentPressure) {
+    return null;
+  }
+
+  const benchmark = seed.benchmarks.cityRentPressure;
+  const rent = benchmark.metrics[regionCode];
+  const source = seed.catalog.sources.find((item) => item.id === benchmark.sourceId);
+
+  if (!rent || !source) {
+    return null;
+  }
+
+  const employmentInsight = getEmploymentInsight(regionCode, filters);
+  const ratio = employmentInsight
+    ? Number((rent.studioRent / employmentInsight.monthlySalary.p50).toFixed(2))
+    : rent.typicalRentIncomeRatio;
+
+  return {
+    rentPressureText: `单间约 ${formatCny(rent.studioRent)} / 月，一居约 ${formatCny(rent.oneBedroomRent)} / 月；租金压力约 ${(ratio * 100).toFixed(0)}%`,
     quality: source.quality,
     note: source.note
   };
@@ -215,6 +241,7 @@ function renderResult(result) {
   document.querySelector('.meter-ring').style.setProperty('--meter', `${meterDeg}deg`);
   document.querySelector('#meterValue').textContent = result.probabilityText;
   renderEmploymentInsight(result.employmentInsight);
+  renderLivingCostInsight(result.livingCostInsight);
 
   const factors = document.querySelector('#factors');
   factors.replaceChildren();
@@ -239,6 +266,21 @@ function renderResult(result) {
     row.append(meta, bar);
     factors.appendChild(row);
   });
+}
+
+function renderLivingCostInsight(insight) {
+  const panel = document.querySelector('#livingPanel');
+  const quality = document.querySelector('#livingQuality');
+  const summary = document.querySelector('#livingSummary');
+
+  if (!insight) {
+    panel.hidden = true;
+    return;
+  }
+
+  panel.hidden = false;
+  quality.textContent = insight.quality;
+  summary.textContent = `${insight.rentPressureText}。${insight.note}`;
 }
 
 function renderEmploymentInsight(insight) {

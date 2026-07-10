@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-10T12:34:25.942Z",
+  "generatedAt": "2026-07-10T12:41:24.195Z",
   "options": {
     "region": {
       "code": "000000",
@@ -543,6 +543,16 @@
         "refreshCadence": "每年复核卫健委、疾控、控烟和健康生活方式公开报告",
         "url": "https://www.chinacdc.cn/",
         "note": "用于吸烟、饮酒在性别和年龄段上的条件修正；不是个体行为判断。"
+      },
+      {
+        "id": "city_rent_pressure",
+        "title": "重点城市租金压力公开资料汇总",
+        "year": 2024,
+        "quality": "行业报告",
+        "priority": 2,
+        "refreshCadence": "每半年复核公开租赁报告、城市生活成本研究和统计资料",
+        "url": "https://data.stats.gov.cn/",
+        "note": "用于结果页城市生活成本解释；租金为公开报告估算，不作为个人资产判断。"
       }
     ],
     "dimensions": [
@@ -982,7 +992,7 @@
     ]
   },
   "coverage": {
-    "totalSources": 12,
+    "totalSources": 13,
     "totalDimensions": 14,
     "qualityCounts": {
       "官方统计": 4,
@@ -1129,6 +1139,13 @@
         "refreshCadence": "每年复核卫健委、疾控、控烟和健康生活方式公开报告"
       },
       {
+        "id": "city_rent_pressure",
+        "title": "重点城市租金压力公开资料汇总",
+        "quality": "行业报告",
+        "priority": 2,
+        "refreshCadence": "每半年复核公开租赁报告、城市生活成本研究和统计资料"
+      },
+      {
         "id": "personality_model",
         "title": "性格标签趣味估算模型",
         "quality": "模型估算",
@@ -1251,6 +1268,21 @@
       ],
       "coverage": "性别与 20-39 岁年龄段",
       "notes": "用于吸烟和饮酒筛选的性别/年龄条件修正；无对应细分条件时回退默认比例。"
+    },
+    {
+      "id": "city_rent_pressure_2024",
+      "title": "重点城市租金压力基准表",
+      "rawPath": "data/raw/city-rent-pressure-2024.csv",
+      "sourceId": "city_rent_pressure",
+      "quality": "行业报告",
+      "year": 2024,
+      "importCommand": "npm run import:city-rent-pressure",
+      "dimensions": [
+        "rentIncomeRatio",
+        "livingCostInsight"
+      ],
+      "coverage": "9 个重点城市",
+      "notes": "用于结果页展示单间/一居租金和租金收入比，不直接作为概率筛选比例。"
     }
   ],
   "benchmarks": {
@@ -1503,6 +1535,67 @@
           }
         }
       }
+    },
+    "cityRentPressure": {
+      "sourceId": "city_rent_pressure",
+      "unit": "monthly_cny",
+      "coverage": "city_partial",
+      "metrics": {
+        "110000": {
+          "studioRent": 5200,
+          "oneBedroomRent": 7200,
+          "typicalRentIncomeRatio": 0.3,
+          "pressureLevel": "high"
+        },
+        "310000": {
+          "studioRent": 5600,
+          "oneBedroomRent": 7600,
+          "typicalRentIncomeRatio": 0.31,
+          "pressureLevel": "high"
+        },
+        "320100": {
+          "studioRent": 2800,
+          "oneBedroomRent": 4000,
+          "typicalRentIncomeRatio": 0.23,
+          "pressureLevel": "medium"
+        },
+        "330100": {
+          "studioRent": 3600,
+          "oneBedroomRent": 5200,
+          "typicalRentIncomeRatio": 0.24,
+          "pressureLevel": "medium"
+        },
+        "420100": {
+          "studioRent": 2200,
+          "oneBedroomRent": 3200,
+          "typicalRentIncomeRatio": 0.22,
+          "pressureLevel": "medium"
+        },
+        "440100": {
+          "studioRent": 3300,
+          "oneBedroomRent": 4800,
+          "typicalRentIncomeRatio": 0.25,
+          "pressureLevel": "medium"
+        },
+        "440300": {
+          "studioRent": 5000,
+          "oneBedroomRent": 7000,
+          "typicalRentIncomeRatio": 0.29,
+          "pressureLevel": "high"
+        },
+        "510100": {
+          "studioRent": 2400,
+          "oneBedroomRent": 3400,
+          "typicalRentIncomeRatio": 0.21,
+          "pressureLevel": "medium"
+        },
+        "610100": {
+          "studioRent": 2000,
+          "oneBedroomRent": 3000,
+          "typicalRentIncomeRatio": 0.21,
+          "pressureLevel": "medium"
+        }
+      }
     }
   },
   "backlog": {
@@ -1581,22 +1674,24 @@
       {
         "id": "housing_rent_pressure",
         "title": "重点城市住房与租金压力",
-        "status": "researching",
+        "status": "seeded",
         "priority": 2,
         "qualityTarget": "行业报告",
         "sourceCandidates": [
           "mohurd_public",
           "housing_reports",
-          "local_stats_bureaus"
+          "local_stats_bureaus",
+          "city_rent_pressure"
         ],
         "dimensions": [
           "homeOwnership",
           "rentIncomeRatio",
-          "commuteTolerance"
+          "commuteTolerance",
+          "livingCostInsight"
         ],
         "targetShape": "cityRates",
         "whyItMatters": "用于解释城市生活成本、通勤放宽建议和结果页就业行情背景。",
-        "nextAction": "补充官方城市建设统计和公开租金报告，明确标注非官方估算。"
+        "nextAction": "已接入重点城市租金压力第一版；下一步继续补官方住房、租赁和收入资料校验。"
       },
       {
         "id": "work_life_balance",
@@ -1639,7 +1734,7 @@
   },
   "coverageAudit": {
     "updatedAt": "2026-07-07",
-    "seededDatasetCount": 7,
+    "seededDatasetCount": 8,
     "seededDimensions": [
       "ageRange",
       "commuteTolerance",
@@ -1649,24 +1744,25 @@
       "gender",
       "homeOwnership",
       "jobMarket",
+      "livingCostInsight",
       "occupation",
       "region",
+      "rentIncomeRatio",
       "salary",
       "smoking",
       "youthInflow"
     ],
     "backlogCount": 6,
     "backlogByStatus": {
-      "seeded": 3,
+      "seeded": 4,
       "ready_to_import": 0,
-      "researching": 2,
+      "researching": 1,
       "blocked_by_source": 1
     },
     "upcomingDimensions": [
       "cityPopulation",
       "averageWage",
       "healthLifestyle",
-      "rentIncomeRatio",
       "overtimeIntensity",
       "remoteWork"
     ],
@@ -2102,6 +2198,25 @@
           "sourceId": "industry_salary_benchmark",
           "note": "用于结果页就业行情解释；不直接作为人群概率筛选比例。"
         },
+        "livingCostInsight": {
+          "region": {
+            "code": "310000",
+            "name": "上海市",
+            "basePopulation": 24870895
+          },
+          "rent": {
+            "studioRent": 5600,
+            "oneBedroomRent": 7600,
+            "typicalRentIncomeRatio": 0.31,
+            "pressureLevel": "high"
+          },
+          "rentPressureRatio": 0.22,
+          "rentPressureText": "单间约 6k / 月，一居约 8k / 月；租金压力约 22%",
+          "pressureLevel": "high",
+          "quality": "行业报告",
+          "sourceId": "city_rent_pressure",
+          "note": "用于结果页城市生活成本解释；租金为公开报告估算，不作为个人资产判断。"
+        },
         "sourceNotes": [
           {
             "id": "population_census",
@@ -2292,6 +2407,7 @@
           "text": "标准越精确，世界越安静。也许可以给真实的人留一点余地。"
         },
         "employmentInsight": null,
+        "livingCostInsight": null,
         "sourceNotes": [
           {
             "id": "population_census",
