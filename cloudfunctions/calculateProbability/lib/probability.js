@@ -153,6 +153,7 @@ function calculateProbability(filters = {}) {
     comment: pickComment(probability),
     employmentInsight: getEmploymentInsight(region.code, filters),
     livingCostInsight: getLivingCostInsight(region.code, filters),
+    marriageTrendInsight: getMarriageTrendInsight(),
     sourceNotes,
     flags
   };
@@ -320,6 +321,40 @@ function getLivingCostInsight(regionCode, filters = {}) {
     rentPressureRatio: computedRatio,
     rentPressureText: `单间约 ${formatCny(rent.studioRent)} / 月，一居约 ${formatCny(rent.oneBedroomRent)} / 月；租金压力约 ${(computedRatio * 100).toFixed(0)}%`,
     pressureLevel: rent.pressureLevel,
+    quality: source.quality,
+    sourceId: benchmark.sourceId,
+    note: source.note
+  };
+}
+
+function getMarriageTrendInsight() {
+  const benchmark = BENCHMARKS.marriageTrend;
+  if (!benchmark || !Array.isArray(benchmark.metrics) || benchmark.metrics.length === 0) {
+    return null;
+  }
+
+  const source = SOURCES[benchmark.sourceId];
+  if (!source) {
+    return null;
+  }
+
+  const metrics = benchmark.metrics.slice().sort((a, b) => a.year - b.year);
+  const first = metrics[0];
+  const latest = metrics[metrics.length - 1];
+  const previous = metrics[metrics.length - 2] || null;
+  const changeSinceFirst = Number(
+    ((latest.marriageRegistrations - first.marriageRegistrations) / first.marriageRegistrations).toFixed(4)
+  );
+  const yearOverYearChange = previous
+    ? Number(((latest.marriageRegistrations - previous.marriageRegistrations) / previous.marriageRegistrations).toFixed(4))
+    : null;
+
+  return {
+    latest,
+    first,
+    changeSinceFirst,
+    yearOverYearChange,
+    trendText: `2024 年全国结婚登记约 ${(latest.marriageRegistrations / 10000).toFixed(1)} 万对，较 ${first.year} 年变化 ${(changeSinceFirst * 100).toFixed(1)}%。这不是筛掉谁，而是提醒：长期关系变少，真实相遇更值得认真对待。`,
     quality: source.quality,
     sourceId: benchmark.sourceId,
     note: source.note
@@ -503,6 +538,7 @@ module.exports = {
   getBenchmarkCatalog,
   getEmploymentInsight,
   getLivingCostInsight,
+  getMarriageTrendInsight,
   getCollectionBacklog,
   getDataCoverageAudit,
   getDataQualityDashboard,

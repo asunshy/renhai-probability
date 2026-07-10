@@ -116,7 +116,8 @@ function calculateInBrowser(filters) {
     confidence,
     comment,
     employmentInsight: getEmploymentInsight(region.code, filters),
-    livingCostInsight: getLivingCostInsight(region.code, filters)
+    livingCostInsight: getLivingCostInsight(region.code, filters),
+    marriageTrendInsight: getMarriageTrendInsight()
   };
 }
 
@@ -170,6 +171,55 @@ function getLivingCostInsight(regionCode, filters) {
     quality: source.quality,
     note: source.note
   };
+}
+
+function getMarriageTrendInsight() {
+  if (!seed.benchmarks.marriageTrend || !seed.benchmarks.marriageTrend.metrics.length) {
+    return null;
+  }
+
+  const benchmark = seed.benchmarks.marriageTrend;
+  const metrics = benchmark.metrics.slice().sort((a, b) => a.year - b.year);
+  const first = metrics[0];
+  const latest = metrics[metrics.length - 1];
+  const previous = metrics[metrics.length - 2] || null;
+  const source = seed.catalog.sources.find((item) => item.id === benchmark.sourceId);
+
+  if (!source) {
+    return null;
+  }
+
+  const changeSinceFirst = Number(
+    ((latest.marriageRegistrations - first.marriageRegistrations) / first.marriageRegistrations).toFixed(4)
+  );
+  const yearOverYearChange = previous
+    ? Number(((latest.marriageRegistrations - previous.marriageRegistrations) / previous.marriageRegistrations).toFixed(4))
+    : null;
+
+  return {
+    latest,
+    first,
+    changeSinceFirst,
+    yearOverYearChange,
+    trendText: `2024 年全国结婚登记约 ${(latest.marriageRegistrations / 10000).toFixed(1)} 万对，较 ${first.year} 年变化 ${(changeSinceFirst * 100).toFixed(1)}%。这不是筛掉谁，而是提醒：长期关系变少，真实相遇更值得认真对待。`,
+    quality: source.quality,
+    note: source.note
+  };
+}
+
+function renderMarriageTrendInsight(insight) {
+  const panel = document.querySelector('#relationshipPanel');
+  const quality = document.querySelector('#relationshipQuality');
+  const summary = document.querySelector('#relationshipSummary');
+
+  if (!insight) {
+    panel.hidden = true;
+    return;
+  }
+
+  panel.hidden = false;
+  quality.textContent = insight.quality;
+  summary.textContent = `${insight.trendText}${insight.note}`;
 }
 
 function buildRelaxAdvice(result) {
@@ -246,6 +296,7 @@ function renderResult(result) {
   document.querySelector('#meterValue').textContent = result.probabilityText;
   renderEmploymentInsight(result.employmentInsight);
   renderLivingCostInsight(result.livingCostInsight);
+  renderMarriageTrendInsight(result.marriageTrendInsight);
 
   const factors = document.querySelector('#factors');
   factors.replaceChildren();

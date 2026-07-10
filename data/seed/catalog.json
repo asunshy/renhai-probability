@@ -144,6 +144,16 @@
       "refreshCadence": "每半年复核招聘平台、职场研究和公开行业报告",
       "url": "https://www.mohrss.gov.cn/",
       "note": "用于加班强度、远程办公和稳定作息估算；不采集职位详情或个人简历。"
+    },
+    "civil_affairs_marriage_stats": {
+      "id": "civil_affairs_marriage_stats",
+      "title": "民政事业发展统计公报婚姻登记数据",
+      "year": 2024,
+      "quality": "官方统计",
+      "priority": 1,
+      "refreshCadence": "年度复核民政部统计公报和中国统计年鉴婚姻登记表",
+      "url": "https://www.mca.gov.cn/",
+      "note": "用于解释结婚登记趋势和长期关系背景；只使用公开年度汇总数据，不涉及个人婚恋状态。"
     }
   },
   "regions": {
@@ -1823,6 +1833,97 @@
           "pressureLevel": "medium"
         }
       }
+    },
+    "marriageTrend": {
+      "sourceId": "civil_affairs_marriage_stats",
+      "unit": "people_or_couples",
+      "coverage": "national_annual",
+      "metrics": [
+        {
+          "year": 2013,
+          "marriageRegistrations": 13469300,
+          "firstMarriagePeople": 23859600,
+          "divorceRegistrations": null,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2014,
+          "marriageRegistrations": 13067400,
+          "firstMarriagePeople": 22868100,
+          "divorceRegistrations": null,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2015,
+          "marriageRegistrations": 12247100,
+          "firstMarriagePeople": 21089700,
+          "divorceRegistrations": null,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2016,
+          "marriageRegistrations": 11428200,
+          "firstMarriagePeople": 19132600,
+          "divorceRegistrations": null,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2017,
+          "marriageRegistrations": 10631000,
+          "firstMarriagePeople": 17463300,
+          "divorceRegistrations": null,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2018,
+          "marriageRegistrations": 10139400,
+          "firstMarriagePeople": 15986700,
+          "divorceRegistrations": null,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2019,
+          "marriageRegistrations": 9273300,
+          "firstMarriagePeople": 13987100,
+          "divorceRegistrations": 4701000,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2020,
+          "marriageRegistrations": 8143300,
+          "firstMarriagePeople": 12286000,
+          "divorceRegistrations": 4339000,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2021,
+          "marriageRegistrations": 7643000,
+          "firstMarriagePeople": 11578000,
+          "divorceRegistrations": 2839000,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2022,
+          "marriageRegistrations": 6835000,
+          "firstMarriagePeople": 10517600,
+          "divorceRegistrations": 2879000,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2023,
+          "marriageRegistrations": 7682000,
+          "firstMarriagePeople": 11939800,
+          "divorceRegistrations": 3605300,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2024,
+          "marriageRegistrations": 6106000,
+          "firstMarriagePeople": 9172300,
+          "divorceRegistrations": 3513000,
+          "sourceNote": "2024 civil affairs statistical bulletin"
+        }
+      ]
     }
   }
 }

@@ -106,5 +106,20 @@
     "dimensions": ["workStyle", "occupation"],
     "coverage": "5 个职业大类",
     "notes": "用于低加班、远程办公友好、作息较稳定等工作节奏筛选；按职业大类做条件修正。"
+  },
+  {
+    "id": "marriage_registration_trend_2024",
+    "title": "全国结婚登记与初婚登记趋势表",
+    "rawPath": "data/raw/marriage-registration-trend-2013-2024.csv",
+    "sourceId": "civil_affairs_marriage_stats",
+    "quality": "官方统计",
+    "year": 2024,
+    "importCommand": "npm run import:marriage-trend",
+    "dimensions": [
+      "marriageTrend",
+      "relationshipContext"
+    ],
+    "coverage": "2013-2024 年全国年度汇总",
+    "notes": "用于结果页解释结婚登记趋势和长期关系背景，不直接作为概率筛选比例。"
   }
 ]

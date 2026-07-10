@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-10T15:16:40.821Z",
+  "generatedAt": "2026-07-10T15:25:37.749Z",
   "options": {
     "region": {
       "code": "000000",
@@ -577,6 +577,16 @@
         "refreshCadence": "每半年复核招聘平台、职场研究和公开行业报告",
         "url": "https://www.mohrss.gov.cn/",
         "note": "用于加班强度、远程办公和稳定作息估算；不采集职位详情或个人简历。"
+      },
+      {
+        "id": "civil_affairs_marriage_stats",
+        "title": "民政事业发展统计公报婚姻登记数据",
+        "year": 2024,
+        "quality": "官方统计",
+        "priority": 1,
+        "refreshCadence": "年度复核民政部统计公报和中国统计年鉴婚姻登记表",
+        "url": "https://www.mca.gov.cn/",
+        "note": "用于解释结婚登记趋势和长期关系背景；只使用公开年度汇总数据，不涉及个人婚恋状态。"
       }
     ],
     "dimensions": [
@@ -1069,7 +1079,7 @@
     ]
   },
   "coverage": {
-    "totalSources": 14,
+    "totalSources": 15,
     "totalDimensions": 15,
     "qualityCounts": {
       "官方统计": 4,
@@ -1178,6 +1188,13 @@
         "quality": "官方统计",
         "priority": 1,
         "refreshCadence": "每年检查人社部薪酬调查信息"
+      },
+      {
+        "id": "civil_affairs_marriage_stats",
+        "title": "民政事业发展统计公报婚姻登记数据",
+        "quality": "官方统计",
+        "priority": 1,
+        "refreshCadence": "年度复核民政部统计公报和中国统计年鉴婚姻登记表"
       },
       {
         "id": "recruitment_reports",
@@ -1388,6 +1405,21 @@
       ],
       "coverage": "5 个职业大类",
       "notes": "用于低加班、远程办公友好、作息较稳定等工作节奏筛选；按职业大类做条件修正。"
+    },
+    {
+      "id": "marriage_registration_trend_2024",
+      "title": "全国结婚登记与初婚登记趋势表",
+      "rawPath": "data/raw/marriage-registration-trend-2013-2024.csv",
+      "sourceId": "civil_affairs_marriage_stats",
+      "quality": "官方统计",
+      "year": 2024,
+      "importCommand": "npm run import:marriage-trend",
+      "dimensions": [
+        "marriageTrend",
+        "relationshipContext"
+      ],
+      "coverage": "2013-2024 年全国年度汇总",
+      "notes": "用于结果页解释结婚登记趋势和长期关系背景，不直接作为概率筛选比例。"
     }
   ],
   "benchmarks": {
@@ -1701,6 +1733,97 @@
           "pressureLevel": "medium"
         }
       }
+    },
+    "marriageTrend": {
+      "sourceId": "civil_affairs_marriage_stats",
+      "unit": "people_or_couples",
+      "coverage": "national_annual",
+      "metrics": [
+        {
+          "year": 2013,
+          "marriageRegistrations": 13469300,
+          "firstMarriagePeople": 23859600,
+          "divorceRegistrations": null,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2014,
+          "marriageRegistrations": 13067400,
+          "firstMarriagePeople": 22868100,
+          "divorceRegistrations": null,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2015,
+          "marriageRegistrations": 12247100,
+          "firstMarriagePeople": 21089700,
+          "divorceRegistrations": null,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2016,
+          "marriageRegistrations": 11428200,
+          "firstMarriagePeople": 19132600,
+          "divorceRegistrations": null,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2017,
+          "marriageRegistrations": 10631000,
+          "firstMarriagePeople": 17463300,
+          "divorceRegistrations": null,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2018,
+          "marriageRegistrations": 10139400,
+          "firstMarriagePeople": 15986700,
+          "divorceRegistrations": null,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2019,
+          "marriageRegistrations": 9273300,
+          "firstMarriagePeople": 13987100,
+          "divorceRegistrations": 4701000,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2020,
+          "marriageRegistrations": 8143300,
+          "firstMarriagePeople": 12286000,
+          "divorceRegistrations": 4339000,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2021,
+          "marriageRegistrations": 7643000,
+          "firstMarriagePeople": 11578000,
+          "divorceRegistrations": 2839000,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2022,
+          "marriageRegistrations": 6835000,
+          "firstMarriagePeople": 10517600,
+          "divorceRegistrations": 2879000,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2023,
+          "marriageRegistrations": 7682000,
+          "firstMarriagePeople": 11939800,
+          "divorceRegistrations": 3605300,
+          "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+        },
+        {
+          "year": 2024,
+          "marriageRegistrations": 6106000,
+          "firstMarriagePeople": 9172300,
+          "divorceRegistrations": 3513000,
+          "sourceNote": "2024 civil affairs statistical bulletin"
+        }
+      ]
     }
   },
   "backlog": {
@@ -1841,7 +1964,7 @@
   },
   "coverageAudit": {
     "updatedAt": "2026-07-07",
-    "seededDatasetCount": 9,
+    "seededDatasetCount": 10,
     "seededDimensions": [
       "ageRange",
       "commuteTolerance",
@@ -1852,8 +1975,10 @@
       "homeOwnership",
       "jobMarket",
       "livingCostInsight",
+      "marriageTrend",
       "occupation",
       "region",
+      "relationshipContext",
       "rentIncomeRatio",
       "salary",
       "smoking",
@@ -1880,8 +2005,8 @@
     "generatedFrom": "data/seed/catalog.json",
     "summary": {
       "totalDimensions": 15,
-      "totalSources": 14,
-      "totalDatasets": 9,
+      "totalSources": 15,
+      "totalDatasets": 10,
       "backlogCount": 6
     },
     "byQuality": {
@@ -2066,8 +2191,10 @@
       "homeOwnership",
       "jobMarket",
       "livingCostInsight",
+      "marriageTrend",
       "occupation",
       "region",
+      "relationshipContext",
       "rentIncomeRatio",
       "salary",
       "smoking",
@@ -2617,6 +2744,28 @@
           "sourceId": "city_rent_pressure",
           "note": "用于结果页城市生活成本解释；租金为公开报告估算，不作为个人资产判断。"
         },
+        "marriageTrendInsight": {
+          "latest": {
+            "year": 2024,
+            "marriageRegistrations": 6106000,
+            "firstMarriagePeople": 9172300,
+            "divorceRegistrations": 3513000,
+            "sourceNote": "2024 civil affairs statistical bulletin"
+          },
+          "first": {
+            "year": 2013,
+            "marriageRegistrations": 13469300,
+            "firstMarriagePeople": 23859600,
+            "divorceRegistrations": null,
+            "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+          },
+          "changeSinceFirst": -0.5467,
+          "yearOverYearChange": -0.2052,
+          "trendText": "2024 年全国结婚登记约 610.6 万对，较 2013 年变化 -54.7%。这不是筛掉谁，而是提醒：长期关系变少，真实相遇更值得认真对待。",
+          "quality": "官方统计",
+          "sourceId": "civil_affairs_marriage_stats",
+          "note": "用于解释结婚登记趋势和长期关系背景；只使用公开年度汇总数据，不涉及个人婚恋状态。"
+        },
         "sourceNotes": [
           {
             "id": "population_census",
@@ -2808,6 +2957,28 @@
         },
         "employmentInsight": null,
         "livingCostInsight": null,
+        "marriageTrendInsight": {
+          "latest": {
+            "year": 2024,
+            "marriageRegistrations": 6106000,
+            "firstMarriagePeople": 9172300,
+            "divorceRegistrations": 3513000,
+            "sourceNote": "2024 civil affairs statistical bulletin"
+          },
+          "first": {
+            "year": 2013,
+            "marriageRegistrations": 13469300,
+            "firstMarriagePeople": 23859600,
+            "divorceRegistrations": null,
+            "sourceNote": "China Statistical Yearbook and civil affairs statistical bulletin"
+          },
+          "changeSinceFirst": -0.5467,
+          "yearOverYearChange": -0.2052,
+          "trendText": "2024 年全国结婚登记约 610.6 万对，较 2013 年变化 -54.7%。这不是筛掉谁，而是提醒：长期关系变少，真实相遇更值得认真对待。",
+          "quality": "官方统计",
+          "sourceId": "civil_affairs_marriage_stats",
+          "note": "用于解释结婚登记趋势和长期关系背景；只使用公开年度汇总数据，不涉及个人婚恋状态。"
+        },
         "sourceNotes": [
           {
             "id": "population_census",
