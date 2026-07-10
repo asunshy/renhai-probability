@@ -16,6 +16,7 @@ const {
   getLivingCostInsight,
   getCollectionBacklog,
   getDataCoverageAudit,
+  getDataQualityDashboard,
   validateSeedData,
   REGIONS,
   DIMENSIONS,
@@ -373,4 +374,18 @@ test('data coverage audit separates seeded dimensions from upcoming dimensions',
   assert.ok(audit.backlogByStatus.seeded >= 1);
   assert.ok(audit.backlogCount >= 6);
   assert.ok(audit.backlogByStatus.blocked_by_source >= 1);
+});
+
+test('data quality dashboard groups dimensions by quality and coverage', () => {
+  const dashboard = getDataQualityDashboard();
+
+  assert.equal(dashboard.generatedFrom, 'data/seed/catalog.json');
+  assert.ok(dashboard.summary.totalDimensions >= 14);
+  assert.ok(dashboard.summary.totalDatasets >= 9);
+  assert.ok(dashboard.byQuality['官方统计'].length >= 1);
+  assert.ok(dashboard.byQuality['行业报告'].length >= 1);
+  assert.ok(dashboard.byQuality['模型估算'].length >= 1);
+  assert.ok(dashboard.byCoverage.regional.length >= 1);
+  assert.ok(dashboard.seededDimensions.includes('workStyle'));
+  assert.ok(dashboard.weakestDimensions.some((item) => item.key === 'personality'));
 });

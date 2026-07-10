@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-10T13:39:18.651Z",
+  "generatedAt": "2026-07-10T15:16:40.821Z",
   "options": {
     "region": {
       "code": "000000",
@@ -1875,6 +1875,298 @@
       "remoteWork"
     ],
     "officialPriorityItems": []
+  },
+  "qualityDashboard": {
+    "generatedFrom": "data/seed/catalog.json",
+    "summary": {
+      "totalDimensions": 15,
+      "totalSources": 14,
+      "totalDatasets": 9,
+      "backlogCount": 6
+    },
+    "byQuality": {
+      "官方统计": [
+        {
+          "key": "gender",
+          "label": "性别",
+          "coverage": "regional"
+        },
+        {
+          "key": "ageRange",
+          "label": "年龄",
+          "coverage": "regional"
+        },
+        {
+          "key": "education",
+          "label": "学历",
+          "coverage": "regional"
+        },
+        {
+          "key": "occupation",
+          "label": "职业",
+          "coverage": "regional_partial"
+        }
+      ],
+      "行业报告": [
+        {
+          "key": "salary",
+          "label": "月收入",
+          "coverage": "regional_partial"
+        },
+        {
+          "key": "smoking",
+          "label": "吸烟",
+          "coverage": "segment_partial"
+        },
+        {
+          "key": "drinking",
+          "label": "饮酒",
+          "coverage": "segment_partial"
+        },
+        {
+          "key": "homeOwnership",
+          "label": "居住资产",
+          "coverage": "regional_partial"
+        },
+        {
+          "key": "commuteTolerance",
+          "label": "通勤距离",
+          "coverage": "regional_partial"
+        },
+        {
+          "key": "jobMarket",
+          "label": "就业行情",
+          "coverage": "regional_partial"
+        },
+        {
+          "key": "youthInflow",
+          "label": "青年活跃度",
+          "coverage": "city_partial"
+        },
+        {
+          "key": "workStyle",
+          "label": "工作节奏",
+          "coverage": "occupation_partial"
+        }
+      ],
+      "模型估算": [
+        {
+          "key": "personality",
+          "label": "性格",
+          "coverage": "model_only"
+        },
+        {
+          "key": "height",
+          "label": "身高",
+          "coverage": "model_only"
+        },
+        {
+          "key": "exercise",
+          "label": "运动习惯",
+          "coverage": "model_only"
+        }
+      ]
+    },
+    "byCoverage": {
+      "regional": [
+        {
+          "key": "gender",
+          "label": "性别",
+          "quality": "官方统计"
+        },
+        {
+          "key": "ageRange",
+          "label": "年龄",
+          "quality": "官方统计"
+        },
+        {
+          "key": "education",
+          "label": "学历",
+          "quality": "官方统计"
+        }
+      ],
+      "regional_partial": [
+        {
+          "key": "occupation",
+          "label": "职业",
+          "quality": "官方统计"
+        },
+        {
+          "key": "salary",
+          "label": "月收入",
+          "quality": "行业报告"
+        },
+        {
+          "key": "homeOwnership",
+          "label": "居住资产",
+          "quality": "行业报告"
+        },
+        {
+          "key": "commuteTolerance",
+          "label": "通勤距离",
+          "quality": "行业报告"
+        },
+        {
+          "key": "jobMarket",
+          "label": "就业行情",
+          "quality": "行业报告"
+        }
+      ],
+      "segment_partial": [
+        {
+          "key": "smoking",
+          "label": "吸烟",
+          "quality": "行业报告"
+        },
+        {
+          "key": "drinking",
+          "label": "饮酒",
+          "quality": "行业报告"
+        }
+      ],
+      "model_only": [
+        {
+          "key": "personality",
+          "label": "性格",
+          "quality": "模型估算"
+        },
+        {
+          "key": "height",
+          "label": "身高",
+          "quality": "模型估算"
+        },
+        {
+          "key": "exercise",
+          "label": "运动习惯",
+          "quality": "模型估算"
+        }
+      ],
+      "city_partial": [
+        {
+          "key": "youthInflow",
+          "label": "青年活跃度",
+          "quality": "行业报告"
+        }
+      ],
+      "occupation_partial": [
+        {
+          "key": "workStyle",
+          "label": "工作节奏",
+          "quality": "行业报告"
+        }
+      ]
+    },
+    "seededDimensions": [
+      "ageRange",
+      "commuteTolerance",
+      "drinking",
+      "education",
+      "employmentInsight",
+      "gender",
+      "homeOwnership",
+      "jobMarket",
+      "livingCostInsight",
+      "occupation",
+      "region",
+      "rentIncomeRatio",
+      "salary",
+      "smoking",
+      "workStyle",
+      "youthInflow"
+    ],
+    "upcomingDimensions": [
+      "cityPopulation",
+      "averageWage",
+      "healthLifestyle",
+      "overtimeIntensity",
+      "remoteWork"
+    ],
+    "weakestDimensions": [
+      {
+        "key": "occupation",
+        "label": "职业",
+        "quality": "官方统计",
+        "coverage": "regional_partial",
+        "reason": "已有公开资料，但仍缺少更完整的地区/人群交叉口径。"
+      },
+      {
+        "key": "salary",
+        "label": "月收入",
+        "quality": "行业报告",
+        "coverage": "regional_partial",
+        "reason": "已有公开资料，但仍缺少更完整的地区/人群交叉口径。"
+      },
+      {
+        "key": "smoking",
+        "label": "吸烟",
+        "quality": "行业报告",
+        "coverage": "segment_partial",
+        "reason": "已有公开资料，但仍缺少更完整的地区/人群交叉口径。"
+      },
+      {
+        "key": "drinking",
+        "label": "饮酒",
+        "quality": "行业报告",
+        "coverage": "segment_partial",
+        "reason": "已有公开资料，但仍缺少更完整的地区/人群交叉口径。"
+      },
+      {
+        "key": "personality",
+        "label": "性格",
+        "quality": "模型估算",
+        "coverage": "model_only",
+        "reason": "缺少稳定公开统计，当前仅作趣味或解释参考。"
+      },
+      {
+        "key": "height",
+        "label": "身高",
+        "quality": "模型估算",
+        "coverage": "model_only",
+        "reason": "缺少稳定公开统计，当前仅作趣味或解释参考。"
+      },
+      {
+        "key": "exercise",
+        "label": "运动习惯",
+        "quality": "模型估算",
+        "coverage": "model_only",
+        "reason": "缺少稳定公开统计，当前仅作趣味或解释参考。"
+      },
+      {
+        "key": "homeOwnership",
+        "label": "居住资产",
+        "quality": "行业报告",
+        "coverage": "regional_partial",
+        "reason": "已有公开资料，但仍缺少更完整的地区/人群交叉口径。"
+      },
+      {
+        "key": "commuteTolerance",
+        "label": "通勤距离",
+        "quality": "行业报告",
+        "coverage": "regional_partial",
+        "reason": "已有公开资料，但仍缺少更完整的地区/人群交叉口径。"
+      },
+      {
+        "key": "jobMarket",
+        "label": "就业行情",
+        "quality": "行业报告",
+        "coverage": "regional_partial",
+        "reason": "已有公开资料，但仍缺少更完整的地区/人群交叉口径。"
+      },
+      {
+        "key": "youthInflow",
+        "label": "青年活跃度",
+        "quality": "行业报告",
+        "coverage": "city_partial",
+        "reason": "已有公开资料，但仍缺少更完整的地区/人群交叉口径。"
+      },
+      {
+        "key": "workStyle",
+        "label": "工作节奏",
+        "quality": "行业报告",
+        "coverage": "occupation_partial",
+        "reason": "已有公开资料，但仍缺少更完整的地区/人群交叉口径。"
+      }
+    ]
   },
   "comparison": [
     {

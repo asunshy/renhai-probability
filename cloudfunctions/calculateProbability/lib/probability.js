@@ -377,6 +377,56 @@ function getDataCoverageAudit() {
   };
 }
 
+function getDataQualityDashboard() {
+  const catalog = getDataCatalog();
+  const audit = getDataCoverageAudit();
+  const byQuality = {};
+  const byCoverage = {};
+
+  catalog.dimensions.forEach((dimension) => {
+    byQuality[dimension.quality] = byQuality[dimension.quality] || [];
+    byQuality[dimension.quality].push({
+      key: dimension.key,
+      label: dimension.label,
+      coverage: dimension.coverage
+    });
+
+    byCoverage[dimension.coverage] = byCoverage[dimension.coverage] || [];
+    byCoverage[dimension.coverage].push({
+      key: dimension.key,
+      label: dimension.label,
+      quality: dimension.quality
+    });
+  });
+
+  const weakestDimensions = catalog.dimensions
+    .filter((dimension) => dimension.quality !== '官方统计' || dimension.coverage !== 'regional')
+    .map((dimension) => ({
+      key: dimension.key,
+      label: dimension.label,
+      quality: dimension.quality,
+      coverage: dimension.coverage,
+      reason: dimension.quality === '模型估算'
+        ? '缺少稳定公开统计，当前仅作趣味或解释参考。'
+        : '已有公开资料，但仍缺少更完整的地区/人群交叉口径。'
+    }));
+
+  return {
+    generatedFrom: 'data/seed/catalog.json',
+    summary: {
+      totalDimensions: catalog.dimensions.length,
+      totalSources: catalog.sources.length,
+      totalDatasets: audit.seededDatasetCount,
+      backlogCount: audit.backlogCount
+    },
+    byQuality,
+    byCoverage,
+    seededDimensions: audit.seededDimensions,
+    upcomingDimensions: audit.upcomingDimensions,
+    weakestDimensions
+  };
+}
+
 function getSourceNotes(metricIds = [], factors = []) {
   const notesById = new Map();
 
@@ -455,6 +505,7 @@ module.exports = {
   getLivingCostInsight,
   getCollectionBacklog,
   getDataCoverageAudit,
+  getDataQualityDashboard,
   validateSeedData,
   REGIONS,
   DIMENSIONS,

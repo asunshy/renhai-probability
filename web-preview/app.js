@@ -305,10 +305,12 @@ function renderEmploymentInsight(insight) {
 function renderCatalog() {
   const catalog = document.querySelector('#catalog');
   const coverage = document.querySelector('#coverage');
+  const qualityDashboard = document.querySelector('#qualityDashboard');
   const datasets = document.querySelector('#datasets');
   const backlog = document.querySelector('#backlog');
   catalog.replaceChildren();
   coverage.replaceChildren();
+  qualityDashboard.replaceChildren();
   datasets.replaceChildren();
   backlog.replaceChildren();
 
@@ -335,6 +337,46 @@ function renderCatalog() {
     .map((item) => item.label)
     .join('、')} 的地区交叉数据。`;
   coverage.after(gapBox);
+
+  const qualityOrder = ['官方统计', '行业报告', '模型估算'];
+  const totalDimensions = seed.qualityDashboard.summary.totalDimensions;
+  qualityOrder.forEach((quality) => {
+    const dimensions = seed.qualityDashboard.byQuality[quality] || [];
+    const item = document.createElement('article');
+    const title = document.createElement('div');
+    const count = document.createElement('strong');
+    const meter = document.createElement('div');
+    const fill = document.createElement('i');
+    const note = document.createElement('p');
+
+    item.className = 'quality-item';
+    title.className = 'quality-title';
+    meter.className = 'quality-meter';
+    note.className = 'catalog-note';
+
+    title.textContent = quality;
+    count.textContent = `${dimensions.length} 个维度`;
+    fill.style.width = `${Math.round((dimensions.length / totalDimensions) * 100)}%`;
+    note.textContent = dimensions.slice(0, 4).map((dimension) => dimension.label).join('、') || '暂无';
+
+    meter.appendChild(fill);
+    item.append(title, count, meter, note);
+    qualityDashboard.appendChild(item);
+  });
+
+  const weakList = document.createElement('div');
+  weakList.className = 'quality-gap-list';
+  seed.qualityDashboard.weakestDimensions.slice(0, 5).forEach((dimension) => {
+    const row = document.createElement('div');
+    const name = document.createElement('span');
+    const reason = document.createElement('small');
+
+    name.textContent = `${dimension.label}：${dimension.quality}`;
+    reason.textContent = dimension.reason;
+    row.append(name, reason);
+    weakList.appendChild(row);
+  });
+  qualityDashboard.appendChild(weakList);
 
   seed.catalog.sources.slice(0, 7).forEach((source) => {
     const item = document.createElement('article');
