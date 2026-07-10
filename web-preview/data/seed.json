@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-07T05:10:47.504Z",
+  "generatedAt": "2026-07-10T05:59:08.109Z",
   "options": {
     "region": {
       "code": "000000",
@@ -523,6 +523,16 @@
         "refreshCadence": "每半年复核重点城市统计公报、人才报告和公开研究",
         "url": "https://data.stats.gov.cn/",
         "note": "用于重点城市青年人口活跃、人才密度等趋势估算；城市常住人口采用公开统计口径，活跃比例按行业报告和模型估算融合。"
+      },
+      {
+        "id": "industry_salary_benchmark",
+        "title": "重点城市行业薪资分位公开资料汇总",
+        "year": 2024,
+        "quality": "行业报告",
+        "priority": 2,
+        "refreshCadence": "每半年复核招聘平台报告、人社公开资料和城市薪酬研究",
+        "url": "https://www.mohrss.gov.cn/",
+        "note": "用于结果页就业行情解释；不直接作为人群概率筛选比例。"
       }
     ],
     "dimensions": [
@@ -890,7 +900,7 @@
     ]
   },
   "coverage": {
-    "totalSources": 10,
+    "totalSources": 11,
     "totalDimensions": 14,
     "qualityCounts": {
       "官方统计": 4,
@@ -1023,6 +1033,13 @@
         "refreshCadence": "每半年复核重点城市统计公报、人才报告和公开研究"
       },
       {
+        "id": "industry_salary_benchmark",
+        "title": "重点城市行业薪资分位公开资料汇总",
+        "quality": "行业报告",
+        "priority": 2,
+        "refreshCadence": "每半年复核招聘平台报告、人社公开资料和城市薪酬研究"
+      },
+      {
         "id": "personality_model",
         "title": "性格标签趣味估算模型",
         "quality": "模型估算",
@@ -1114,8 +1131,276 @@
       ],
       "coverage": "10 个重点城市",
       "notes": "用于青年活跃城市、青年高度活跃、人才密度较高等城市级趋势估算；城市常住人口采用公开统计口径，活跃比例按行业报告和模型估算融合。"
+    },
+    {
+      "id": "industry_salary_benchmark_2024",
+      "title": "重点城市行业薪资分位基准表",
+      "rawPath": "data/raw/industry-salary-benchmark-2024.csv",
+      "sourceId": "industry_salary_benchmark",
+      "quality": "行业报告",
+      "year": 2024,
+      "importCommand": "npm run import:industry-salary-benchmark",
+      "dimensions": [
+        "occupation",
+        "salary",
+        "employmentInsight"
+      ],
+      "coverage": "9 个重点城市 × 5 个职业大类",
+      "notes": "用于结果页展示行业薪资四分位和中位数，不直接作为概率筛选比例。"
     }
   ],
+  "benchmarks": {
+    "industrySalary": {
+      "sourceId": "industry_salary_benchmark",
+      "unit": "monthly_cny",
+      "coverage": "city_partial",
+      "metrics": {
+        "110000": {
+          "tech": {
+            "p25": 16000,
+            "p50": 24000,
+            "p75": 36000
+          },
+          "finance": {
+            "p25": 15000,
+            "p50": 23000,
+            "p75": 34000
+          },
+          "education": {
+            "p25": 9000,
+            "p50": 14000,
+            "p75": 21000
+          },
+          "healthcare": {
+            "p25": 10000,
+            "p50": 16000,
+            "p75": 24000
+          },
+          "public_service": {
+            "p25": 8500,
+            "p50": 12500,
+            "p75": 18000
+          }
+        },
+        "310000": {
+          "tech": {
+            "p25": 17000,
+            "p50": 25000,
+            "p75": 38000
+          },
+          "finance": {
+            "p25": 16000,
+            "p50": 24500,
+            "p75": 36000
+          },
+          "education": {
+            "p25": 9500,
+            "p50": 14500,
+            "p75": 22000
+          },
+          "healthcare": {
+            "p25": 10500,
+            "p50": 16500,
+            "p75": 25000
+          },
+          "public_service": {
+            "p25": 9000,
+            "p50": 13000,
+            "p75": 18500
+          }
+        },
+        "320100": {
+          "tech": {
+            "p25": 12000,
+            "p50": 17500,
+            "p75": 26000
+          },
+          "finance": {
+            "p25": 10500,
+            "p50": 16000,
+            "p75": 24000
+          },
+          "education": {
+            "p25": 7500,
+            "p50": 11000,
+            "p75": 16500
+          },
+          "healthcare": {
+            "p25": 8000,
+            "p50": 12500,
+            "p75": 18500
+          },
+          "public_service": {
+            "p25": 7200,
+            "p50": 10500,
+            "p75": 15000
+          }
+        },
+        "330100": {
+          "tech": {
+            "p25": 14500,
+            "p50": 21500,
+            "p75": 32000
+          },
+          "finance": {
+            "p25": 12000,
+            "p50": 18000,
+            "p75": 27000
+          },
+          "education": {
+            "p25": 8000,
+            "p50": 12000,
+            "p75": 18000
+          },
+          "healthcare": {
+            "p25": 8500,
+            "p50": 13500,
+            "p75": 20000
+          },
+          "public_service": {
+            "p25": 7600,
+            "p50": 11200,
+            "p75": 16500
+          }
+        },
+        "420100": {
+          "tech": {
+            "p25": 10500,
+            "p50": 15500,
+            "p75": 23000
+          },
+          "finance": {
+            "p25": 9000,
+            "p50": 13500,
+            "p75": 20000
+          },
+          "education": {
+            "p25": 6800,
+            "p50": 10000,
+            "p75": 15000
+          },
+          "healthcare": {
+            "p25": 7300,
+            "p50": 11000,
+            "p75": 16500
+          },
+          "public_service": {
+            "p25": 6500,
+            "p50": 9600,
+            "p75": 14000
+          }
+        },
+        "440100": {
+          "tech": {
+            "p25": 13000,
+            "p50": 19000,
+            "p75": 29000
+          },
+          "finance": {
+            "p25": 12000,
+            "p50": 18000,
+            "p75": 27000
+          },
+          "education": {
+            "p25": 7500,
+            "p50": 11500,
+            "p75": 17000
+          },
+          "healthcare": {
+            "p25": 8500,
+            "p50": 13000,
+            "p75": 19500
+          },
+          "public_service": {
+            "p25": 7500,
+            "p50": 11000,
+            "p75": 16000
+          }
+        },
+        "440300": {
+          "tech": {
+            "p25": 16500,
+            "p50": 24500,
+            "p75": 37000
+          },
+          "finance": {
+            "p25": 14500,
+            "p50": 22000,
+            "p75": 33000
+          },
+          "education": {
+            "p25": 8500,
+            "p50": 13500,
+            "p75": 20500
+          },
+          "healthcare": {
+            "p25": 9500,
+            "p50": 15000,
+            "p75": 23000
+          },
+          "public_service": {
+            "p25": 8000,
+            "p50": 12000,
+            "p75": 17500
+          }
+        },
+        "510100": {
+          "tech": {
+            "p25": 11000,
+            "p50": 16500,
+            "p75": 24500
+          },
+          "finance": {
+            "p25": 9500,
+            "p50": 14500,
+            "p75": 21500
+          },
+          "education": {
+            "p25": 7000,
+            "p50": 10500,
+            "p75": 15500
+          },
+          "healthcare": {
+            "p25": 7600,
+            "p50": 11500,
+            "p75": 17000
+          },
+          "public_service": {
+            "p25": 6800,
+            "p50": 10000,
+            "p75": 14500
+          }
+        },
+        "610100": {
+          "tech": {
+            "p25": 10000,
+            "p50": 14500,
+            "p75": 21500
+          },
+          "finance": {
+            "p25": 8500,
+            "p50": 12500,
+            "p75": 18500
+          },
+          "education": {
+            "p25": 6500,
+            "p50": 9500,
+            "p75": 14000
+          },
+          "healthcare": {
+            "p25": 7000,
+            "p50": 10500,
+            "p75": 15500
+          },
+          "public_service": {
+            "p25": 6200,
+            "p50": 9000,
+            "p75": 13200
+          }
+        }
+      }
+    }
+  },
   "backlog": {
     "updatedAt": "2026-07-07",
     "policy": "Only public aggregate datasets and public reports are tracked. Do not collect personal profiles, contact data, user identifiers, or matching pools.",
@@ -1150,22 +1435,24 @@
       {
         "id": "industry_salary_distribution",
         "title": "分地区分行业薪资分布",
-        "status": "ready_to_import",
+        "status": "seeded",
         "priority": 1,
-        "qualityTarget": "官方统计",
+        "qualityTarget": "行业报告",
         "sourceCandidates": [
           "nbs_yearbook",
           "mohrss_public",
-          "recruitment_platform_reports"
+          "recruitment_platform_reports",
+          "industry_salary_benchmark"
         ],
         "dimensions": [
           "occupation",
           "salary",
-          "averageWage"
+          "averageWage",
+          "employmentInsight"
         ],
         "targetShape": "regionIndustryRates",
         "whyItMatters": "用于把职业和薪资从趣味估算推进到更可解释的就业行情判断。",
-        "nextAction": "先用官方平均工资校验当前招聘报告估算，再补行业薪资分位或薪资段。"
+        "nextAction": "已接入重点城市行业薪资四分位第一版；下一步继续用官方平均工资和人社资料校验分位。"
       },
       {
         "id": "smoking_drinking_by_gender",
@@ -1247,11 +1534,12 @@
   },
   "coverageAudit": {
     "updatedAt": "2026-07-07",
-    "seededDatasetCount": 5,
+    "seededDatasetCount": 6,
     "seededDimensions": [
       "ageRange",
       "commuteTolerance",
       "education",
+      "employmentInsight",
       "gender",
       "homeOwnership",
       "jobMarket",
@@ -1262,8 +1550,8 @@
     ],
     "backlogCount": 6,
     "backlogByStatus": {
-      "seeded": 1,
-      "ready_to_import": 1,
+      "seeded": 2,
+      "ready_to_import": 0,
       "researching": 3,
       "blocked_by_source": 1
     },
@@ -1278,18 +1566,6 @@
       "remoteWork"
     ],
     "officialPriorityItems": [
-      {
-        "id": "industry_salary_distribution",
-        "title": "分地区分行业薪资分布",
-        "priority": 1,
-        "status": "ready_to_import",
-        "dimensions": [
-          "occupation",
-          "salary",
-          "averageWage"
-        ],
-        "nextAction": "先用官方平均工资校验当前招聘报告估算，再补行业薪资分位或薪资段。"
-      },
       {
         "id": "smoking_drinking_by_gender",
         "title": "吸烟饮酒按性别与年龄细分",
@@ -1690,6 +1966,26 @@
           "min": 0,
           "text": "标准越精确，世界越安静。也许可以给真实的人留一点余地。"
         },
+        "employmentInsight": {
+          "region": {
+            "code": "310000",
+            "name": "上海市",
+            "basePopulation": 24870895
+          },
+          "occupation": {
+            "key": "tech",
+            "label": "互联网/技术"
+          },
+          "monthlySalary": {
+            "p25": 17000,
+            "p50": 25000,
+            "p75": 38000
+          },
+          "salaryText": "17k-38k / 月，中位数约 25k / 月",
+          "quality": "行业报告",
+          "sourceId": "industry_salary_benchmark",
+          "note": "用于结果页就业行情解释；不直接作为人群概率筛选比例。"
+        },
         "sourceNotes": [
           {
             "id": "population_census",
@@ -1871,6 +2167,7 @@
           "min": 0,
           "text": "标准越精确，世界越安静。也许可以给真实的人留一点余地。"
         },
+        "employmentInsight": null,
         "sourceNotes": [
           {
             "id": "population_census",

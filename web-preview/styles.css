@@ -235,6 +235,22 @@ blockquote {
   margin-top: 20px;
 }
 
+.employment-panel {
+  margin-top: 20px;
+  padding: 22px;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  background: #eff6ff;
+}
+
+.employment-panel p {
+  margin: 14px 0 0;
+  color: #1e3a8a;
+  font-size: 15px;
+  line-height: 1.65;
+  font-weight: 750;
+}
+
 .insight-card {
   padding: 22px;
   border: 1px solid var(--border);

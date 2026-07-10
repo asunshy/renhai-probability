@@ -23,6 +23,12 @@
     </view>
   </view>
 
+  <view class="employment-card card" wx:if="{{result.hasEmploymentInsight}}">
+    <view class="employment-title">就业行情参考</view>
+    <view class="employment-main">{{result.employmentInsight.occupation.label}}：{{result.employmentInsight.salaryText}}</view>
+    <view class="employment-copy">{{result.employmentInsight.quality}} · {{result.employmentInsight.note}}</view>
+  </view>
+
   <view class="section-title">条件杀伤力</view>
   <view class="factor-list card">
     <block wx:for="{{result.factors}}" wx:key="key">

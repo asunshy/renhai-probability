@@ -11,6 +11,8 @@ const {
   getCoverageSummary,
   getRegionComparison,
   getDatasetManifest,
+  getBenchmarkCatalog,
+  getEmploymentInsight,
   getCollectionBacklog,
   getDataCoverageAudit,
   validateSeedData,
@@ -163,6 +165,32 @@ test('city youth inflow dimension supports city-level probability estimates', ()
   assert.equal(result.flags.includes('contains_non_official_data'), true);
 });
 
+test('employment insight explains selected occupation without changing probability factors', () => {
+  const result = calculateProbability({
+    regionCode: '440300',
+    gender: 'male',
+    ageRange: '25-29',
+    education: 'bachelor_plus',
+    occupation: 'tech',
+    salary: '20k_plus'
+  });
+
+  assert.equal(result.employmentInsight.occupation.label, '互联网/技术');
+  assert.equal(result.employmentInsight.monthlySalary.p50, 24500);
+  assert.match(result.employmentInsight.salaryText, /中位数约 25k/);
+  assert.equal(result.employmentInsight.quality, '行业报告');
+  assert.equal(result.factors.some((factor) => factor.key === 'employmentInsight'), false);
+});
+
+test('benchmark catalog exposes industry salary data for preview surfaces', () => {
+  const benchmarks = getBenchmarkCatalog();
+  const insight = getEmploymentInsight('310000', { occupation: 'finance' });
+
+  assert.equal(benchmarks.industrySalary.metrics['310000'].tech.p50, 25000);
+  assert.equal(insight.monthlySalary.p75, 36000);
+  assert.equal(insight.sourceId, 'industry_salary_benchmark');
+});
+
 test('catalog data is maintained as a standalone data asset', () => {
   const assetPath = path.join(__dirname, '..', 'data', 'seed', 'catalog.json');
   const asset = JSON.parse(fs.readFileSync(assetPath, 'utf8'));
@@ -220,7 +248,7 @@ test('region comparison ranks regions for the same filters', () => {
 test('dataset manifest lists raw import datasets with traceable commands', () => {
   const manifest = getDatasetManifest();
 
-  assert.equal(manifest.length, 5);
+  assert.equal(manifest.length, 6);
   assert.equal(manifest[0].id, 'province_demographics_2020');
   assert.ok(manifest.every((dataset) => dataset.rawPath.startsWith('data/raw/')));
   assert.ok(manifest.every((dataset) => dataset.importCommand.startsWith('npm run import:')));
@@ -228,6 +256,7 @@ test('dataset manifest lists raw import datasets with traceable commands', () =>
   assert.ok(manifest.some((dataset) => dataset.dimensions.includes('commuteTolerance')));
   assert.ok(manifest.some((dataset) => dataset.dimensions.includes('jobMarket')));
   assert.ok(manifest.some((dataset) => dataset.dimensions.includes('youthInflow')));
+  assert.ok(manifest.some((dataset) => dataset.dimensions.includes('employmentInsight')));
 });
 
 test('collection backlog tracks next public data acquisition work', () => {
@@ -256,13 +285,15 @@ test('collection backlog tracks next public data acquisition work', () => {
 test('data coverage audit separates seeded dimensions from upcoming dimensions', () => {
   const audit = getDataCoverageAudit();
 
-  assert.equal(audit.seededDatasetCount, 5);
+  assert.equal(audit.seededDatasetCount, 6);
   assert.ok(audit.seededDimensions.includes('gender'));
   assert.ok(audit.seededDimensions.includes('salary'));
   assert.ok(audit.seededDimensions.includes('youthInflow'));
+  assert.ok(audit.seededDimensions.includes('employmentInsight'));
   assert.equal(audit.upcomingDimensions.includes('youthInflow'), false);
+  assert.equal(audit.upcomingDimensions.includes('employmentInsight'), false);
   assert.ok(audit.upcomingDimensions.includes('rentIncomeRatio'));
   assert.ok(audit.backlogByStatus.seeded >= 1);
   assert.ok(audit.backlogByStatus.researching >= 1);
-  assert.ok(audit.officialPriorityItems.some((item) => item.id === 'industry_salary_distribution'));
+  assert.ok(audit.officialPriorityItems.some((item) => item.id === 'smoking_drinking_by_gender'));
 });

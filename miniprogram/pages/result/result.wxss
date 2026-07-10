@@ -75,6 +75,34 @@
   line-height: 1.45;
 }
 
+.employment-card {
+  margin-top: 24rpx;
+  padding: 28rpx;
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.employment-title {
+  color: #1d4ed8;
+  font-size: 25rpx;
+  font-weight: 800;
+}
+
+.employment-main {
+  margin-top: 14rpx;
+  color: #0f172a;
+  font-size: 30rpx;
+  font-weight: 900;
+  line-height: 1.45;
+}
+
+.employment-copy {
+  margin-top: 12rpx;
+  color: #475569;
+  font-size: 23rpx;
+  line-height: 1.55;
+}
+
 .factor-list {
   padding: 0 28rpx;
 }

@@ -58,5 +58,17 @@
     "dimensions": ["region", "youthInflow"],
     "coverage": "10 个重点城市",
     "notes": "用于青年活跃城市、青年高度活跃、人才密度较高等城市级趋势估算；城市常住人口采用公开统计口径，活跃比例按行业报告和模型估算融合。"
+  },
+  {
+    "id": "industry_salary_benchmark_2024",
+    "title": "重点城市行业薪资分位基准表",
+    "rawPath": "data/raw/industry-salary-benchmark-2024.csv",
+    "sourceId": "industry_salary_benchmark",
+    "quality": "行业报告",
+    "year": 2024,
+    "importCommand": "npm run import:industry-salary-benchmark",
+    "dimensions": ["occupation", "salary", "employmentInsight"],
+    "coverage": "9 个重点城市 × 5 个职业大类",
+    "notes": "用于结果页展示行业薪资四分位和中位数，不直接作为概率筛选比例。"
   }
 ]

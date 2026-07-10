@@ -112,6 +112,16 @@
       "refreshCadence": "半年/年度",
       "candidateDimensions": ["cityPopulation", "youthInflow", "talentDensity"],
       "nextAction": "继续补重点城市统计公报、人才报告和青年流入研究，逐步把模型估算替换为更稳定的公开统计口径。"
+    },
+    {
+      "id": "industry_salary_benchmark",
+      "title": "重点城市行业薪资分位公开资料汇总",
+      "url": "https://www.mohrss.gov.cn/",
+      "quality": "行业报告",
+      "owner": "人社公开资料/招聘平台公开报告/城市薪酬研究汇总",
+      "refreshCadence": "半年/年度",
+      "candidateDimensions": ["averageWage", "salaryBand", "employmentInsight"],
+      "nextAction": "继续用人社部和统计年鉴工资资料校验招聘平台薪资分位，明确官方口径与行业报告口径差异。"
     }
   ],
   "metrics": [

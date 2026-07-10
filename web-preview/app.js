@@ -83,7 +83,34 @@ function calculateInBrowser(filters) {
     probabilityText: `${(probability * 100).toFixed(probability < 0.001 ? 4 : 2)}%`,
     rarestFactor,
     confidence,
-    comment
+    comment,
+    employmentInsight: getEmploymentInsight(region.code, filters)
+  };
+}
+
+function formatCny(value) {
+  return `${Math.round(value / 1000)}k`;
+}
+
+function getEmploymentInsight(regionCode, filters) {
+  if (!filters.occupation || !seed.benchmarks.industrySalary) {
+    return null;
+  }
+
+  const benchmark = seed.benchmarks.industrySalary;
+  const salary = benchmark.metrics[regionCode] && benchmark.metrics[regionCode][filters.occupation];
+  const occupation = seed.options.dimensions.occupation.find((item) => item.value === filters.occupation);
+  const source = seed.catalog.sources.find((item) => item.id === benchmark.sourceId);
+
+  if (!salary || !occupation || !source) {
+    return null;
+  }
+
+  return {
+    occupationLabel: occupation.label,
+    salaryText: `${formatCny(salary.p25)}-${formatCny(salary.p75)} / 月，中位数约 ${formatCny(salary.p50)} / 月`,
+    quality: source.quality,
+    note: source.note
   };
 }
 
@@ -159,6 +186,7 @@ function renderResult(result) {
   const meterDeg = Math.max(5, Math.min(360, result.probability * 3600));
   document.querySelector('.meter-ring').style.setProperty('--meter', `${meterDeg}deg`);
   document.querySelector('#meterValue').textContent = result.probabilityText;
+  renderEmploymentInsight(result.employmentInsight);
 
   const factors = document.querySelector('#factors');
   factors.replaceChildren();
@@ -183,6 +211,21 @@ function renderResult(result) {
     row.append(meta, bar);
     factors.appendChild(row);
   });
+}
+
+function renderEmploymentInsight(insight) {
+  const panel = document.querySelector('#employmentPanel');
+  const quality = document.querySelector('#employmentQuality');
+  const summary = document.querySelector('#employmentSummary');
+
+  if (!insight) {
+    panel.hidden = true;
+    return;
+  }
+
+  panel.hidden = false;
+  quality.textContent = insight.quality;
+  summary.textContent = `${insight.occupationLabel}：${insight.salaryText}。${insight.note}`;
 }
 
 function renderCatalog() {

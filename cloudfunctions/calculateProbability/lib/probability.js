@@ -6,6 +6,7 @@ const QUALITY_LEVELS = ASSET_CATALOG.qualityLevels;
 const SOURCES = ASSET_CATALOG.sources;
 const REGIONS = ASSET_CATALOG.regions;
 const DIMENSIONS = ASSET_CATALOG.dimensions;
+const BENCHMARKS = ASSET_CATALOG.benchmarks || {};
 
 const COMMENT_TEMPLATES = [
   {
@@ -117,6 +118,7 @@ function calculateProbability(filters = {}) {
     rarestFactor,
     confidence: calculateConfidence(factors),
     comment: pickComment(probability),
+    employmentInsight: getEmploymentInsight(region.code, filters),
     sourceNotes,
     flags
   };
@@ -219,6 +221,45 @@ function getCoverageSummary() {
 
 function getDatasetManifest() {
   return DATASET_MANIFEST.map((dataset) => ({ ...dataset }));
+}
+
+function getBenchmarkCatalog() {
+  return JSON.parse(JSON.stringify(BENCHMARKS));
+}
+
+function formatCny(value) {
+  return `${Math.round(value / 1000)}k`;
+}
+
+function getEmploymentInsight(regionCode, filters = {}) {
+  const occupationKey = filters.occupation;
+  const benchmark = BENCHMARKS.industrySalary;
+
+  if (!occupationKey || !benchmark || !benchmark.metrics) {
+    return null;
+  }
+
+  const regionMetrics = benchmark.metrics[regionCode];
+  const salary = regionMetrics && regionMetrics[occupationKey];
+  const occupation = DIMENSIONS.occupation && DIMENSIONS.occupation.options[occupationKey];
+  const source = SOURCES[benchmark.sourceId];
+
+  if (!salary || !occupation || !source) {
+    return null;
+  }
+
+  return {
+    region: getRegion(regionCode),
+    occupation: {
+      key: occupationKey,
+      label: occupation.label
+    },
+    monthlySalary: salary,
+    salaryText: `${formatCny(salary.p25)}-${formatCny(salary.p75)} / 月，中位数约 ${formatCny(salary.p50)} / 月`,
+    quality: source.quality,
+    sourceId: benchmark.sourceId,
+    note: source.note
+  };
 }
 
 function getCollectionBacklog() {
@@ -345,6 +386,8 @@ module.exports = {
   getCoverageSummary,
   getRegionComparison,
   getDatasetManifest,
+  getBenchmarkCatalog,
+  getEmploymentInsight,
   getCollectionBacklog,
   getDataCoverageAudit,
   validateSeedData,

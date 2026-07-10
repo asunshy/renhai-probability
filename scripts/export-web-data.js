@@ -8,6 +8,7 @@ const {
   getCoverageSummary,
   getRegionComparison,
   getDatasetManifest,
+  getBenchmarkCatalog,
   getCollectionBacklog,
   getDataCoverageAudit
 } = require('../cloudfunctions/calculateProbability/lib/probability');
@@ -54,6 +55,7 @@ const payload = {
   catalog: getDataCatalog(),
   coverage: getCoverageSummary(),
   datasets: getDatasetManifest(),
+  benchmarks: getBenchmarkCatalog(),
   backlog: getCollectionBacklog(),
   coverageAudit: getDataCoverageAudit(),
   comparison: getRegionComparison({
