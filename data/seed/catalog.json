@@ -114,6 +114,16 @@
       "refreshCadence": "每半年复核招聘平台报告、人社公开资料和城市薪酬研究",
       "url": "https://www.mohrss.gov.cn/",
       "note": "用于结果页就业行情解释；不直接作为人群概率筛选比例。"
+    },
+    "lifestyle_segment_reports": {
+      "id": "lifestyle_segment_reports",
+      "title": "健康生活方式公开调查分性别与年龄估算",
+      "year": 2024,
+      "quality": "行业报告",
+      "priority": 2,
+      "refreshCadence": "每年复核卫健委、疾控、控烟和健康生活方式公开报告",
+      "url": "https://www.chinacdc.cn/",
+      "note": "用于吸烟、饮酒在性别和年龄段上的条件修正；不是个体行为判断。"
     }
   },
   "regions": {
@@ -1007,8 +1017,8 @@
     },
     "smoking": {
       "label": "吸烟",
-      "sourceId": "lifestyle_reports",
-      "coverage": "national",
+      "sourceId": "lifestyle_segment_reports",
+      "coverage": "segment_partial",
       "options": {
         "no": {
           "label": "不吸烟",
@@ -1018,12 +1028,42 @@
           "label": "接受吸烟",
           "defaultRate": 1
         }
+      },
+      "segmentRates": {
+        "gender": {
+          "male": {
+            "no": 0.495,
+            "yes": 1
+          },
+          "female": {
+            "no": 0.979,
+            "yes": 1
+          }
+        },
+        "ageRange": {
+          "20-24": {
+            "no": 0.81,
+            "yes": 1
+          },
+          "25-29": {
+            "no": 0.76,
+            "yes": 1
+          },
+          "30-34": {
+            "no": 0.72,
+            "yes": 1
+          },
+          "35-39": {
+            "no": 0.69,
+            "yes": 1
+          }
+        }
       }
     },
     "drinking": {
       "label": "饮酒",
-      "sourceId": "lifestyle_reports",
-      "coverage": "regional_partial",
+      "sourceId": "lifestyle_segment_reports",
+      "coverage": "segment_partial",
       "options": {
         "light_or_no": {
           "label": "少喝或不喝",
@@ -1037,6 +1077,36 @@
       "regionRates": {
         "540000": {
           "light_or_no": 0.75
+        }
+      },
+      "segmentRates": {
+        "gender": {
+          "male": {
+            "light_or_no": 0.56,
+            "social_ok": 0.82
+          },
+          "female": {
+            "light_or_no": 0.8,
+            "social_ok": 0.94
+          }
+        },
+        "ageRange": {
+          "20-24": {
+            "light_or_no": 0.72,
+            "social_ok": 0.91
+          },
+          "25-29": {
+            "light_or_no": 0.68,
+            "social_ok": 0.89
+          },
+          "30-34": {
+            "light_or_no": 0.65,
+            "social_ok": 0.87
+          },
+          "35-39": {
+            "light_or_no": 0.62,
+            "social_ok": 0.85
+          }
         }
       }
     },

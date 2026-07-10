@@ -70,5 +70,17 @@
     "dimensions": ["occupation", "salary", "employmentInsight"],
     "coverage": "9 个重点城市 × 5 个职业大类",
     "notes": "用于结果页展示行业薪资四分位和中位数，不直接作为概率筛选比例。"
+  },
+  {
+    "id": "lifestyle_gender_age_2024",
+    "title": "吸烟饮酒性别与年龄段修正表",
+    "rawPath": "data/raw/lifestyle-gender-age-2024.csv",
+    "sourceId": "lifestyle_segment_reports",
+    "quality": "行业报告",
+    "year": 2024,
+    "importCommand": "npm run import:lifestyle-gender-age",
+    "dimensions": ["smoking", "drinking"],
+    "coverage": "性别与 20-39 岁年龄段",
+    "notes": "用于吸烟和饮酒筛选的性别/年龄条件修正；无对应细分条件时回退默认比例。"
   }
 ]

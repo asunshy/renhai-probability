@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-10T05:59:08.109Z",
+  "generatedAt": "2026-07-10T12:34:25.942Z",
   "options": {
     "region": {
       "code": "000000",
@@ -533,6 +533,16 @@
         "refreshCadence": "每半年复核招聘平台报告、人社公开资料和城市薪酬研究",
         "url": "https://www.mohrss.gov.cn/",
         "note": "用于结果页就业行情解释；不直接作为人群概率筛选比例。"
+      },
+      {
+        "id": "lifestyle_segment_reports",
+        "title": "健康生活方式公开调查分性别与年龄估算",
+        "year": 2024,
+        "quality": "行业报告",
+        "priority": 2,
+        "refreshCadence": "每年复核卫健委、疾控、控烟和健康生活方式公开报告",
+        "url": "https://www.chinacdc.cn/",
+        "note": "用于吸烟、饮酒在性别和年龄段上的条件修正；不是个体行为判断。"
       }
     ],
     "dimensions": [
@@ -553,7 +563,8 @@
             "label": "女",
             "defaultRate": 0.488
           }
-        ]
+        ],
+        "segmentRates": null
       },
       {
         "key": "ageRange",
@@ -582,7 +593,8 @@
             "label": "35-39 岁",
             "defaultRate": 0.078
           }
-        ]
+        ],
+        "segmentRates": null
       },
       {
         "key": "education",
@@ -611,7 +623,8 @@
             "label": "硕士及以上",
             "defaultRate": 0.018
           }
-        ]
+        ],
+        "segmentRates": null
       },
       {
         "key": "occupation",
@@ -645,7 +658,8 @@
             "label": "公共服务/机关事业",
             "defaultRate": 0.064
           }
-        ]
+        ],
+        "segmentRates": null
       },
       {
         "key": "salary",
@@ -674,14 +688,15 @@
             "label": "50k 以上",
             "defaultRate": 0.004
           }
-        ]
+        ],
+        "segmentRates": null
       },
       {
         "key": "smoking",
         "label": "吸烟",
-        "sourceId": "lifestyle_reports",
+        "sourceId": "lifestyle_segment_reports",
         "quality": "行业报告",
-        "coverage": "national",
+        "coverage": "segment_partial",
         "options": [
           {
             "value": "no",
@@ -693,14 +708,44 @@
             "label": "接受吸烟",
             "defaultRate": 1
           }
-        ]
+        ],
+        "segmentRates": {
+          "gender": {
+            "male": {
+              "no": 0.495,
+              "yes": 1
+            },
+            "female": {
+              "no": 0.979,
+              "yes": 1
+            }
+          },
+          "ageRange": {
+            "20-24": {
+              "no": 0.81,
+              "yes": 1
+            },
+            "25-29": {
+              "no": 0.76,
+              "yes": 1
+            },
+            "30-34": {
+              "no": 0.72,
+              "yes": 1
+            },
+            "35-39": {
+              "no": 0.69,
+              "yes": 1
+            }
+          }
+        }
       },
       {
         "key": "drinking",
         "label": "饮酒",
-        "sourceId": "lifestyle_reports",
+        "sourceId": "lifestyle_segment_reports",
         "quality": "行业报告",
-        "coverage": "regional_partial",
+        "coverage": "segment_partial",
         "options": [
           {
             "value": "light_or_no",
@@ -712,7 +757,37 @@
             "label": "社交饮酒可接受",
             "defaultRate": 0.88
           }
-        ]
+        ],
+        "segmentRates": {
+          "gender": {
+            "male": {
+              "light_or_no": 0.56,
+              "social_ok": 0.82
+            },
+            "female": {
+              "light_or_no": 0.8,
+              "social_ok": 0.94
+            }
+          },
+          "ageRange": {
+            "20-24": {
+              "light_or_no": 0.72,
+              "social_ok": 0.91
+            },
+            "25-29": {
+              "light_or_no": 0.68,
+              "social_ok": 0.89
+            },
+            "30-34": {
+              "light_or_no": 0.65,
+              "social_ok": 0.87
+            },
+            "35-39": {
+              "light_or_no": 0.62,
+              "social_ok": 0.85
+            }
+          }
+        }
       },
       {
         "key": "personality",
@@ -741,7 +816,8 @@
             "label": "温和共情型",
             "defaultRate": 0.27
           }
-        ]
+        ],
+        "segmentRates": null
       },
       {
         "key": "height",
@@ -775,7 +851,8 @@
             "label": "185 cm 以上",
             "defaultRate": 0.045
           }
-        ]
+        ],
+        "segmentRates": null
       },
       {
         "key": "exercise",
@@ -799,7 +876,8 @@
             "label": "高频运动",
             "defaultRate": 0.16
           }
-        ]
+        ],
+        "segmentRates": null
       },
       {
         "key": "homeOwnership",
@@ -823,7 +901,8 @@
             "label": "无明显居住压力",
             "defaultRate": 0.52
           }
-        ]
+        ],
+        "segmentRates": null
       },
       {
         "key": "commuteTolerance",
@@ -847,7 +926,8 @@
             "label": "一小时内可见面",
             "defaultRate": 0.54
           }
-        ]
+        ],
+        "segmentRates": null
       },
       {
         "key": "jobMarket",
@@ -871,7 +951,8 @@
             "label": "竞争压力适中",
             "defaultRate": 0.45
           }
-        ]
+        ],
+        "segmentRates": null
       },
       {
         "key": "youthInflow",
@@ -895,12 +976,13 @@
             "label": "人才密度较高",
             "defaultRate": 0.36
           }
-        ]
+        ],
+        "segmentRates": null
       }
     ]
   },
   "coverage": {
-    "totalSources": 11,
+    "totalSources": 12,
     "totalDimensions": 14,
     "qualityCounts": {
       "官方统计": 4,
@@ -923,13 +1005,13 @@
       {
         "key": "smoking",
         "label": "吸烟",
-        "coverage": "national",
+        "coverage": "segment_partial",
         "quality": "行业报告"
       },
       {
         "key": "drinking",
         "label": "饮酒",
-        "coverage": "regional_partial",
+        "coverage": "segment_partial",
         "quality": "行业报告"
       },
       {
@@ -1040,6 +1122,13 @@
         "refreshCadence": "每半年复核招聘平台报告、人社公开资料和城市薪酬研究"
       },
       {
+        "id": "lifestyle_segment_reports",
+        "title": "健康生活方式公开调查分性别与年龄估算",
+        "quality": "行业报告",
+        "priority": 2,
+        "refreshCadence": "每年复核卫健委、疾控、控烟和健康生活方式公开报告"
+      },
+      {
         "id": "personality_model",
         "title": "性格标签趣味估算模型",
         "quality": "模型估算",
@@ -1147,6 +1236,21 @@
       ],
       "coverage": "9 个重点城市 × 5 个职业大类",
       "notes": "用于结果页展示行业薪资四分位和中位数，不直接作为概率筛选比例。"
+    },
+    {
+      "id": "lifestyle_gender_age_2024",
+      "title": "吸烟饮酒性别与年龄段修正表",
+      "rawPath": "data/raw/lifestyle-gender-age-2024.csv",
+      "sourceId": "lifestyle_segment_reports",
+      "quality": "行业报告",
+      "year": 2024,
+      "importCommand": "npm run import:lifestyle-gender-age",
+      "dimensions": [
+        "smoking",
+        "drinking"
+      ],
+      "coverage": "性别与 20-39 岁年龄段",
+      "notes": "用于吸烟和饮酒筛选的性别/年龄条件修正；无对应细分条件时回退默认比例。"
     }
   ],
   "benchmarks": {
@@ -1457,12 +1561,13 @@
       {
         "id": "smoking_drinking_by_gender",
         "title": "吸烟饮酒按性别与年龄细分",
-        "status": "researching",
+        "status": "seeded",
         "priority": 2,
-        "qualityTarget": "官方统计",
+        "qualityTarget": "行业报告",
         "sourceCandidates": [
           "china_cdc",
-          "nhc_public"
+          "nhc_public",
+          "lifestyle_segment_reports"
         ],
         "dimensions": [
           "smoking",
@@ -1471,7 +1576,7 @@
         ],
         "targetShape": "genderAgeRates",
         "whyItMatters": "生活习惯是用户常选条件，按性别年龄细分后可信度会明显高于全国默认比例。",
-        "nextAction": "查找中国成人烟草调查、慢病与健康行为监测、卫健委健康生活方式专题报告。"
+        "nextAction": "已接入性别和 20-39 岁年龄段修正；下一步继续补地区交叉与更稳定官方报告口径。"
       },
       {
         "id": "housing_rent_pressure",
@@ -1534,10 +1639,11 @@
   },
   "coverageAudit": {
     "updatedAt": "2026-07-07",
-    "seededDatasetCount": 6,
+    "seededDatasetCount": 7,
     "seededDimensions": [
       "ageRange",
       "commuteTolerance",
+      "drinking",
       "education",
       "employmentInsight",
       "gender",
@@ -1546,39 +1652,25 @@
       "occupation",
       "region",
       "salary",
+      "smoking",
       "youthInflow"
     ],
     "backlogCount": 6,
     "backlogByStatus": {
-      "seeded": 2,
+      "seeded": 3,
       "ready_to_import": 0,
-      "researching": 3,
+      "researching": 2,
       "blocked_by_source": 1
     },
     "upcomingDimensions": [
       "cityPopulation",
       "averageWage",
-      "smoking",
-      "drinking",
       "healthLifestyle",
       "rentIncomeRatio",
       "overtimeIntensity",
       "remoteWork"
     ],
-    "officialPriorityItems": [
-      {
-        "id": "smoking_drinking_by_gender",
-        "title": "吸烟饮酒按性别与年龄细分",
-        "priority": 2,
-        "status": "researching",
-        "dimensions": [
-          "smoking",
-          "drinking",
-          "healthLifestyle"
-        ],
-        "nextAction": "查找中国成人烟草调查、慢病与健康行为监测、卫健委健康生活方式专题报告。"
-      }
-    ]
+    "officialPriorityItems": []
   },
   "comparison": [
     {
@@ -1603,6 +1695,7 @@
         "quality": "官方统计",
         "sourceId": "population_census",
         "coverage": "regional",
+        "segment": null,
         "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
       }
     },
@@ -1628,6 +1721,7 @@
         "quality": "官方统计",
         "sourceId": "population_census",
         "coverage": "regional",
+        "segment": null,
         "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
       }
     },
@@ -1653,6 +1747,7 @@
         "quality": "官方统计",
         "sourceId": "population_census",
         "coverage": "regional",
+        "segment": null,
         "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
       }
     },
@@ -1678,6 +1773,7 @@
         "quality": "官方统计",
         "sourceId": "population_census",
         "coverage": "regional",
+        "segment": null,
         "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
       }
     },
@@ -1703,6 +1799,7 @@
         "quality": "官方统计",
         "sourceId": "population_census",
         "coverage": "regional",
+        "segment": null,
         "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
       }
     },
@@ -1728,6 +1825,7 @@
         "quality": "官方统计",
         "sourceId": "population_census",
         "coverage": "regional",
+        "segment": null,
         "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
       }
     },
@@ -1753,6 +1851,7 @@
         "quality": "官方统计",
         "sourceId": "population_census",
         "coverage": "regional",
+        "segment": null,
         "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
       }
     },
@@ -1778,6 +1877,7 @@
         "quality": "官方统计",
         "sourceId": "population_census",
         "coverage": "regional",
+        "segment": null,
         "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
       }
     },
@@ -1803,6 +1903,7 @@
         "quality": "官方统计",
         "sourceId": "population_census",
         "coverage": "regional",
+        "segment": null,
         "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
       }
     },
@@ -1828,6 +1929,7 @@
         "quality": "官方统计",
         "sourceId": "population_census",
         "coverage": "regional",
+        "segment": null,
         "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
       }
     }
@@ -1863,9 +1965,9 @@
           "drinking": "light_or_no"
         },
         "basePopulation": 24870895,
-        "estimatedPeople": 3371,
-        "probability": 0.00013555,
-        "probabilityText": "0.0136%",
+        "estimatedPeople": 1870,
+        "probability": 0.00007518,
+        "probabilityText": "0.0075%",
         "factors": [
           {
             "key": "gender",
@@ -1876,6 +1978,7 @@
             "quality": "官方统计",
             "sourceId": "population_census",
             "coverage": "regional",
+            "segment": null,
             "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
           },
           {
@@ -1887,6 +1990,7 @@
             "quality": "官方统计",
             "sourceId": "population_census",
             "coverage": "regional",
+            "segment": null,
             "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
           },
           {
@@ -1898,6 +2002,7 @@
             "quality": "官方统计",
             "sourceId": "population_census",
             "coverage": "regional",
+            "segment": null,
             "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
           },
           {
@@ -1909,6 +2014,7 @@
             "quality": "官方统计",
             "sourceId": "stats_yearbook",
             "coverage": "regional_partial",
+            "segment": null,
             "note": "用于就业、行业、工资等宏观统计口径。"
           },
           {
@@ -1920,6 +2026,7 @@
             "quality": "行业报告",
             "sourceId": "recruitment_reports",
             "coverage": "regional_partial",
+            "segment": null,
             "note": "用于补充分城市、分职业薪资区间，非逐人精确统计。"
           },
           {
@@ -1927,22 +2034,30 @@
             "label": "吸烟",
             "value": "no",
             "valueLabel": "不吸烟",
-            "rate": 0.735,
+            "rate": 0.495,
             "quality": "行业报告",
-            "sourceId": "lifestyle_reports",
-            "coverage": "national",
-            "note": "用于吸烟、饮酒等生活方式估算。"
+            "sourceId": "lifestyle_segment_reports",
+            "coverage": "segment_partial",
+            "segment": {
+              "type": "gender",
+              "value": "male"
+            },
+            "note": "用于吸烟、饮酒在性别和年龄段上的条件修正；不是个体行为判断。"
           },
           {
             "key": "drinking",
             "label": "饮酒",
             "value": "light_or_no",
             "valueLabel": "少喝或不喝",
-            "rate": 0.68,
+            "rate": 0.56,
             "quality": "行业报告",
-            "sourceId": "lifestyle_reports",
-            "coverage": "regional_partial",
-            "note": "用于吸烟、饮酒等生活方式估算。"
+            "sourceId": "lifestyle_segment_reports",
+            "coverage": "segment_partial",
+            "segment": {
+              "type": "gender",
+              "value": "male"
+            },
+            "note": "用于吸烟、饮酒在性别和年龄段上的条件修正；不是个体行为判断。"
           }
         ],
         "rarestFactor": {
@@ -1954,6 +2069,7 @@
           "quality": "官方统计",
           "sourceId": "population_census",
           "coverage": "regional",
+          "segment": null,
           "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
         },
         "confidence": {
@@ -2018,14 +2134,14 @@
             "note": "用于就业、行业、工资等宏观统计口径。"
           },
           {
-            "id": "lifestyle_reports",
-            "title": "公开健康与生活方式调查报告汇总",
+            "id": "lifestyle_segment_reports",
+            "title": "健康生活方式公开调查分性别与年龄估算",
             "year": 2024,
             "quality": "行业报告",
             "priority": 2,
-            "refreshCadence": "每年复核卫健委、疾控和公开研究报告",
-            "url": "https://www.nhc.gov.cn/",
-            "note": "用于吸烟、饮酒等生活方式估算。"
+            "refreshCadence": "每年复核卫健委、疾控、控烟和健康生活方式公开报告",
+            "url": "https://www.chinacdc.cn/",
+            "note": "用于吸烟、饮酒在性别和年龄段上的条件修正；不是个体行为判断。"
           }
         ],
         "flags": [
@@ -2077,6 +2193,7 @@
             "quality": "官方统计",
             "sourceId": "population_census",
             "coverage": "regional",
+            "segment": null,
             "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
           },
           {
@@ -2088,6 +2205,7 @@
             "quality": "官方统计",
             "sourceId": "population_census",
             "coverage": "regional",
+            "segment": null,
             "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
           },
           {
@@ -2099,6 +2217,7 @@
             "quality": "官方统计",
             "sourceId": "population_census",
             "coverage": "regional",
+            "segment": null,
             "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
           },
           {
@@ -2110,6 +2229,7 @@
             "quality": "模型估算",
             "sourceId": "body_lifestyle_model",
             "coverage": "model_only",
+            "segment": null,
             "note": "用于身高、运动频率等缺少地区交叉公开数据的维度。"
           },
           {
@@ -2121,6 +2241,7 @@
             "quality": "模型估算",
             "sourceId": "body_lifestyle_model",
             "coverage": "model_only",
+            "segment": null,
             "note": "用于身高、运动频率等缺少地区交叉公开数据的维度。"
           },
           {
@@ -2132,6 +2253,7 @@
             "quality": "行业报告",
             "sourceId": "housing_reports",
             "coverage": "regional_partial",
+            "segment": null,
             "note": "用于住房、通勤容忍度等城市生活成本相关估算。"
           },
           {
@@ -2143,6 +2265,7 @@
             "quality": "行业报告",
             "sourceId": "housing_reports",
             "coverage": "regional_partial",
+            "segment": null,
             "note": "用于住房、通勤容忍度等城市生活成本相关估算。"
           }
         ],
@@ -2155,6 +2278,7 @@
           "quality": "官方统计",
           "sourceId": "population_census",
           "coverage": "regional",
+          "segment": null,
           "note": "用于地区常住人口、性别、年龄、受教育程度等基础口径。"
         },
         "confidence": {

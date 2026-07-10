@@ -30,14 +30,14 @@
     {
       "id": "smoking_drinking_by_gender",
       "title": "吸烟饮酒按性别与年龄细分",
-      "status": "researching",
+      "status": "seeded",
       "priority": 2,
-      "qualityTarget": "官方统计",
-      "sourceCandidates": ["china_cdc", "nhc_public"],
+      "qualityTarget": "行业报告",
+      "sourceCandidates": ["china_cdc", "nhc_public", "lifestyle_segment_reports"],
       "dimensions": ["smoking", "drinking", "healthLifestyle"],
       "targetShape": "genderAgeRates",
       "whyItMatters": "生活习惯是用户常选条件，按性别年龄细分后可信度会明显高于全国默认比例。",
-      "nextAction": "查找中国成人烟草调查、慢病与健康行为监测、卫健委健康生活方式专题报告。"
+      "nextAction": "已接入性别和 20-39 岁年龄段修正；下一步继续补地区交叉与更稳定官方报告口径。"
     },
     {
       "id": "housing_rent_pressure",

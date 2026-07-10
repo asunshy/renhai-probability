@@ -1,0 +1,7 @@
+segment_type,segment_key,smoking_no_rate,drinking_light_or_no_rate,drinking_social_ok_rate
+gender,male,0.495,0.560,0.820
+gender,female,0.979,0.800,0.940
+ageRange,20-24,0.810,0.720,0.910
+ageRange,25-29,0.760,0.680,0.890
+ageRange,30-34,0.720,0.650,0.870
+ageRange,35-39,0.690,0.620,0.850

@@ -37,10 +37,34 @@ function formatPeople(value) {
   return String(value);
 }
 
-function getRate(regionCode, key, value) {
+function getSegmentRate(dimension, value, filters) {
+  if (!dimension.segmentRates) {
+    return null;
+  }
+
+  const segmentPriority = [
+    ['gender', filters.gender],
+    ['ageRange', filters.ageRange]
+  ];
+
+  for (const [segmentType, segmentKey] of segmentPriority) {
+    const rate = segmentKey
+      && dimension.segmentRates[segmentType]
+      && dimension.segmentRates[segmentType][segmentKey]
+      && dimension.segmentRates[segmentType][segmentKey][value];
+    if (typeof rate === 'number') {
+      return { rate, segmentType, segmentKey };
+    }
+  }
+
+  return null;
+}
+
+function getRate(regionCode, key, value, filters) {
   const dimension = seed.catalog.dimensions.find((item) => item.key === key);
   const source = seed.catalog.sources.find((item) => item.id === dimension.sourceId);
   const option = dimension.options.find((item) => item.value === value);
+  const segmentRate = getSegmentRate(dimension, value, filters);
 
   if (!option) {
     return null;
@@ -50,16 +74,20 @@ function getRate(regionCode, key, value) {
     key,
     label: dimension.label,
     valueLabel: option.label,
-    rate: option.defaultRate,
+    rate: segmentRate ? segmentRate.rate : option.defaultRate,
     quality: source.quality,
-    sourceId: source.id
+    sourceId: source.id,
+    segment: segmentRate ? {
+      type: segmentRate.segmentType,
+      value: segmentRate.segmentKey
+    } : null
   };
 }
 
 function calculateInBrowser(filters) {
   const region = seed.options.regions.find((item) => item.code === filters.regionCode) || seed.options.regions[0];
   const factors = Object.keys(labels)
-    .map((key) => filters[key] ? getRate(region.code, key, filters[key]) : null)
+    .map((key) => filters[key] ? getRate(region.code, key, filters[key], filters) : null)
     .filter(Boolean);
   const probability = factors.reduce((value, factor) => value * factor.rate, 1);
   const estimatedPeople = Math.round(region.basePopulation * probability);

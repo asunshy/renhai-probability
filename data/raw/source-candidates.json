@@ -122,6 +122,16 @@
       "refreshCadence": "半年/年度",
       "candidateDimensions": ["averageWage", "salaryBand", "employmentInsight"],
       "nextAction": "继续用人社部和统计年鉴工资资料校验招聘平台薪资分位，明确官方口径与行业报告口径差异。"
+    },
+    {
+      "id": "lifestyle_segment_reports",
+      "title": "健康生活方式公开调查分性别与年龄估算",
+      "url": "https://www.chinacdc.cn/",
+      "quality": "行业报告",
+      "owner": "疾控/卫健委/控烟和健康生活方式公开报告汇总",
+      "refreshCadence": "年度/专题",
+      "candidateDimensions": ["smoking", "drinking", "healthLifestyle"],
+      "nextAction": "继续查找可公开引用的分性别、年龄和地区交叉数据；缺口保持行业报告或模型估算等级。"
     }
   ],
   "metrics": [

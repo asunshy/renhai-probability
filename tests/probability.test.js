@@ -182,6 +182,38 @@ test('employment insight explains selected occupation without changing probabili
   assert.equal(result.factors.some((factor) => factor.key === 'employmentInsight'), false);
 });
 
+test('lifestyle segment rates adjust smoking and drinking by selected gender and age', () => {
+  const maleResult = calculateProbability({
+    regionCode: '310000',
+    gender: 'male',
+    smoking: 'no',
+    drinking: 'light_or_no'
+  });
+  const femaleResult = calculateProbability({
+    regionCode: '310000',
+    gender: 'female',
+    smoking: 'no',
+    drinking: 'light_or_no'
+  });
+  const ageResult = calculateProbability({
+    regionCode: '310000',
+    ageRange: '35-39',
+    smoking: 'no',
+    drinking: 'light_or_no'
+  });
+
+  const maleSmoking = maleResult.factors.find((factor) => factor.key === 'smoking');
+  const femaleSmoking = femaleResult.factors.find((factor) => factor.key === 'smoking');
+  const ageDrinking = ageResult.factors.find((factor) => factor.key === 'drinking');
+
+  assert.equal(maleSmoking.rate, 0.495);
+  assert.equal(maleSmoking.segment.type, 'gender');
+  assert.equal(femaleSmoking.rate, 0.979);
+  assert.equal(ageDrinking.rate, 0.62);
+  assert.equal(ageDrinking.segment.type, 'ageRange');
+  assert.equal(maleResult.sourceNotes.some((source) => source.id === 'lifestyle_segment_reports'), true);
+});
+
 test('benchmark catalog exposes industry salary data for preview surfaces', () => {
   const benchmarks = getBenchmarkCatalog();
   const insight = getEmploymentInsight('310000', { occupation: 'finance' });
@@ -248,7 +280,7 @@ test('region comparison ranks regions for the same filters', () => {
 test('dataset manifest lists raw import datasets with traceable commands', () => {
   const manifest = getDatasetManifest();
 
-  assert.equal(manifest.length, 6);
+  assert.equal(manifest.length, 7);
   assert.equal(manifest[0].id, 'province_demographics_2020');
   assert.ok(manifest.every((dataset) => dataset.rawPath.startsWith('data/raw/')));
   assert.ok(manifest.every((dataset) => dataset.importCommand.startsWith('npm run import:')));
@@ -257,6 +289,7 @@ test('dataset manifest lists raw import datasets with traceable commands', () =>
   assert.ok(manifest.some((dataset) => dataset.dimensions.includes('jobMarket')));
   assert.ok(manifest.some((dataset) => dataset.dimensions.includes('youthInflow')));
   assert.ok(manifest.some((dataset) => dataset.dimensions.includes('employmentInsight')));
+  assert.ok(manifest.some((dataset) => dataset.id === 'lifestyle_gender_age_2024'));
 });
 
 test('collection backlog tracks next public data acquisition work', () => {
@@ -285,15 +318,18 @@ test('collection backlog tracks next public data acquisition work', () => {
 test('data coverage audit separates seeded dimensions from upcoming dimensions', () => {
   const audit = getDataCoverageAudit();
 
-  assert.equal(audit.seededDatasetCount, 6);
+  assert.equal(audit.seededDatasetCount, 7);
   assert.ok(audit.seededDimensions.includes('gender'));
   assert.ok(audit.seededDimensions.includes('salary'));
   assert.ok(audit.seededDimensions.includes('youthInflow'));
   assert.ok(audit.seededDimensions.includes('employmentInsight'));
+  assert.ok(audit.seededDimensions.includes('smoking'));
+  assert.ok(audit.seededDimensions.includes('drinking'));
   assert.equal(audit.upcomingDimensions.includes('youthInflow'), false);
   assert.equal(audit.upcomingDimensions.includes('employmentInsight'), false);
+  assert.equal(audit.upcomingDimensions.includes('smoking'), false);
+  assert.equal(audit.upcomingDimensions.includes('drinking'), false);
   assert.ok(audit.upcomingDimensions.includes('rentIncomeRatio'));
   assert.ok(audit.backlogByStatus.seeded >= 1);
   assert.ok(audit.backlogByStatus.researching >= 1);
-  assert.ok(audit.officialPriorityItems.some((item) => item.id === 'smoking_drinking_by_gender'));
 });

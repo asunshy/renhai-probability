@@ -33,7 +33,34 @@ function getRegion(regionCode) {
   return REGIONS[regionCode] || REGIONS['000000'];
 }
 
-function getRate(regionCode, key, value) {
+function getSegmentRate(dimension, value, filters = {}) {
+  if (!dimension.segmentRates) {
+    return null;
+  }
+
+  const segmentPriority = [
+    ['gender', filters.gender],
+    ['ageRange', filters.ageRange]
+  ];
+
+  for (const [segmentType, segmentKey] of segmentPriority) {
+    const rate = segmentKey
+      && dimension.segmentRates[segmentType]
+      && dimension.segmentRates[segmentType][segmentKey]
+      && dimension.segmentRates[segmentType][segmentKey][value];
+    if (typeof rate === 'number') {
+      return {
+        rate,
+        segmentType,
+        segmentKey
+      };
+    }
+  }
+
+  return null;
+}
+
+function getRate(regionCode, key, value, filters = {}) {
   const dimension = DIMENSIONS[key];
   if (!dimension || value === undefined || value === null || value === '') {
     return null;
@@ -54,6 +81,7 @@ function getRate(regionCode, key, value) {
   }
 
   const regionRate = dimension.regionRates && dimension.regionRates[regionCode] && dimension.regionRates[regionCode][value];
+  const segmentRate = getSegmentRate(dimension, value, filters);
   const source = SOURCES[dimension.sourceId];
 
   return {
@@ -61,10 +89,14 @@ function getRate(regionCode, key, value) {
     label: dimension.label,
     value,
     valueLabel: option.label,
-    rate: regionRate || option.defaultRate,
+    rate: segmentRate ? segmentRate.rate : (regionRate || option.defaultRate),
     quality: source.quality,
     sourceId: dimension.sourceId,
     coverage: dimension.coverage,
+    segment: segmentRate ? {
+      type: segmentRate.segmentType,
+      value: segmentRate.segmentKey
+    } : null,
     note: source.note
   };
 }
@@ -86,7 +118,7 @@ function pickComment(probability) {
 function calculateProbability(filters = {}) {
   const region = getRegion(filters.regionCode);
   const factors = Object.keys(DIMENSIONS)
-    .map((key) => getRate(region.code, key, filters[key]))
+    .map((key) => getRate(region.code, key, filters[key], filters))
     .filter(Boolean);
 
   const combinedRate = factors.reduce((value, factor) => value * factor.rate, 1);
@@ -173,7 +205,8 @@ function getDataCatalog() {
         value,
         label: option.label,
         defaultRate: option.defaultRate
-      }))
+      })),
+      segmentRates: dimension.segmentRates || null
     }))
   };
 }
