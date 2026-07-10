@@ -154,6 +154,7 @@ function calculateProbability(filters = {}) {
     employmentInsight: getEmploymentInsight(region.code, filters),
     livingCostInsight: getLivingCostInsight(region.code, filters),
     marriageTrendInsight: getMarriageTrendInsight(),
+    youthEmploymentPressureInsight: getYouthEmploymentPressureInsight(filters),
     sourceNotes,
     flags
   };
@@ -361,6 +362,62 @@ function getMarriageTrendInsight() {
   };
 }
 
+function getYouthEmploymentPressureInsight(filters = {}) {
+  const benchmark = BENCHMARKS.youthUnemploymentTrend;
+  if (!benchmark || !Array.isArray(benchmark.metrics) || benchmark.metrics.length === 0) {
+    return null;
+  }
+
+  const source = SOURCES[benchmark.sourceId];
+  if (!source) {
+    return null;
+  }
+
+  const group = getUnemploymentGroup(filters.ageRange);
+  const metrics = benchmark.metrics
+    .slice()
+    .sort((a, b) => a.month.localeCompare(b.month))
+    .map((item) => ({
+      ...item,
+      selectedRate: item[group.key]
+    }));
+  const latest = metrics[metrics.length - 1];
+  const peak = metrics.slice().sort((a, b) => b.selectedRate - a.selectedRate)[0];
+  const averageRate = Number(
+    (metrics.reduce((sum, item) => sum + item.selectedRate, 0) / metrics.length).toFixed(4)
+  );
+
+  return {
+    selectedGroup: group,
+    latest,
+    peak,
+    averageRate,
+    summaryText: `${group.label} 2024 年末城镇调查失业率约 ${(latest.selectedRate * 100).toFixed(1)}%，全年高点为 ${peak.month} 的 ${(peak.selectedRate * 100).toFixed(1)}%。这项只解释就业环境，不代表具体个人状态。`,
+    quality: source.quality,
+    sourceId: benchmark.sourceId,
+    note: source.note
+  };
+}
+
+function getUnemploymentGroup(ageRange) {
+  if (ageRange === '25-29') {
+    return {
+      key: 'age25_29ExcludingStudents',
+      label: '25-29 岁'
+    };
+  }
+  if (ageRange === '30-34' || ageRange === '35-39') {
+    return {
+      key: 'age30_59',
+      label: '30-59 岁'
+    };
+  }
+  return {
+    key: 'age16_24ExcludingStudents',
+    label: '16-24 岁'
+  };
+}
+
 function getCollectionBacklog() {
   return {
     ...COLLECTION_BACKLOG,
@@ -539,6 +596,7 @@ module.exports = {
   getEmploymentInsight,
   getLivingCostInsight,
   getMarriageTrendInsight,
+  getYouthEmploymentPressureInsight,
   getCollectionBacklog,
   getDataCoverageAudit,
   getDataQualityDashboard,

@@ -121,5 +121,21 @@
     ],
     "coverage": "2013-2024 年全国年度汇总",
     "notes": "用于结果页解释结婚登记趋势和长期关系背景，不直接作为概率筛选比例。"
+  },
+  {
+    "id": "youth_unemployment_by_age_2024",
+    "title": "全国分年龄组城镇调查失业率月度表",
+    "rawPath": "data/raw/youth-unemployment-by-age-2024.csv",
+    "sourceId": "nbs_age_unemployment",
+    "quality": "官方统计",
+    "year": 2024,
+    "importCommand": "npm run import:youth-unemployment",
+    "dimensions": [
+      "youthEmploymentPressure",
+      "jobMarket",
+      "ageRange"
+    ],
+    "coverage": "2024 年全国月度汇总，16-24 岁和 25-29 岁不包含在校生口径",
+    "notes": "用于结果页解释青年就业压力和年龄段就业背景，不直接作为概率筛选比例。"
   }
 ]

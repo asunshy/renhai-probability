@@ -243,12 +243,25 @@ blockquote {
   background: #eff6ff;
 }
 
-.employment-panel p {
+.youth-employment-panel {
+  margin-top: 20px;
+  padding: 22px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: #fff1f2;
+}
+
+.employment-panel p,
+.youth-employment-panel p {
   margin: 14px 0 0;
   color: #1e3a8a;
   font-size: 15px;
   line-height: 1.65;
   font-weight: 750;
+}
+
+.youth-employment-panel p {
+  color: #9f1239;
 }
 
 .living-panel {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-10T15:25:37.749Z",
+  "generatedAt": "2026-07-10T15:39:44.844Z",
   "options": {
     "region": {
       "code": "000000",
@@ -587,6 +587,16 @@
         "refreshCadence": "年度复核民政部统计公报和中国统计年鉴婚姻登记表",
         "url": "https://www.mca.gov.cn/",
         "note": "用于解释结婚登记趋势和长期关系背景；只使用公开年度汇总数据，不涉及个人婚恋状态。"
+      },
+      {
+        "id": "nbs_age_unemployment",
+        "title": "国家统计局分年龄组城镇调查失业率",
+        "year": 2024,
+        "quality": "官方统计",
+        "priority": 1,
+        "refreshCadence": "按月复核国家统计局和国家数据公开指标",
+        "url": "https://data.stats.gov.cn/",
+        "note": "用于解释年轻人就业压力；16-24 岁和 25-29 岁指标均为不包含在校生口径，不作为个人就业状态判断。"
       }
     ],
     "dimensions": [
@@ -1079,7 +1089,7 @@
     ]
   },
   "coverage": {
-    "totalSources": 15,
+    "totalSources": 16,
     "totalDimensions": 15,
     "qualityCounts": {
       "官方统计": 4,
@@ -1195,6 +1205,13 @@
         "quality": "官方统计",
         "priority": 1,
         "refreshCadence": "年度复核民政部统计公报和中国统计年鉴婚姻登记表"
+      },
+      {
+        "id": "nbs_age_unemployment",
+        "title": "国家统计局分年龄组城镇调查失业率",
+        "quality": "官方统计",
+        "priority": 1,
+        "refreshCadence": "按月复核国家统计局和国家数据公开指标"
       },
       {
         "id": "recruitment_reports",
@@ -1420,6 +1437,22 @@
       ],
       "coverage": "2013-2024 年全国年度汇总",
       "notes": "用于结果页解释结婚登记趋势和长期关系背景，不直接作为概率筛选比例。"
+    },
+    {
+      "id": "youth_unemployment_by_age_2024",
+      "title": "全国分年龄组城镇调查失业率月度表",
+      "rawPath": "data/raw/youth-unemployment-by-age-2024.csv",
+      "sourceId": "nbs_age_unemployment",
+      "quality": "官方统计",
+      "year": 2024,
+      "importCommand": "npm run import:youth-unemployment",
+      "dimensions": [
+        "youthEmploymentPressure",
+        "jobMarket",
+        "ageRange"
+      ],
+      "coverage": "2024 年全国月度汇总，16-24 岁和 25-29 岁不包含在校生口径",
+      "notes": "用于结果页解释青年就业压力和年龄段就业背景，不直接作为概率筛选比例。"
     }
   ],
   "benchmarks": {
@@ -1824,6 +1857,121 @@
           "sourceNote": "2024 civil affairs statistical bulletin"
         }
       ]
+    },
+    "youthUnemploymentTrend": {
+      "sourceId": "nbs_age_unemployment",
+      "unit": "rate",
+      "coverage": "national_monthly",
+      "metrics": [
+        {
+          "month": "2024-01",
+          "urbanSurveyedUnemployment": 0.052,
+          "age16_24ExcludingStudents": 0.146,
+          "age25_29ExcludingStudents": 0.062,
+          "age30_59": 0.041,
+          "weeklyWorkingHours": 49,
+          "sourceNote": "National Bureau of Statistics monthly labour force survey"
+        },
+        {
+          "month": "2024-02",
+          "urbanSurveyedUnemployment": 0.053,
+          "age16_24ExcludingStudents": 0.153,
+          "age25_29ExcludingStudents": 0.064,
+          "age30_59": 0.042,
+          "weeklyWorkingHours": 48,
+          "sourceNote": "National Bureau of Statistics monthly labour force survey"
+        },
+        {
+          "month": "2024-03",
+          "urbanSurveyedUnemployment": 0.052,
+          "age16_24ExcludingStudents": 0.153,
+          "age25_29ExcludingStudents": 0.072,
+          "age30_59": 0.041,
+          "weeklyWorkingHours": 48.6,
+          "sourceNote": "National Bureau of Statistics monthly labour force survey"
+        },
+        {
+          "month": "2024-04",
+          "urbanSurveyedUnemployment": 0.05,
+          "age16_24ExcludingStudents": 0.147,
+          "age25_29ExcludingStudents": 0.071,
+          "age30_59": 0.04,
+          "weeklyWorkingHours": 48.5,
+          "sourceNote": "National Bureau of Statistics monthly labour force survey"
+        },
+        {
+          "month": "2024-05",
+          "urbanSurveyedUnemployment": 0.05,
+          "age16_24ExcludingStudents": 0.142,
+          "age25_29ExcludingStudents": 0.066,
+          "age30_59": 0.04,
+          "weeklyWorkingHours": 48.7,
+          "sourceNote": "National Bureau of Statistics monthly labour force survey"
+        },
+        {
+          "month": "2024-06",
+          "urbanSurveyedUnemployment": 0.05,
+          "age16_24ExcludingStudents": 0.132,
+          "age25_29ExcludingStudents": 0.064,
+          "age30_59": 0.04,
+          "weeklyWorkingHours": 48.6,
+          "sourceNote": "National Bureau of Statistics monthly labour force survey"
+        },
+        {
+          "month": "2024-07",
+          "urbanSurveyedUnemployment": 0.052,
+          "age16_24ExcludingStudents": 0.171,
+          "age25_29ExcludingStudents": 0.065,
+          "age30_59": 0.039,
+          "weeklyWorkingHours": 48.7,
+          "sourceNote": "National Bureau of Statistics monthly labour force survey"
+        },
+        {
+          "month": "2024-08",
+          "urbanSurveyedUnemployment": 0.053,
+          "age16_24ExcludingStudents": 0.188,
+          "age25_29ExcludingStudents": 0.069,
+          "age30_59": 0.039,
+          "weeklyWorkingHours": 48.7,
+          "sourceNote": "National Bureau of Statistics monthly labour force survey"
+        },
+        {
+          "month": "2024-09",
+          "urbanSurveyedUnemployment": 0.051,
+          "age16_24ExcludingStudents": 0.176,
+          "age25_29ExcludingStudents": 0.067,
+          "age30_59": 0.039,
+          "weeklyWorkingHours": 48.8,
+          "sourceNote": "National Bureau of Statistics monthly labour force survey"
+        },
+        {
+          "month": "2024-10",
+          "urbanSurveyedUnemployment": 0.05,
+          "age16_24ExcludingStudents": 0.171,
+          "age25_29ExcludingStudents": 0.068,
+          "age30_59": 0.038,
+          "weeklyWorkingHours": 48.6,
+          "sourceNote": "National Bureau of Statistics monthly labour force survey"
+        },
+        {
+          "month": "2024-11",
+          "urbanSurveyedUnemployment": 0.05,
+          "age16_24ExcludingStudents": 0.161,
+          "age25_29ExcludingStudents": 0.067,
+          "age30_59": 0.038,
+          "weeklyWorkingHours": 48.9,
+          "sourceNote": "National Bureau of Statistics monthly labour force survey"
+        },
+        {
+          "month": "2024-12",
+          "urbanSurveyedUnemployment": 0.051,
+          "age16_24ExcludingStudents": 0.157,
+          "age25_29ExcludingStudents": 0.066,
+          "age30_59": 0.039,
+          "weeklyWorkingHours": 49,
+          "sourceNote": "National Bureau of Statistics monthly labour force survey"
+        }
+      ]
     }
   },
   "backlog": {
@@ -1964,7 +2112,7 @@
   },
   "coverageAudit": {
     "updatedAt": "2026-07-07",
-    "seededDatasetCount": 10,
+    "seededDatasetCount": 11,
     "seededDimensions": [
       "ageRange",
       "commuteTolerance",
@@ -1983,6 +2131,7 @@
       "salary",
       "smoking",
       "workStyle",
+      "youthEmploymentPressure",
       "youthInflow"
     ],
     "backlogCount": 6,
@@ -2005,8 +2154,8 @@
     "generatedFrom": "data/seed/catalog.json",
     "summary": {
       "totalDimensions": 15,
-      "totalSources": 15,
-      "totalDatasets": 10,
+      "totalSources": 16,
+      "totalDatasets": 11,
       "backlogCount": 6
     },
     "byQuality": {
@@ -2199,6 +2348,7 @@
       "salary",
       "smoking",
       "workStyle",
+      "youthEmploymentPressure",
       "youthInflow"
     ],
     "upcomingDimensions": [
@@ -2766,6 +2916,37 @@
           "sourceId": "civil_affairs_marriage_stats",
           "note": "用于解释结婚登记趋势和长期关系背景；只使用公开年度汇总数据，不涉及个人婚恋状态。"
         },
+        "youthEmploymentPressureInsight": {
+          "selectedGroup": {
+            "key": "age25_29ExcludingStudents",
+            "label": "25-29 岁"
+          },
+          "latest": {
+            "month": "2024-12",
+            "urbanSurveyedUnemployment": 0.051,
+            "age16_24ExcludingStudents": 0.157,
+            "age25_29ExcludingStudents": 0.066,
+            "age30_59": 0.039,
+            "weeklyWorkingHours": 49,
+            "sourceNote": "National Bureau of Statistics monthly labour force survey",
+            "selectedRate": 0.066
+          },
+          "peak": {
+            "month": "2024-03",
+            "urbanSurveyedUnemployment": 0.052,
+            "age16_24ExcludingStudents": 0.153,
+            "age25_29ExcludingStudents": 0.072,
+            "age30_59": 0.041,
+            "weeklyWorkingHours": 48.6,
+            "sourceNote": "National Bureau of Statistics monthly labour force survey",
+            "selectedRate": 0.072
+          },
+          "averageRate": 0.0668,
+          "summaryText": "25-29 岁 2024 年末城镇调查失业率约 6.6%，全年高点为 2024-03 的 7.2%。这项只解释就业环境，不代表具体个人状态。",
+          "quality": "官方统计",
+          "sourceId": "nbs_age_unemployment",
+          "note": "用于解释年轻人就业压力；16-24 岁和 25-29 岁指标均为不包含在校生口径，不作为个人就业状态判断。"
+        },
         "sourceNotes": [
           {
             "id": "population_census",
@@ -2978,6 +3159,37 @@
           "quality": "官方统计",
           "sourceId": "civil_affairs_marriage_stats",
           "note": "用于解释结婚登记趋势和长期关系背景；只使用公开年度汇总数据，不涉及个人婚恋状态。"
+        },
+        "youthEmploymentPressureInsight": {
+          "selectedGroup": {
+            "key": "age25_29ExcludingStudents",
+            "label": "25-29 岁"
+          },
+          "latest": {
+            "month": "2024-12",
+            "urbanSurveyedUnemployment": 0.051,
+            "age16_24ExcludingStudents": 0.157,
+            "age25_29ExcludingStudents": 0.066,
+            "age30_59": 0.039,
+            "weeklyWorkingHours": 49,
+            "sourceNote": "National Bureau of Statistics monthly labour force survey",
+            "selectedRate": 0.066
+          },
+          "peak": {
+            "month": "2024-03",
+            "urbanSurveyedUnemployment": 0.052,
+            "age16_24ExcludingStudents": 0.153,
+            "age25_29ExcludingStudents": 0.072,
+            "age30_59": 0.041,
+            "weeklyWorkingHours": 48.6,
+            "sourceNote": "National Bureau of Statistics monthly labour force survey",
+            "selectedRate": 0.072
+          },
+          "averageRate": 0.0668,
+          "summaryText": "25-29 岁 2024 年末城镇调查失业率约 6.6%，全年高点为 2024-03 的 7.2%。这项只解释就业环境，不代表具体个人状态。",
+          "quality": "官方统计",
+          "sourceId": "nbs_age_unemployment",
+          "note": "用于解释年轻人就业压力；16-24 岁和 25-29 岁指标均为不包含在校生口径，不作为个人就业状态判断。"
         },
         "sourceNotes": [
           {

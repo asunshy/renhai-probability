@@ -117,7 +117,8 @@ function calculateInBrowser(filters) {
     comment,
     employmentInsight: getEmploymentInsight(region.code, filters),
     livingCostInsight: getLivingCostInsight(region.code, filters),
-    marriageTrendInsight: getMarriageTrendInsight()
+    marriageTrendInsight: getMarriageTrendInsight(),
+    youthEmploymentPressureInsight: getYouthEmploymentPressureInsight(filters)
   };
 }
 
@@ -207,6 +208,62 @@ function getMarriageTrendInsight() {
   };
 }
 
+function getYouthEmploymentPressureInsight(filters) {
+  if (!seed.benchmarks.youthUnemploymentTrend || !seed.benchmarks.youthUnemploymentTrend.metrics.length) {
+    return null;
+  }
+
+  const benchmark = seed.benchmarks.youthUnemploymentTrend;
+  const source = seed.catalog.sources.find((item) => item.id === benchmark.sourceId);
+  const group = getUnemploymentGroup(filters.ageRange);
+
+  if (!source) {
+    return null;
+  }
+
+  const metrics = benchmark.metrics
+    .slice()
+    .sort((a, b) => a.month.localeCompare(b.month))
+    .map((item) => ({
+      ...item,
+      selectedRate: item[group.key]
+    }));
+  const latest = metrics[metrics.length - 1];
+  const peak = metrics.slice().sort((a, b) => b.selectedRate - a.selectedRate)[0];
+  const averageRate = Number(
+    (metrics.reduce((sum, item) => sum + item.selectedRate, 0) / metrics.length).toFixed(4)
+  );
+
+  return {
+    selectedGroup: group,
+    latest,
+    peak,
+    averageRate,
+    summaryText: `${group.label} 2024 年末城镇调查失业率约 ${(latest.selectedRate * 100).toFixed(1)}%，全年高点为 ${peak.month} 的 ${(peak.selectedRate * 100).toFixed(1)}%。这项只解释就业环境，不代表具体个人状态。`,
+    quality: source.quality,
+    note: source.note
+  };
+}
+
+function getUnemploymentGroup(ageRange) {
+  if (ageRange === '25-29') {
+    return {
+      key: 'age25_29ExcludingStudents',
+      label: '25-29 岁'
+    };
+  }
+  if (ageRange === '30-34' || ageRange === '35-39') {
+    return {
+      key: 'age30_59',
+      label: '30-59 岁'
+    };
+  }
+  return {
+    key: 'age16_24ExcludingStudents',
+    label: '16-24 岁'
+  };
+}
+
 function renderMarriageTrendInsight(insight) {
   const panel = document.querySelector('#relationshipPanel');
   const quality = document.querySelector('#relationshipQuality');
@@ -220,6 +277,21 @@ function renderMarriageTrendInsight(insight) {
   panel.hidden = false;
   quality.textContent = insight.quality;
   summary.textContent = `${insight.trendText}${insight.note}`;
+}
+
+function renderYouthEmploymentPressureInsight(insight) {
+  const panel = document.querySelector('#youthEmploymentPanel');
+  const quality = document.querySelector('#youthEmploymentQuality');
+  const summary = document.querySelector('#youthEmploymentSummary');
+
+  if (!insight) {
+    panel.hidden = true;
+    return;
+  }
+
+  panel.hidden = false;
+  quality.textContent = insight.quality;
+  summary.textContent = `${insight.summaryText}${insight.note}`;
 }
 
 function buildRelaxAdvice(result) {
@@ -297,6 +369,7 @@ function renderResult(result) {
   renderEmploymentInsight(result.employmentInsight);
   renderLivingCostInsight(result.livingCostInsight);
   renderMarriageTrendInsight(result.marriageTrendInsight);
+  renderYouthEmploymentPressureInsight(result.youthEmploymentPressureInsight);
 
   const factors = document.querySelector('#factors');
   factors.replaceChildren();
