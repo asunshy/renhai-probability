@@ -137,5 +137,21 @@
     ],
     "coverage": "2024 年全国月度汇总，16-24 岁和 25-29 岁不包含在校生口径",
     "notes": "用于结果页解释青年就业压力和年龄段就业背景，不直接作为概率筛选比例。"
+  },
+  {
+    "id": "household_income_trend_2020_2024",
+    "title": "全国居民人均可支配收入年度趋势表",
+    "rawPath": "data/raw/household-income-trend-2020-2024.csv",
+    "sourceId": "nbs_household_income",
+    "quality": "官方统计",
+    "year": 2024,
+    "importCommand": "npm run import:income-trend",
+    "dimensions": [
+      "incomeTrend",
+      "livingCostInsight",
+      "employmentInsight"
+    ],
+    "coverage": "2020-2024 年全国年度汇总，含全国、城镇、农村居民人均可支配收入",
+    "notes": "用于结果页解释收入环境和城市生活压力，不直接作为概率筛选比例。"
   }
 ]

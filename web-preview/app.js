@@ -118,7 +118,8 @@ function calculateInBrowser(filters) {
     employmentInsight: getEmploymentInsight(region.code, filters),
     livingCostInsight: getLivingCostInsight(region.code, filters),
     marriageTrendInsight: getMarriageTrendInsight(),
-    youthEmploymentPressureInsight: getYouthEmploymentPressureInsight(filters)
+    youthEmploymentPressureInsight: getYouthEmploymentPressureInsight(filters),
+    incomeTrendInsight: getIncomeTrendInsight()
   };
 }
 
@@ -245,6 +246,37 @@ function getYouthEmploymentPressureInsight(filters) {
   };
 }
 
+function getIncomeTrendInsight() {
+  if (!seed.benchmarks.incomeTrend || !seed.benchmarks.incomeTrend.metrics.length) {
+    return null;
+  }
+
+  const benchmark = seed.benchmarks.incomeTrend;
+  const source = seed.catalog.sources.find((item) => item.id === benchmark.sourceId);
+
+  if (!source) {
+    return null;
+  }
+
+  const metrics = benchmark.metrics.slice().sort((a, b) => a.year - b.year);
+  const first = metrics[0];
+  const latest = metrics[metrics.length - 1];
+  const fiveYearNominalGrowth = Number(
+    ((latest.nationalDisposableIncomePerCapita - first.nationalDisposableIncomePerCapita)
+      / first.nationalDisposableIncomePerCapita).toFixed(4)
+  );
+
+  return {
+    latest,
+    first,
+    realGrowthRate: latest.realGrowthRate,
+    fiveYearNominalGrowth,
+    summaryText: `2024 年全国居民人均可支配收入约 ${latest.nationalDisposableIncomePerCapita.toLocaleString('zh-CN')} 元，城镇居民约 ${latest.urbanDisposableIncomePerCapita.toLocaleString('zh-CN')} 元；收入真实增长约 ${(latest.realGrowthRate * 100).toFixed(1)}%。这项用于理解生活成本背景，不判断个人收入。`,
+    quality: source.quality,
+    note: source.note
+  };
+}
+
 function getUnemploymentGroup(ageRange) {
   if (ageRange === '25-29') {
     return {
@@ -283,6 +315,21 @@ function renderYouthEmploymentPressureInsight(insight) {
   const panel = document.querySelector('#youthEmploymentPanel');
   const quality = document.querySelector('#youthEmploymentQuality');
   const summary = document.querySelector('#youthEmploymentSummary');
+
+  if (!insight) {
+    panel.hidden = true;
+    return;
+  }
+
+  panel.hidden = false;
+  quality.textContent = insight.quality;
+  summary.textContent = `${insight.summaryText}${insight.note}`;
+}
+
+function renderIncomeTrendInsight(insight) {
+  const panel = document.querySelector('#incomePanel');
+  const quality = document.querySelector('#incomeQuality');
+  const summary = document.querySelector('#incomeSummary');
 
   if (!insight) {
     panel.hidden = true;
@@ -370,6 +417,7 @@ function renderResult(result) {
   renderLivingCostInsight(result.livingCostInsight);
   renderMarriageTrendInsight(result.marriageTrendInsight);
   renderYouthEmploymentPressureInsight(result.youthEmploymentPressureInsight);
+  renderIncomeTrendInsight(result.incomeTrendInsight);
 
   const factors = document.querySelector('#factors');
   factors.replaceChildren();

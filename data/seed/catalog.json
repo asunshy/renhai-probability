@@ -164,6 +164,16 @@
       "refreshCadence": "按月复核国家统计局和国家数据公开指标",
       "url": "https://data.stats.gov.cn/",
       "note": "用于解释年轻人就业压力；16-24 岁和 25-29 岁指标均为不包含在校生口径，不作为个人就业状态判断。"
+    },
+    "nbs_household_income": {
+      "id": "nbs_household_income",
+      "title": "国家统计局居民人均可支配收入年度数据",
+      "year": 2024,
+      "quality": "官方统计",
+      "priority": 1,
+      "refreshCadence": "年度复核国家统计局统计公报和国家数据住户收入指标",
+      "url": "https://data.stats.gov.cn/",
+      "note": "用于解释收入环境和城市生活压力；只使用年度汇总口径，不作为个人收入判断。"
     }
   },
   "regions": {
@@ -2047,6 +2057,58 @@
           "age30_59": 0.039,
           "weeklyWorkingHours": 49,
           "sourceNote": "National Bureau of Statistics monthly labour force survey"
+        }
+      ]
+    },
+    "incomeTrend": {
+      "sourceId": "nbs_household_income",
+      "unit": "cny_per_capita_year",
+      "coverage": "national_annual",
+      "metrics": [
+        {
+          "year": 2020,
+          "nationalDisposableIncomePerCapita": 32189,
+          "urbanDisposableIncomePerCapita": 43834,
+          "ruralDisposableIncomePerCapita": 17131,
+          "nominalGrowthRate": 0.047,
+          "realGrowthRate": 0.021,
+          "sourceNote": "National Bureau of Statistics statistical communique"
+        },
+        {
+          "year": 2021,
+          "nationalDisposableIncomePerCapita": 35128,
+          "urbanDisposableIncomePerCapita": 47412,
+          "ruralDisposableIncomePerCapita": 18931,
+          "nominalGrowthRate": 0.091,
+          "realGrowthRate": 0.081,
+          "sourceNote": "National Bureau of Statistics statistical communique"
+        },
+        {
+          "year": 2022,
+          "nationalDisposableIncomePerCapita": 36883,
+          "urbanDisposableIncomePerCapita": 49283,
+          "ruralDisposableIncomePerCapita": 20133,
+          "nominalGrowthRate": 0.05,
+          "realGrowthRate": 0.029,
+          "sourceNote": "National Bureau of Statistics statistical communique"
+        },
+        {
+          "year": 2023,
+          "nationalDisposableIncomePerCapita": 39218,
+          "urbanDisposableIncomePerCapita": 51821,
+          "ruralDisposableIncomePerCapita": 21691,
+          "nominalGrowthRate": 0.063,
+          "realGrowthRate": 0.061,
+          "sourceNote": "National Bureau of Statistics statistical communique"
+        },
+        {
+          "year": 2024,
+          "nationalDisposableIncomePerCapita": 41314,
+          "urbanDisposableIncomePerCapita": 54188,
+          "ruralDisposableIncomePerCapita": 23119,
+          "nominalGrowthRate": 0.053,
+          "realGrowthRate": 0.051,
+          "sourceNote": "National Bureau of Statistics statistical communique"
         }
       ]
     }

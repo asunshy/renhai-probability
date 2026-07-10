@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-10T15:39:44.844Z",
+  "generatedAt": "2026-07-10T15:58:37.301Z",
   "options": {
     "region": {
       "code": "000000",
@@ -597,6 +597,16 @@
         "refreshCadence": "按月复核国家统计局和国家数据公开指标",
         "url": "https://data.stats.gov.cn/",
         "note": "用于解释年轻人就业压力；16-24 岁和 25-29 岁指标均为不包含在校生口径，不作为个人就业状态判断。"
+      },
+      {
+        "id": "nbs_household_income",
+        "title": "国家统计局居民人均可支配收入年度数据",
+        "year": 2024,
+        "quality": "官方统计",
+        "priority": 1,
+        "refreshCadence": "年度复核国家统计局统计公报和国家数据住户收入指标",
+        "url": "https://data.stats.gov.cn/",
+        "note": "用于解释收入环境和城市生活压力；只使用年度汇总口径，不作为个人收入判断。"
       }
     ],
     "dimensions": [
@@ -1089,7 +1099,7 @@
     ]
   },
   "coverage": {
-    "totalSources": 16,
+    "totalSources": 17,
     "totalDimensions": 15,
     "qualityCounts": {
       "官方统计": 4,
@@ -1212,6 +1222,13 @@
         "quality": "官方统计",
         "priority": 1,
         "refreshCadence": "按月复核国家统计局和国家数据公开指标"
+      },
+      {
+        "id": "nbs_household_income",
+        "title": "国家统计局居民人均可支配收入年度数据",
+        "quality": "官方统计",
+        "priority": 1,
+        "refreshCadence": "年度复核国家统计局统计公报和国家数据住户收入指标"
       },
       {
         "id": "recruitment_reports",
@@ -1453,6 +1470,22 @@
       ],
       "coverage": "2024 年全国月度汇总，16-24 岁和 25-29 岁不包含在校生口径",
       "notes": "用于结果页解释青年就业压力和年龄段就业背景，不直接作为概率筛选比例。"
+    },
+    {
+      "id": "household_income_trend_2020_2024",
+      "title": "全国居民人均可支配收入年度趋势表",
+      "rawPath": "data/raw/household-income-trend-2020-2024.csv",
+      "sourceId": "nbs_household_income",
+      "quality": "官方统计",
+      "year": 2024,
+      "importCommand": "npm run import:income-trend",
+      "dimensions": [
+        "incomeTrend",
+        "livingCostInsight",
+        "employmentInsight"
+      ],
+      "coverage": "2020-2024 年全国年度汇总，含全国、城镇、农村居民人均可支配收入",
+      "notes": "用于结果页解释收入环境和城市生活压力，不直接作为概率筛选比例。"
     }
   ],
   "benchmarks": {
@@ -1972,6 +2005,58 @@
           "sourceNote": "National Bureau of Statistics monthly labour force survey"
         }
       ]
+    },
+    "incomeTrend": {
+      "sourceId": "nbs_household_income",
+      "unit": "cny_per_capita_year",
+      "coverage": "national_annual",
+      "metrics": [
+        {
+          "year": 2020,
+          "nationalDisposableIncomePerCapita": 32189,
+          "urbanDisposableIncomePerCapita": 43834,
+          "ruralDisposableIncomePerCapita": 17131,
+          "nominalGrowthRate": 0.047,
+          "realGrowthRate": 0.021,
+          "sourceNote": "National Bureau of Statistics statistical communique"
+        },
+        {
+          "year": 2021,
+          "nationalDisposableIncomePerCapita": 35128,
+          "urbanDisposableIncomePerCapita": 47412,
+          "ruralDisposableIncomePerCapita": 18931,
+          "nominalGrowthRate": 0.091,
+          "realGrowthRate": 0.081,
+          "sourceNote": "National Bureau of Statistics statistical communique"
+        },
+        {
+          "year": 2022,
+          "nationalDisposableIncomePerCapita": 36883,
+          "urbanDisposableIncomePerCapita": 49283,
+          "ruralDisposableIncomePerCapita": 20133,
+          "nominalGrowthRate": 0.05,
+          "realGrowthRate": 0.029,
+          "sourceNote": "National Bureau of Statistics statistical communique"
+        },
+        {
+          "year": 2023,
+          "nationalDisposableIncomePerCapita": 39218,
+          "urbanDisposableIncomePerCapita": 51821,
+          "ruralDisposableIncomePerCapita": 21691,
+          "nominalGrowthRate": 0.063,
+          "realGrowthRate": 0.061,
+          "sourceNote": "National Bureau of Statistics statistical communique"
+        },
+        {
+          "year": 2024,
+          "nationalDisposableIncomePerCapita": 41314,
+          "urbanDisposableIncomePerCapita": 54188,
+          "ruralDisposableIncomePerCapita": 23119,
+          "nominalGrowthRate": 0.053,
+          "realGrowthRate": 0.051,
+          "sourceNote": "National Bureau of Statistics statistical communique"
+        }
+      ]
     }
   },
   "backlog": {
@@ -2112,7 +2197,7 @@
   },
   "coverageAudit": {
     "updatedAt": "2026-07-07",
-    "seededDatasetCount": 11,
+    "seededDatasetCount": 12,
     "seededDimensions": [
       "ageRange",
       "commuteTolerance",
@@ -2121,6 +2206,7 @@
       "employmentInsight",
       "gender",
       "homeOwnership",
+      "incomeTrend",
       "jobMarket",
       "livingCostInsight",
       "marriageTrend",
@@ -2154,8 +2240,8 @@
     "generatedFrom": "data/seed/catalog.json",
     "summary": {
       "totalDimensions": 15,
-      "totalSources": 16,
-      "totalDatasets": 11,
+      "totalSources": 17,
+      "totalDatasets": 12,
       "backlogCount": 6
     },
     "byQuality": {
@@ -2338,6 +2424,7 @@
       "employmentInsight",
       "gender",
       "homeOwnership",
+      "incomeTrend",
       "jobMarket",
       "livingCostInsight",
       "marriageTrend",
@@ -2947,6 +3034,36 @@
           "sourceId": "nbs_age_unemployment",
           "note": "用于解释年轻人就业压力；16-24 岁和 25-29 岁指标均为不包含在校生口径，不作为个人就业状态判断。"
         },
+        "incomeTrendInsight": {
+          "latest": {
+            "year": 2024,
+            "nationalDisposableIncomePerCapita": 41314,
+            "urbanDisposableIncomePerCapita": 54188,
+            "ruralDisposableIncomePerCapita": 23119,
+            "nominalGrowthRate": 0.053,
+            "realGrowthRate": 0.051,
+            "sourceNote": "National Bureau of Statistics statistical communique"
+          },
+          "first": {
+            "year": 2020,
+            "nationalDisposableIncomePerCapita": 32189,
+            "urbanDisposableIncomePerCapita": 43834,
+            "ruralDisposableIncomePerCapita": 17131,
+            "nominalGrowthRate": 0.047,
+            "realGrowthRate": 0.021,
+            "sourceNote": "National Bureau of Statistics statistical communique"
+          },
+          "realGrowthRate": 0.051,
+          "fiveYearNominalGrowth": 0.2835,
+          "monthlyReference": {
+            "urbanDisposableIncomePerCapita": 4516,
+            "nationalDisposableIncomePerCapita": 3443
+          },
+          "summaryText": "2024 年全国居民人均可支配收入约 41,314 元，城镇居民约 54,188 元；收入真实增长约 5.1%。这项用于理解生活成本背景，不判断个人收入。",
+          "quality": "官方统计",
+          "sourceId": "nbs_household_income",
+          "note": "用于解释收入环境和城市生活压力；只使用年度汇总口径，不作为个人收入判断。"
+        },
         "sourceNotes": [
           {
             "id": "population_census",
@@ -3190,6 +3307,36 @@
           "quality": "官方统计",
           "sourceId": "nbs_age_unemployment",
           "note": "用于解释年轻人就业压力；16-24 岁和 25-29 岁指标均为不包含在校生口径，不作为个人就业状态判断。"
+        },
+        "incomeTrendInsight": {
+          "latest": {
+            "year": 2024,
+            "nationalDisposableIncomePerCapita": 41314,
+            "urbanDisposableIncomePerCapita": 54188,
+            "ruralDisposableIncomePerCapita": 23119,
+            "nominalGrowthRate": 0.053,
+            "realGrowthRate": 0.051,
+            "sourceNote": "National Bureau of Statistics statistical communique"
+          },
+          "first": {
+            "year": 2020,
+            "nationalDisposableIncomePerCapita": 32189,
+            "urbanDisposableIncomePerCapita": 43834,
+            "ruralDisposableIncomePerCapita": 17131,
+            "nominalGrowthRate": 0.047,
+            "realGrowthRate": 0.021,
+            "sourceNote": "National Bureau of Statistics statistical communique"
+          },
+          "realGrowthRate": 0.051,
+          "fiveYearNominalGrowth": 0.2835,
+          "monthlyReference": {
+            "urbanDisposableIncomePerCapita": 4516,
+            "nationalDisposableIncomePerCapita": 3443
+          },
+          "summaryText": "2024 年全国居民人均可支配收入约 41,314 元，城镇居民约 54,188 元；收入真实增长约 5.1%。这项用于理解生活成本背景，不判断个人收入。",
+          "quality": "官方统计",
+          "sourceId": "nbs_household_income",
+          "note": "用于解释收入环境和城市生活压力；只使用年度汇总口径，不作为个人收入判断。"
         },
         "sourceNotes": [
           {

@@ -272,6 +272,14 @@ blockquote {
   background: #f0fdf4;
 }
 
+.income-panel {
+  margin-top: 20px;
+  padding: 22px;
+  border: 1px solid #fed7aa;
+  border-radius: 8px;
+  background: #fff7ed;
+}
+
 .relationship-panel {
   margin-top: 20px;
   padding: 22px;
@@ -281,12 +289,17 @@ blockquote {
 }
 
 .living-panel p,
+.income-panel p,
 .relationship-panel p {
   margin: 14px 0 0;
   color: #14532d;
   font-size: 15px;
   line-height: 1.65;
   font-weight: 750;
+}
+
+.income-panel p {
+  color: #9a3412;
 }
 
 .relationship-panel p {
